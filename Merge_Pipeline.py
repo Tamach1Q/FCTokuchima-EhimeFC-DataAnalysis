@@ -1,7 +1,7 @@
-import pandas as pd
+"""import pandas as pd
 
 def merge_soccer_data(fb_filepath, sc_filepath, name_mapping, match_date_filter=None):
-    """
+
     Football BoxとSkill Cornerのデータを統合する前処理パイプライン
     
     Parameters:
@@ -12,7 +12,6 @@ def merge_soccer_data(fb_filepath, sc_filepath, name_mapping, match_date_filter=
     
     Returns:
         pd.DataFrame: 結合・前処理済みのデータフレーム
-    """
     
     # 1. データの読み込み
     print(f"Loading data...\n FB: {fb_filepath}\n SC: {sc_filepath}")
@@ -72,4 +71,4 @@ if __name__ == "__main__":
     # 結果の確認
     print("\n=== Merge Successful! ===")
     cols_to_check = ['試合日', 'チーム名', 'Player_JA', 'PA進入', 'Sprint Count TIP']
-    print(result_df[cols_to_check])
+    print(result_df[cols_to_check])"""
