@@ -1,0 +1,297 @@
+kmeans_results_refinedのコピー
+FB_Name,SC_Name,選手名,Cluster_Refined
+浅川　隼人,Hayato Asakawa,浅川　隼人,3
+髙木　彰人,Akito Takagi,髙木　彰人,0
+横山　智也,Tomoya Yokoyama,横山　智也,1
+吉田　篤志,Atsushi Yoshida,吉田　篤志,3
+宮吉　拓実,Takumi Miyayoshi,宮吉　拓実,0
+山田　新,Shin Yamada,山田　新,3
+中野　誠也,Seiya Nakano,中野　誠也,0
+島田　拓海,Takumi Shimada,島田　拓海,3
+山田　寛人,Hiroto Yamada,山田　寛人,0
+肥田野　蓮治,Renji Hidano,肥田野　蓮治,3
+渡邊　啓吾,Keigo Watanabe,渡邊　啓吾,1
+矢島　輝一,Kiichi Yajima,矢島　輝一,2
+高木　大輔,Daisuke Takagi,高木　大輔,0
+小堀　空,Sora Kobori,小堀　空,2
+鈴木　大馳,Daichi Suzuki,鈴木　大馳,3
+横山　歩夢,Ayumu Yokoyama,横山　歩夢,1
+長沢　駿,Shun Nagasawa,長沢　駿,2
+梅田　魁人,Kaito Umeda,梅田　魁人,0
+古川　大悟,Daigo Furukawa,古川　大悟,3
+駒沢　直哉,Naoya Komazawa,駒沢　直哉,3
+仲川　輝人,Teruhito Nakagawa,仲川　輝人,0
+山本　駿亮,Shunsuke Yamamoto,山本　駿亮,2
+藤本　佳希,Yoshiki Fujimoto,藤本　佳希,0
+ブワニカ　啓太,Keita Buwanika,ブワニカ　啓太,2
+植中　朝日,Asahi Uenaka,植中　朝日,2
+多田　圭佑,Keisuke Tada,多田　圭佑,0
+吉田　伊吹,Ibuki Yoshida,吉田　伊吹,2
+石川　大地,Daichi Ishikawa,石川　大地,2
+山見　大登,Hiroto Yamami,山見　大登,0
+原　大智,Taichi Hara,原　大智,2
+宮代　大聖,Taisei Miyashiro,宮代　大聖,2
+堀金　峻明,Shunmei Horikane,堀金　峻明,3
+川又　堅碁,Kengo Kawamata,川又　堅碁,3
+前田　直輝,Naoki Maeda,前田　直輝,1
+鮎川　峻,Shun Ayukawa,鮎川　峻,0
+新川　志音,Shion Shinkawa,新川　志音,0
+宇佐美　貴史,Takashi Usami,宇佐美　貴史,2
+中島　元彦,Motohiko Nakajima,中島　元彦,2
+谷口　海斗,Kaito Taniguchi,谷口　海斗,2
+鈴木　武蔵,Musashi Suzuki,鈴木　武蔵,0
+梅木　翼,Tsubasa Umeki,梅木　翼,2
+アマドゥ　バカヨコ,Amadou Bakayoko,アマドゥ　バカヨコ,3
+荒木　駿太,Shunta Araki,荒木　駿太,1
+西村　拓真,Takuma Nishimura,西村　拓真,2
+藤井　一志,Kazushi Fujii,藤井　一志,0
+高井　和馬,Kazuma Takai,高井　和馬,0
+橋本　啓吾,Keigo Hashimoto,橋本　啓吾,3
+シャハブ　ザヘディ,Shahab Zahedi,シャハブ　ザヘディ,3
+エリソン,Erison Danilo de Souza,エリソン,3
+髙橋　利樹,Toshiki Takahashi,髙橋　利樹,0
+ピエロス　ソティリウ,Pieros Sotiriou,ピエロス　ソティリウ,3
+小野　裕二,Yuji Ono,小野　裕二,2
+大橋　祐紀,Yuki Ohashi,大橋　祐紀,3
+佐々木　大樹,Daiju Sasaki,佐々木　大樹,1
+松木　駿之介,Shunnosuke Matsuki,松木　駿之介,3
+武藤　雄樹,Yuki Muto,武藤　雄樹,2
+杉浦　恭平,Kyohei Sugiura,杉浦　恭平,2
+白輪地　敬大,Keita Shirawachi,白輪地　敬大,0
+西野　太陽,Taiyo Nishino,西野　太陽,1
+齋藤　恵太,Keita Saito,齋藤　恵太,0
+渡邉　りょう,Ryo Watanabe,渡邉　りょう,0
+草野　侑己,Yuki Kusano,草野　侑己,0
+加藤　陸次樹,Mutsuki Kato,加藤　陸次樹,2
+髙澤　優也,Yuya Takazawa,髙澤　優也,2
+ピーダーセン　世穏,Jorn Pedersen,ピーダーセン　世穏,2
+丹羽　詩温,Shion Niwa,丹羽　詩温,0
+宮崎　純真,Junma Miyazaki,宮崎　純真,1
+田川　亨介,Kyosuke Tagawa,田川　亨介,0
+安藤　瑞季,Mizuki Ando,安藤　瑞季,0
+ディエゴ　オリヴェイラ,Diego Queiroz de Oliveira,ディエゴ　オリヴェイラ,2
+食野　亮太郎,Ryotaro Meshino,食野　亮太郎,1
+小川　慶治朗,Keijiro Ogawa,小川　慶治朗,0
+齋藤　学,Manabu Saito,齋藤　学,1
+キム　ゴンヒ,Gun-Hee Kim,キム　ゴンヒ,2
+上野　瑶介,Yosuke Ueno,上野　瑶介,0
+ジョルディ　クルークス,Jordy Croux,ジョルディ　クルークス,1
+大澤　朋也,Tomoya Osawa,大澤　朋也,1
+ピーター　ウタカ,Peter Utaka,ピーター　ウタカ,3
+ジョルディ　サンチェス,Jordi Sánchez Ribas,ジョルディ　サンチェス,0
+内藤　大和,Yamato Naito,内藤　大和,0
+渡　大生,Daiki Watari,渡　大生,2
+加藤　拓己,Takumi Kato,加藤　拓己,3
+中山　仁斗,Masato Nakayama,中山　仁斗,2
+田中　翔太,Shota Tanaka,田中　翔太,0
+白井　陽斗,Haruto Shirai,白井　陽斗,3
+ベ　ジョンミン,Jeong Min Bae,ベ　ジョンミン,0
+福田　翔生,Sho Fukuda,福田　翔生,0
+岩岸　宗志,Soshi Iwagishi,岩岸　宗志,3
+南野　遥海,Harumi Minamino,南野　遥海,0
+久保　征一郎,Seiichiro Kubo,久保　征一郎,2
+北川　航也,Koya Kitagawa,北川　航也,0
+小見　洋太,Yota Komi,小見　洋太,1
+矢村　健,Ken Yamura,矢村　健,0
+カプリーニ,Mauricio Caprini Pinto,カプリーニ,2
+望月　想空,Sora Mochizuki,望月　想空,3
+山﨑　凌吾,Ryogo Yamasaki,山﨑　凌吾,2
+浮田　健誠,Kensei Ukita,浮田　健誠,0
+谷村　海那,Kaina Tanimura,谷村　海那,3
+根本　凌,Ryo Nemoto,根本　凌,2
+石橋　瀬凪,Sena Ishibashi,石橋　瀬凪,1
+粟飯原　尚平,Shohei Aihara,粟飯原　尚平,2
+エヴェルトン　ガウディーノ,Everton Galdino Moreira,エヴェルトン　ガウディーノ,1
+武　星弥,Seiya Take,武　星弥,3
+ドウグラス　ヴィエイラ,Douglas Willian da Silva Souza,ドウグラス　ヴィエイラ,2
+奥田　晃也,Koya Okuda,奥田　晃也,1
+オウイエ　ウイリアム,William Owie,オウイエ　ウイリアム,0
+佐藤　恵允,Kein Sato,佐藤　恵允,1
+ドウグラス　タンキ,Wesley Tanque da Silva,ドウグラス　タンキ,3
+佐藤　凌我,Ryoga Sato,佐藤　凌我,0
+満田　誠,Makoto Mitsuta,満田　誠,1
+ディアマンカ　センゴール,Cheikh Diamanka,ディアマンカ　センゴール,0
+松本　ケン　チザンガ,Kanaru Matsumoto,松本　ケン　チザンガ,2
+庵原　篤人,Atsuhito Ihara,庵原　篤人,0
+ジョアン　パウロ,João Paulo Queiroz de Moraes,ジョアン　パウロ,2
+オナイウ　情滋,George Onaiwu,オナイウ　情滋,1
+寺沼　星文,Shimon Teranuma,寺沼　星文,3
+ルイス　フェリッピ,Luiz Phellype Luciano Silva,ルイス　フェリッピ,2
+中村　草太,Sota Nakamura,中村　草太,1
+小柏　剛,Tsuyoshi Ogashiwa,小柏　剛,1
+富山　貴光,Takamitsu Tomiyama,富山　貴光,2
+坂本　一彩,Isa Sakamoto,坂本　一彩,2
+伊藤　翔,Sho Ito,伊藤　翔,2
+樺山　諒乃介,Ryonosuke Kabayama,樺山　諒乃介,1
+鈴木　優磨,Yuma Suzuki,鈴木　優磨,2
+森　海渡,Kaito Mori,森　海渡,0
+マテウス　ペイショット,Matheus Vieira Campos Peixoto,マテウス　ペイショット,2
+有馬　幸太郎,Kotaro Arima,有馬　幸太郎,3
+永井　謙佑,Kensuke Nagai,永井　謙佑,0
+白井　亮丞,Ryosuke Shirai,白井　亮丞,3
+アンジェロッティ,Rodrigo Luiz Angelotti,アンジェロッティ,2
+久保　吏久斗,Rikuto Kubo,久保　吏久斗,1
+石井　稜真,Ryoma Ishii,石井　稜真,0
+西丸　道人,Minto Nishimaru,西丸　道人,1
+加藤　大晟,Taisei Kato,加藤　大晟,0
+碓井　聖生,Shosei Usui,碓井　聖生,3
+酒井　宣福,Noriyoshi Sakai,酒井　宣福,2
+ジョップ　セリンサリウ,Serigne Diop,ジョップ　セリンサリウ,3
+半代　将都,Masato Handai,半代　将都,1
+長倉　幹樹,Motoki Nagakura,長倉　幹樹,3
+鈴木　輪太朗　イブラヒーム,Wadi Ibrahim Suzuki,鈴木　輪太朗　イブラヒーム,3
+安藤　翼,Tsubasa Ando,安藤　翼,0
+千葉　寛汰,Kanta Chiba,千葉　寛汰,0
+神代　慶人,Keito Kumashiro,神代　慶人,0
+エロン,Eronildo dos Santos Rocha,エロン,2
+ヴィトール　ブエノ,Vitor Frezarin Bueno,ヴィトール　ブエノ,1
+坪郷　来紀,Raiki Tsubogo,坪郷　来紀,0
+渡邉　颯太,Sota Watanabe,渡邉　颯太,3
+トニー　アンデルソン,Thonny Anderson Da Silva Carvalho,トニー　アンデルソン,2
+宇津元　伸弥,Shinya Utsumoto,宇津元　伸弥,1
+出間　思努,Shido Izuma,出間　思努,2
+塩浜　遼,Ryo Shiohama,塩浜　遼,2
+菊井　悠介,Yusuke Kikui,菊井　悠介,1
+ナ　サンホ,Sang-Ho Na,ナ　サンホ,0
+佐藤　大樹,Daiki Sato,佐藤　大樹,0
+エリキ,Erik Nascimento de Lima,エリキ,1
+ディーン　デイビッド,Dean David,ディーン　デイビッド,3
+ナッシム　ベン　カリファ,Nassim Ben Khalifa,ナッシム　ベン　カリファ,2
+伊藤　達哉,Tatsuya Ito,伊藤　達哉,2
+イッサム　ジェバリ,Issam Jebali,イッサム　ジェバリ,2
+大谷　駿斗,Hayato Otani,大谷　駿斗,1
+エジガル　ジュニオ,Edigar Junio Teixeira Lima,エジガル　ジュニオ,3
+青木　翔大,Shota Aoki,青木　翔大,3
+ヤン　マテウス,Yan Matheus Santos Souza,ヤン　マテウス,1
+三木　直土,Naoto Miki,三木　直土,2
+加々美　登生,Toi Kagami,加々美　登生,1
+田口　裕也,Yuya Taguchi,田口　裕也,3
+松田　力,Riki Matsuda,松田　力,0
+半田　航也,Koya Handa,半田　航也,0
+松本　孝平,Kohei Matsumoto,松本　孝平,2
+太田　龍之介,Ryunosuke Ota,太田　龍之介,3
+師岡　柊生,Shu Morooka,師岡　柊生,0
+ラファエル　エリアス,Rafael Elias da Silva,ラファエル　エリアス,3
+後藤　優介,Yusuke Goto,後藤　優介,2
+酒井　達磨,Tatsuma Sakai,酒井　達磨,2
+興梠　慎三,Shinzo Koroki,興梠　慎三,1
+屋敷　優成,Yusei Yashiki,屋敷　優成,0
+木村　勇大,Yudai Kimura,木村　勇大,0
+マルクス　ヴィニシウス,Marcus Vinicius Ferreira Teixeira,マルクス　ヴィニシウス,3
+鈴木　翔大,Shota Suzuki,鈴木　翔大,2
+ヴァレール　ジェルマン,Valère Germain,ヴァレール　ジェルマン,2
+大島　康樹,Koki Oshima,大島　康樹,2
+西谷　和希,Kazuki Nishiya,西谷　和希,1
+山下　諒也,Ryoya Yamashita,山下　諒也,1
+イスマイラ,Origbaajo Ismaila,イスマイラ,3
+ルキアン,Lukian Araújo de Almeida,ルキアン,0
+ノーマン　キャンベル,Norman Campbell,ノーマン　キャンベル,1
+石井　久継,Hisatsugu Ishii,石井　久継,1
+三平　和司,Kazushi Mitsuhira,三平　和司,2
+古山　兼悟,Kengo Furuyama,古山　兼悟,0
+日野　友貴,Tomoki Hino,日野　友貴,3
+ウェズレイ　タンキ,Wesley Tanque da Silva,ウェズレイ　タンキ,3
+マテウス　レイリア,Matheus Leiria Dos Santos,マテウス　レイリア,0
+ディサロ　燦シルヴァーノ,Akira Silvano Disaro,ディサロ　燦シルヴァーノ,0
+川本　梨誉,Riyo Kawamoto,川本　梨誉,0
+上野　輝人,Akito Ueno,上野　輝人,1
+木本　真翔,Manato Kimoto,木本　真翔,1
+佐藤　未勇,Miyu Sato,佐藤　未勇,3
+中島　大嘉,Taika Nakashima,中島　大嘉,3
+山谷　侑士,Yushi Yamaya,山谷　侑士,0
+染野　唯月,Itsuki Someno,染野　唯月,2
+オ　セフン,Se-Hun Oh,オ　セフン,3
+小松　蓮,Ren Komatsu,小松　蓮,3
+ベン　ダンカン,Ben Duncan,ベン　ダンカン,0
+澤上　竜二,Ryuji Sawakami,澤上　竜二,2
+熊田　直紀,Naoki Kumata,熊田　直紀,0
+マテウス　カストロ,Mateus dos Santos Castro,マテウス　カストロ,0
+高　昇辰,Seung-Jin Koh,高　昇辰,3
+オリオラ　サンデー,Oriola Sunday,オリオラ　サンデー,0
+チアゴ　アンドラーデ,Thiago Eduardo de Andrade,チアゴ　アンドラーデ,1
+田中　想来,Sora Tanaka,田中　想来,0
+都倉　賢,Ken Tokura,都倉　賢,2
+ジョアン　ヴィクトル,João Victor Andrade Caetano,ジョアン　ヴィクトル,2
+チアゴ　サンタナ,Thiago Santos Santana,チアゴ　サンタナ,0
+藤岡　浩介,Kosuke Fujioka,藤岡　浩介,0
+細谷　真大,Mao Hosoya,細谷　真大,3
+河辺　駿太郎,Shuntaro Kawabe,河辺　駿太郎,0
+山下　敬大,Keita Yamashita,山下　敬大,2
+鶴野　怜樹,Reiju Tsuruno,鶴野　怜樹,1
+畑　潤基,Junki Hata,畑　潤基,1
+田村　翔太,Shota Tamura,田村　翔太,0
+坪井　清志郎,Kiyoshiro Tsuboi,坪井　清志郎,3
+鈴木　孝司,Koji Suzuki,鈴木　孝司,2
+舩橋　京汰,Kyota Funahashi,舩橋　京汰,0
+遠野　大弥,Daiya Tono,遠野　大弥,1
+平岡　将豪,Masahide Hiraoka,平岡　将豪,3
+西村　真祈,Masaki Nishimura,西村　真祈,1
+棚田　遼,Ryo Tanada,棚田　遼,0
+アダイウトン,Adailton dos Santos da Silva,アダイウトン,3
+東家　聡樹,Toshiki Toya,東家　聡樹,3
+矢野　貴章,Kisho Yano,矢野　貴章,2
+富樫　佑太,Yuta Togashi,富樫　佑太,2
+富樫　敬真,Cayman Togashi,富樫　敬真,2
+レオ　セアラ,Leonardo de Sousa Pereira,レオ　セアラ,3
+星野　創輝,Soki Hoshino,星野　創輝,0
+渡邉　新太,Arata Watanabe,渡邉　新太,0
+ラザル　ロマニッチ,Lazar Romanić,ラザル　ロマニッチ,0
+北條　真汰,Shinta Hojo,北條　真汰,1
+和田　育,Hagumi Wada,和田　育,0
+末永　透瑛,Toa Suenaga,末永　透瑛,1
+ルーカス　バルセロス,Lucas Barcelos Damasceno,ルーカス　バルセロス,3
+小田　裕太郎,Yutaro Oda,小田　裕太郎,0
+ンドカ　チャールス,Charles Nduka,ンドカ　チャールス,0
+吉平　翼,Tsubasa Yoshihira,吉平　翼,1
+垣田　裕暉,Yuki Kakita,垣田　裕暉,0
+米澤　令衣,Rei Yonezawa,米澤　令衣,1
+太田　修介,Shusuke Ota,太田　修介,1
+鈴木　章斗,Akito Suzuki,鈴木　章斗,2
+櫻川　ソロモン,Solomon Sakuragawa,櫻川　ソロモン,3
+二田　理央,Rio Nitta,二田　理央,0
+パトリック,Patrick Verhon Pertel Pereira,パトリック,3
+キャスパー　ユンカー,Kasper Junker,キャスパー　ユンカー,3
+藤沼　拓夢,Takumu Fujinuma,藤沼　拓夢,3
+榊原　杏太,Kyota Sakakibara,榊原　杏太,1
+アフメド　アフメドフ,Ahmed Ahmedov,アフメド　アフメドフ,0
+ローレンス　デイビッド,David Lawrence,ローレンス　デイビッド,0
+樋口　寛規,Hiroki Higuchi,樋口　寛規,0
+菅原　龍之助,Ryunosuke Sugawara,菅原　龍之助,0
+進　昂平,Kohei Shin,進　昂平,2
+ネーミアス,Neemias Benavenuto Barbosa,ネーミアス,2
+佐藤　颯之介,Sonosuke Sato,佐藤　颯之介,0
+桑山　侃士,Kanji Kuwayama,桑山　侃士,2
+曽田　一騎,Kazuki Sota,曽田　一騎,1
+ジェアン　パトリッキ,Jean Patric Lima dos Reis,ジェアン　パトリッキ,0
+杉山　伶央,Reo Sugiyama,杉山　伶央,1
+藤尾　翔太,Shota Fujio,藤尾　翔太,0
+ジャーメイン　良,Ryo Germain,ジャーメイン　良,3
+杉本　健勇,Kenyu Sugimoto,杉本　健勇,2
+山岸　祐也,Yuya Yamagishi,山岸　祐也,3
+ウェリントン,Wellington Luis de Sousa,ウェリントン,3
+吉澤　柊,Shu Yoshizawa,吉澤　柊,2
+河田　篤秀,Atsushi Kawata,河田　篤秀,0
+豊川　雄太,Yuta Toyokawa,豊川　雄太,2
+髙尾　流星,Ryusei Takao,髙尾　流星,3
+オタボー　ケネス,Kenneth Otabor,オタボー　ケネス,2
+大野　耀平,Yohei Ono,大野　耀平,0
+一美　和成,Kazunari Ichimi,一美　和成,0
+ラファエル　フルタード,Rafael Victor de Oliveira Furtado,ラファエル　フルタード,3
+有田　稜,Ryo Arita,有田　稜,0
+武　颯,Hayate Take,武　颯,2
+林　誠道,Masamichi Hayashi,林　誠道,0
+永井　龍,Ryo Nagai,永井　龍,3
+マテウス　モラエス,Matheus Purcelo Blecha de Moraes,マテウス　モラエス,1
+川﨑　修平,Shuhei Kawasaki,川﨑　修平,1
+松岡　瑠夢,Rimu Matsuoka,松岡　瑠夢,1
+フアンマ　デルガド,Juan Manuel Delgado Lloria,フアンマ　デルガド,3
+佐藤　亮,Ryo Sato,佐藤　亮,1
+伊佐　耕平,Kohei Isa,伊佐　耕平,0
+棚橋　尭士,Akito Tanahashi,棚橋　尭士,1
+ムリロ　コスタ,Murilo De Souza Costa,ムリロ　コスタ,1
+イサーク　キーセ　テリン,Isaac Kiese Thelin,イサーク　キーセ　テリン,3
+木下　康介,Kosuke Kinoshita,木下　康介,3
+小森　飛絢,Hiiro Komori,小森　飛絢,3
+呉屋　大翔,Hiroto Goya,呉屋　大翔,0
+マルセロ　ヒアン,Marcelo Ryan Silvestre dos Santos,マルセロ　ヒアン,3
+ワッド　モハメッドサディキ,Mohamad Sadiki Wade,ワッド　モハメッドサディキ,2
