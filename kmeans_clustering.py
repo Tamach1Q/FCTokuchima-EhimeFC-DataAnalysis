@@ -2,10 +2,9 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 
-# 1. データの読み込み
 df = pd.read_csv('clustering_base_data.csv')
 
-# 2. 愛媛FCの要望に合わせた「厳選9変数」をリストアップ
+# 2. 愛媛FCの要望に合わせた9変数をリストアップ
 selected_features = [
     'PA内シュート_per90', 
     'PA内シュート決定率(%)', 
