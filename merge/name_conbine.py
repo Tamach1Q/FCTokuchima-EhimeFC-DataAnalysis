@@ -1,4 +1,8 @@
 import pandas as pd
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+CSV_DIR = PROJECT_ROOT / "csv"
 
 def clean_sc_name(name):
     """Skill Corner側の英語名の表記揺れを修正する関数"""
@@ -57,7 +61,8 @@ df_final = df_cleaned.drop_duplicates(subset=['FB_Name'], keep='first')
 # ==========================================
 # 5. 結果の出力
 # ==========================================
-output_filename = 'master_name_mapping_final.csv'
+output_filename = CSV_DIR / 'master_name_mapping_final.csv'
+output_filename.parent.mkdir(parents=True, exist_ok=True)
 df_final.to_csv(output_filename, index=False, encoding='utf-8-sig')
 
 print(f"結合完了！総マッチング数: {len(df_final)} 人")

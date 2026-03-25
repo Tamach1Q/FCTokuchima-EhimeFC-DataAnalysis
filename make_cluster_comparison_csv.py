@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
+PROJECT_ROOT = Path(__file__).resolve().parent
+CSV_DIR = PROJECT_ROOT / "csv"
 
 # RandomForestと同じ9変数を既定の比較対象にする
 FEATURES = [
@@ -38,12 +40,12 @@ def parse_args():
     )
     parser.add_argument(
         "--input",
-        default="kmeans_results_refined.csv",
+        default=str(CSV_DIR / "kmeans_results_refined.csv"),
         help="K-Meansの結果CSVファイル",
     )
     parser.add_argument(
         "--output",
-        default="cluster_comparison_refined.csv",
+        default=str(CSV_DIR / "cluster_comparison_refined.csv"),
         help="出力する比較用CSVファイル",
     )
     parser.add_argument(
@@ -67,7 +69,9 @@ def build_comparison_table(df, cluster_col, features):
 
     cluster_means = working_df.groupby(cluster_col)[features].mean().sort_index()
     overall_means = working_df[features].mean()
-    cluster_ranks = cluster_means.rank(axis=0, method="min", ascending=False).astype(int)
+    cluster_ranks = cluster_means.rank(axis=0, method="min", ascending=False).astype(
+        int
+    )
     cluster_counts = working_df[cluster_col].value_counts().sort_index()
 
     rows = []
@@ -111,6 +115,7 @@ def main():
     validate_columns(df, args.cluster_col, FEATURES)
 
     comparison_df = build_comparison_table(df, args.cluster_col, FEATURES)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     comparison_df.to_csv(output_path, index=False, encoding="utf-8-sig")
 
     print(f"比較用CSVを保存しました: {output_path}")

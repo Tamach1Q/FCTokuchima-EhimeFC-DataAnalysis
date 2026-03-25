@@ -1,15 +1,18 @@
 import os
 import glob
+from pathlib import Path
 import pandas as pd
 import numpy as np
 
 # ==========================================
 # 1. パスと基本設定
 # ==========================================
+PROJECT_ROOT = Path(__file__).resolve().parent
+CSV_DIR = PROJECT_ROOT / 'csv'
 BASE_DIR = '/Users/machidanoboruyuu/Library/CloudStorage/GoogleDrive-kmc2434@kamiyama.ac.jp/.shortcut-targets-by-id/15hhq0OywBt77uy9iydunzXsnyWMxZPhe/生データ/'
 FB_DIR = os.path.join(BASE_DIR, 'football box')
 SC_DIR = os.path.join(BASE_DIR, 'skill corner')
-MASTER_FILE = 'master_name_mapping_final.csv'
+MASTER_FILE = CSV_DIR / 'master_name_mapping_final.csv'
 
 # 分析対象とする最小の合計出場時間（分）。短すぎる選手をノイズとして弾く
 MIN_MINUTES_THRESHOLD = 300 
@@ -154,7 +157,8 @@ df_final = df_final[df_final['出場時間'] >= MIN_MINUTES_THRESHOLD]
 filtered_len = len(df_final)
 
 # ファイルへ出力
-output_file = 'clustering_base_data.csv'
+output_file = CSV_DIR / 'clustering_base_data.csv'
+output_file.parent.mkdir(parents=True, exist_ok=True)
 df_final.to_csv(output_file, index=False, encoding='utf-8-sig')
 
 print(f"\n✨ 完了！ {output_file} を作成しました。")

@@ -2,11 +2,15 @@ import pandas as pd
 import requests
 import time
 import re
+from pathlib import Path
 from difflib import SequenceMatcher
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+CSV_DIR = PROJECT_ROOT / "csv"
+
 # --- 1. データ読み込み ---
-df_fb = pd.read_csv('fb_unique_players.csv')
-df_sc = pd.read_csv('sc_unique_players.csv')
+df_fb = pd.read_csv(CSV_DIR / 'fb_unique_players.csv')
+df_sc = pd.read_csv(CSV_DIR / 'sc_unique_players.csv')
 
 def normalize_name(text):
     """ローマ字の長音記号を取り除き、小文字化し、空白や記号を消す"""
@@ -121,6 +125,8 @@ for idx, row in df_fb.iterrows():
 # --- 4. 結果保存 ---
 df_results = pd.DataFrame(results)
 df_results.sort_values(by='Score', ascending=False, inplace=True)
-df_results.to_csv('wiki_mapped_players.csv', index=False, encoding='utf-8-sig')
+output_file = CSV_DIR / 'wiki_mapped_players.csv'
+output_file.parent.mkdir(parents=True, exist_ok=True)
+df_results.to_csv(output_file, index=False, encoding='utf-8-sig')
 
-print(f"\n処理完了！ 結果を 'wiki_mapped_players.csv' に保存しました。")
+print(f"\n処理完了！ 結果を '{output_file}' に保存しました。")

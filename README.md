@@ -43,23 +43,26 @@ Football Box と SkillCorner の選手データを統合し、前線選手の特
 
 ## 主なファイル
 
-- `merge_files.py`: Football Box と SkillCorner のデータ統合、選手単位集計、`clustering_base_data.csv` 作成
+- `merge_files.py`: Football Box と SkillCorner のデータ統合、選手単位集計、`csv/clustering_base_data.csv` 作成
 - `clustering_base_data.py`: 生データ読み込み確認用スクリプト
-- `kmeans_clustering.py`: 9変数で K-Means を実行し、`kmeans_results_refined.csv` を出力
+- `kmeans_clustering.py`: 9変数で K-Means を実行し、`csv/kmeans_results_refined.csv` を出力
 - `randomforest.py`: 各クラスターの重要変数と代表選手を確認
 - `make_cluster_comparison_csv.py`: クラスターごとの平均比較 CSV を出力
+- `master.py`: スカウティング用の縦長マスターCSV `csv/scouting_master_database.csv` を出力
 - `RandomForestの結果.txt`: クラスター解釈メモ
 
 ## 出力ファイル
 
-- `clustering_base_data.csv`
+- `csv/clustering_base_data.csv`
   - 統合・集計済みの分析ベースデータ
   - 現在は `295行 × 88列`
-- `kmeans_results_refined.csv`
+- `csv/kmeans_results_refined.csv`
   - クラスタリング結果付きデータ
   - `Cluster_Refined` 列を追加
-- `cluster_comparison_refined.csv`
+- `csv/cluster_comparison_refined.csv`
   - 9変数についてクラスター平均、全体平均との差、順位、人数を一覧化した比較表
+- `csv/scouting_master_database.csv`
+  - クラスター別スカウティング用の縦長マスター表
 
 クラスター人数は以下の通りです。
 
@@ -78,11 +81,14 @@ Football Box と SkillCorner の選手データを統合し、前線選手の特
 ├── kmeans_clustering.py
 ├── randomforest.py
 ├── make_cluster_comparison_csv.py
-├── clustering_base_data.csv
-├── kmeans_results_refined.csv
-├── cluster_comparison_refined.csv
+├── master.py
+├── cluster_player_list_refined.md
 ├── RandomForestの結果.txt
 ├── csv/
+│   ├── clustering_base_data.csv
+│   ├── kmeans_results_refined.csv
+│   ├── cluster_comparison_refined.csv
+│   ├── scouting_master_database.csv
 │   ├── fb_unique_players.csv
 │   ├── sc_unique_players.csv
 │   ├── cf_name_mapping_fixed.csv
@@ -99,10 +105,16 @@ Football Box と SkillCorner の選手データを統合し、前線選手の特
 - `scikit-learn`
 - `openpyxl`
 
-例:
+このリポジトリでは、Conda 環境 `ehime_fc` を使う前提にしています。
 
 ```bash
-pip install pandas numpy scikit-learn openpyxl
+conda activate ehime_fc
+```
+
+未導入のライブラリがある場合の例:
+
+```bash
+conda install pandas numpy scikit-learn openpyxl
 ```
 
 ## 実行手順
@@ -134,7 +146,7 @@ python make_cluster_comparison_csv.py
 ## 注意点
 
 - `merge_files.py` と `clustering_base_data.py` では、生データの参照先がローカル環境の絶対パスになっています。
-- 名前マッピング CSV は `csv/master_name_mapping_final.csv` にありますが、スクリプト側の参照パスは環境に応じて調整が必要です。
+- CSV の標準パスは `csv/` です。主要スクリプトは `csv/` 配下を既定で読み書きします。
 - `生データ` は外部ストレージへのリンクを前提にしています。GitHub 上ではそのまま再現できないため、利用時は各自の環境に合わせてパスを設定してください。
 
 ## 今後の改善候補

@@ -1,8 +1,12 @@
 import pandas as pd
+from pathlib import Path
 from sklearn.preprocessing import StandardScaler
 
+PROJECT_ROOT = Path(__file__).resolve().parent
+CSV_DIR = PROJECT_ROOT / 'csv'
+
 # 1. データの読み込み
-df = pd.read_csv('kmeans_results_refined.csv')
+df = pd.read_csv(CSV_DIR / 'kmeans_results_refined.csv')
 
 # 2. 厳選した9つの特徴量リスト
 features = [

@@ -1,8 +1,12 @@
 import pandas as pd
+from pathlib import Path
 from sklearn.ensemble import RandomForestClassifier
 
+PROJECT_ROOT = Path(__file__).resolve().parent
+CSV_DIR = PROJECT_ROOT / 'csv'
+
 # 1. バランス型K-Meansの結果データを読み込む
-df = pd.read_csv('kmeans_results_refined.csv')
+df = pd.read_csv(CSV_DIR / 'kmeans_results_refined.csv')
 
 # 2. 愛媛FCの要望に合わせた「厳選9変数」をリストとして準備する
 features = [
