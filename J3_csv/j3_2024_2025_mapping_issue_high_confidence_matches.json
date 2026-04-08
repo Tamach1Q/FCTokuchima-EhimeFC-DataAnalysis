@@ -1,0 +1,442 @@
+[
+  {
+    "FB_Name": "宮脇　茂夫",
+    "SC_Name": "Shigeo Miyawaki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "高安　孝幸",
+    "SC_Name": "Takayuki Takayasu",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "青木　拓矢",
+    "SC_Name": "Takuya Aoki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "植田　悠太",
+    "SC_Name": "Yuta Ueda",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "村上　陽介",
+    "SC_Name": "Yosuke Murakami",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "喜山　康平",
+    "SC_Name": "Kohei Kiyama",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "佐々木　陽次",
+    "SC_Name": "Yoji Sasaki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "北　龍磨",
+    "SC_Name": "Ryoma  Kita",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約3.3%のため"
+  },
+  {
+    "FB_Name": "斉藤　諒",
+    "SC_Name": "Ryo Saito",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "山本　凌太郎",
+    "SC_Name": "Ryotaro Yamamoto",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "濱　託巳",
+    "SC_Name": "Takumi Hama",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "藤春　廣輝",
+    "SC_Name": "Hiroki Fujiharu",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "阪野　豊史",
+    "SC_Name": "Toyofumi Sakano",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "石川　俊輝",
+    "SC_Name": "Toshiki Ishikawa",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "鈴木　俊也",
+    "SC_Name": "Shunya Suzuki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "岩﨑　博",
+    "SC_Name": "Hiroshi  Iwasaki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "高橋　峻希",
+    "SC_Name": "Shunki Takahashi",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "篠﨑　輝和",
+    "SC_Name": "Terukazu Shinozaki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "山脇　樺織",
+    "SC_Name": "Kaoru Yamawaki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約4.6%のため"
+  },
+  {
+    "FB_Name": "二階堂　正哉",
+    "SC_Name": "Seiya Nikaido",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約1.2%のため"
+  },
+  {
+    "FB_Name": "河野　諒祐",
+    "SC_Name": "Ryosuke Kawano",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "トーマス　モスキオン",
+    "SC_Name": "Tomás Moschión",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "奈良坂　巧",
+    "SC_Name": "Takumi Narasaka",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "増谷　幸祐",
+    "SC_Name": "Kosuke Masutani",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "福田　望久斗",
+    "SC_Name": "Mikuto Fukuda",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "松長根　悠仁",
+    "SC_Name": "Yuto  Matsunagane",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約4.7%のため"
+  },
+  {
+    "FB_Name": "水野　颯太",
+    "SC_Name": "Hayata Mizuno",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約4.7%のため"
+  },
+  {
+    "FB_Name": "鈴木　裕斗",
+    "SC_Name": "Hiroto  Suzuki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "雪江　悠人",
+    "SC_Name": "Hiroto Yukie",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約4.1%のため"
+  },
+  {
+    "FB_Name": "大迫　暁",
+    "SC_Name": "Akira Osako",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "平松　航",
+    "SC_Name": "Wataru Hiramatsu",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "安田　虎士朗",
+    "SC_Name": "Kojiro Yasuda",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "坪川　潤之",
+    "SC_Name": "Hiroyuki Tsubokawa",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "井上　航希",
+    "SC_Name": "Koki Inoue",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "杉井　颯",
+    "SC_Name": "Hayate Sugii",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "東條　敦輝",
+    "SC_Name": "Atsuki Tojo",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約0.1%のため"
+  },
+  {
+    "FB_Name": "内田　瑞己",
+    "SC_Name": "Mizuki  Uchida",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約3.9%のため"
+  },
+  {
+    "FB_Name": "長野　星輝",
+    "SC_Name": "Shoki  Nagano",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "持井　響太",
+    "SC_Name": "Kyota Mochii",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "土佐　陸翼",
+    "SC_Name": "Riku  Tosa",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "関野　元弥",
+    "SC_Name": "Genya Sekino",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "吉村　弦",
+    "SC_Name": "Yuzuru Yoshimura",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "大畑　隆也",
+    "SC_Name": "Ryuya Ohata",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "山本　康裕",
+    "SC_Name": "Kosuke Yamamoto",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "井澤　春輝",
+    "SC_Name": "Haruki Izawa",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約2.5%のため"
+  },
+  {
+    "FB_Name": "井林　章",
+    "SC_Name": "Akira Ibayashi",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "エンリック　マルティネス",
+    "SC_Name": "Enric Martínez Ros",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "當麻　颯",
+    "SC_Name": "Hayate Toma",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "渡邉　綾平",
+    "SC_Name": "Ryohei Watanabe",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "永野　修都",
+    "SC_Name": "Shuto Nagano",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "宮部　大己",
+    "SC_Name": "Taiki Miyabe",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "江口　直生",
+    "SC_Name": "Nao Eguchi",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約0.5%のため"
+  },
+  {
+    "FB_Name": "大関　友翔",
+    "SC_Name": "Yuto  Ozeki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "藤井　葉大",
+    "SC_Name": "Yota Fujii",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "今井　那生",
+    "SC_Name": "Naiki Imai",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "寺阪　尚悟",
+    "SC_Name": "Shogo Terasaka",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約1.4%のため"
+  },
+  {
+    "FB_Name": "下上　昇大",
+    "SC_Name": "Shota Shimogami",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約4.8%のため"
+  },
+  {
+    "FB_Name": "森　俊貴",
+    "SC_Name": "Toshiki Mori",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "櫻井　風我",
+    "SC_Name": "Fuga  Sakurai",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "岡崎　慎",
+    "SC_Name": "Makoto Okazaki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "鍋田　純志",
+    "SC_Name": "Atsushi Nabeta",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約2.1%のため"
+  },
+  {
+    "FB_Name": "吉野　陽翔",
+    "SC_Name": "Haruto Yoshino",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "神谷　凱士",
+    "SC_Name": "Kaito Kamiya",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "芳賀　日陽",
+    "SC_Name": "Asahi Haga",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約2.8%のため"
+  },
+  {
+    "FB_Name": "土信田　悠生",
+    "SC_Name": "Yusei  Toshida",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約0.3%のため"
+  },
+  {
+    "FB_Name": "綿引　康",
+    "SC_Name": "Ko Watahiki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約2.4%のため"
+  },
+  {
+    "FB_Name": "行德　瑛",
+    "SC_Name": "Ei Gyotoku",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "生駒　稀生",
+    "SC_Name": "Kei Ikoma",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "風間　宏希",
+    "SC_Name": "Koki Kazama",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "永田　一真",
+    "SC_Name": "Kazuma Nagata",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "城定　幹大",
+    "SC_Name": "Kanta Jojo",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約2.4%のため"
+  },
+  {
+    "FB_Name": "中島　賢星",
+    "SC_Name": "Kensei Nakashima",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "左合　修土",
+    "SC_Name": "Shuto Sago",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "一丸　大地",
+    "SC_Name": "Daichi Ichimaru Daichi Ichimaru",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "土館　賢人",
+    "SC_Name": "Kento Dodate",
+    "Reason": "名前の読みが一致し、ポジション帯も一致し、出場時間差も約1.1%のため"
+  },
+  {
+    "FB_Name": "三鬼　海",
+    "SC_Name": "Kai Miki",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "力安　祥伍",
+    "SC_Name": "Shogo Rikiyasu",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "禹　相皓",
+    "SC_Name": "Sang-Ho Woo",
+    "Reason": "名前の読みが一致し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "マテイ　ヨニッチ",
+    "SC_Name": "Matej Jonjić",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "イ　ヨンジェ",
+    "SC_Name": "Yong-Jae Lee",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "イム　ジフン",
+    "SC_Name": "Ji-hoon Lim",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "ルーカス　セナ",
+    "SC_Name": "Lucas Breno Sena Lima",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "パク　スビン",
+    "SC_Name": "Su-bin Park",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "ファビアン　ゴンザレス",
+    "SC_Name": "Fabián Andrés González Lasso",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "ブルーノ　サントス",
+    "SC_Name": "Bruno Santos de Oliveira",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "アルトゥール　シルバ",
+    "SC_Name": "Arthur Silva Feitoza",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "ピトリック",
+    "SC_Name": "Kevin Pytlik",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  },
+  {
+    "FB_Name": "グスタボ　リッシ",
+    "SC_Name": "Gustavo Martini Rissi",
+    "Reason": "カタカナ表記と英語名が対応し、ポジション帯も一致するため"
+  }
+]
