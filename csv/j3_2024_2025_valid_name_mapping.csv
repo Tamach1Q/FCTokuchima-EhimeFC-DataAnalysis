@@ -1,0 +1,381 @@
+﻿FB_Name,SC_Name,FB_Pos,SC_Position_Group,FB_Minutes,SC_Minutes,Mapping_Source,Top_Score,Gap_to_Second,Name_Score,Vector_Score,Minutes_Score,Candidate_Count,Notes
+温井　駿斗,Hayato Nukui,DF,Central Defender,6466.0,5705.17,auto_j3_outfield,88.15,15.24,72.0,95.63,88.23,17.0,"score>=82.0, gap>=12.0, name>=70.0"
+黒木　謙吾,Kengo  Kuroki,DF,Central Defender,6434.0,6069.53,auto_j3_outfield,97.72,26.96,100.0,96.7,94.34,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+蓑田　広大,Kodai  Minoda,DF,Central Defender,6420.0,5642.4800000000005,auto_j3_outfield,96.05,19.24,100.0,94.73,87.89,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+鈴木　順也,Junya Suzuki,DF,Central Defender,6375.0,5649.47,auto_j3_outfield,96.43,21.46,100.0,95.31,88.62,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+辻岡　佑真,Yuma  Tsujioka,DF,Central Defender,6203.0,5597.88,auto_j3_outfield,97.05,31.61,100.0,96.21,90.24,19.0,"score>=82.0, gap>=12.0, name>=70.0"
+鈴木　大誠,Daisei Suzuki,DF,Central Defender,5943.0,5455.63,auto_j3_outfield,95.33,20.46,92.31,97.03,91.8,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+附木　雄也,Yuya Tsukegi,DF,Central Defender,5940.0,5827.81,auto_j3_outfield,99.24,29.11,100.0,98.91,98.11,18.0,"score>=82.0, gap>=12.0, name>=70.0"
+加藤　大育,Daisuke Kato,DF,Central Defender,5884.0,5469.4800000000005,auto_j3_outfield,91.94,20.53,81.82,96.35,92.96,19.0,"score>=82.0, gap>=12.0, name>=70.0"
+下川　陽太,Yota Shimokawa,DF,Full Back,5872.0,5531.89,auto_j3_outfield,96.68,26.26,96.55,96.72,94.21,20.0,"score>=82.0, gap>=12.0, name>=70.0"
+杉山　耕二,Koji  Sugiyama,DF,Central Defender,5569.0,5389.61,auto_j3_outfield,98.91,19.6,100.0,98.52,96.78,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+松本　雄真,Yuma Matsumoto,DF,Full Back,5208.0,5254.55,auto_j3_outfield,92.43,17.03,76.47,99.2,99.11,28.0,"score>=82.0, gap>=12.0, name>=70.0"
+鈴　直樹,Naoki Suzu,DF,Full Back,5172.0,5012.08,auto_j3_outfield,99.09,22.05,100.0,98.84,96.91,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+安在　達弥,Tatsuya Anzai,DF,Full Back,5144.0,4890.24,auto_j3_outfield,98.72,28.8,100.0,98.48,95.07,15.0,"score>=82.0, gap>=12.0, name>=70.0"
+秋山　拓也,Takuya Akiyama,DF,Central Defender,5140.0,5377.29,auto_j3_outfield,98.81,24.26,100.0,98.56,95.59,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+舘野　俊祐,Shunsuke Tachino,DF,Full Back,5036.0,4515.95,auto_j3_outfield,91.46,18.72,81.25,96.38,89.67,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+甲斐　健太郎,Kentaro Kai,DF,Central Defender,4893.0,4306.71,auto_j3_outfield,94.94,20.4,95.65,95.08,88.02,15.0,"score>=82.0, gap>=12.0, name>=70.0"
+山田　将之,Masayuki Yamada,DF,Central Defender,4854.0,4528.31,auto_j3_outfield,97.91,19.17,100.0,97.27,93.29,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+白井　達也,Tatsuya Shirai,DF,Central Defender,4789.0,4370.12,auto_j3_outfield,97.1,23.5,100.0,96.1,91.25,22.0,"score>=82.0, gap>=12.0, name>=70.0"
+樋口　大輝,Daiki Higuchi,DF,Full Back,4686.0,5026.95,auto_j3_outfield,98.42,18.8,100.0,98.26,93.22,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+山本　義道,Norimichi Yamamoto,DF,Central Defender,4483.0,4476.59,auto_j3_outfield,95.56,17.75,86.49,99.29,99.86,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+大野　佑哉,Yuya  Ono,DF,Central Defender,4474.0,4096.19,auto_j3_outfield,95.58,21.61,94.12,96.51,91.56,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+橋本　陸,Riku Hashimoto,DF,Full Back,4429.0,4011.4,auto_j3_outfield,96.6,32.22,100.0,95.28,90.57,21.0,"score>=82.0, gap>=12.0, name>=70.0"
+野々村　鷹人,Takato Nonomura,DF,Central Defender,4377.0,4363.92,auto_j3_outfield,97.81,16.77,93.75,99.45,99.7,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+野澤　陸,Riku Nozawa,DF,Central Defender,4303.0,4320.11,auto_j3_outfield,99.63,19.58,100.0,99.37,99.6,15.0,"score>=82.0, gap>=12.0, name>=70.0"
+大嶋　春樹,Haruki Oshima,DF,Central Defender,4220.0,3976.4300000000003,auto_j3_outfield,98.44,32.78,100.0,98.1,94.23,23.0,"score>=82.0, gap>=12.0, name>=70.0"
+小島　雅也,Masaya Kojima,DF,Full Back,4188.0,3823.4,auto_j3_outfield,97.43,18.52,100.0,96.73,91.29,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+大森　博,Hiroshi  Omori,DF,Central Defender,4164.0,4432.7,auto_j3_outfield,98.56,19.34,100.0,98.4,93.94,19.0,"score>=82.0, gap>=12.0, name>=70.0"
+深川　大輔,Daisuke  Fukagawa,DF,Central Defender,4046.0,4020.94,auto_j3_outfield,99.67,36.83,100.0,99.48,99.38,24.0,"score>=82.0, gap>=12.0, name>=70.0"
+澤田　雄大,Yudai Sawada,DF,Central Defender,4019.0,3351.73,auto_j3_outfield,94.58,16.87,100.0,92.77,83.4,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+畑尾　大翔,Hiroto Hatao,DF,Central Defender,3995.0,3595.56,auto_j3_outfield,96.91,18.06,100.0,95.97,90.0,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+美馬　和也,Kazuya Mima,DF,Full Back,3987.0,3189.43,auto_j3_outfield,95.34,22.93,100.0,94.89,80.0,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+山本　龍平,Ryuhei Yamamoto,DF,Full Back,3976.0,3642.84,auto_j3_outfield,97.55,18.33,100.0,96.9,91.62,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+稲積　大介,Daisuke Inazumi,DF,Full Back,3903.0,3965.09,auto_j3_outfield,97.41,17.15,92.86,99.44,98.43,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+乾　貴哉,Takaya Inui,DF,Full Back,3760.0,3278.12,auto_j3_outfield,92.28,21.46,84.62,96.49,87.18,17.0,"score>=82.0, gap>=12.0, name>=70.0"
+冨田　康平,Kohei Tomita,DF,Central Defender,3663.0,3409.32,auto_j3_outfield,97.84,24.01,100.0,97.19,93.07,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+荒木　遼太,Ryota Araki,DF,Full Back,3574.0,3785.47,auto_j3_outfield,96.2,13.32,91.67,98.58,94.41,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+奥田　雄大,Yudai Okuda,DF,Central Defender,3552.0,3456.2599999999998,auto_j3_outfield,99.1,26.26,100.0,98.79,97.3,20.0,"score>=82.0, gap>=12.0, name>=70.0"
+中村　勇太,Yuta Nakamura,DF,Central Defender,3465.0,3191.84,auto_j3_outfield,98.14,17.99,100.0,97.94,92.12,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+菊地　脩太,Shuta Kikuchi,DF,Central Defender,3393.0,3709.88,auto_j3_outfield,96.92,17.36,96.3,97.86,91.46,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+工藤　孝太,Kota Kudo,DF,Central Defender,3240.0,2490.04,auto_j3_outfield,93.1,14.44,94.74,94.21,76.85,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+高野　遼,Ryo Takano,DF,Full Back,3224.0,3199.7,auto_j3_outfield,98.07,21.49,95.24,99.17,99.25,19.0,"score>=82.0, gap>=12.0, name>=70.0"
+外山　凌,Ryo Toyama,DF,Full Back,3159.0,3489.31,auto_j3_outfield,96.39,17.79,95.24,97.63,90.53,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+市原　亮太,Ryota  Ichihara,DF,Central Defender,3158.0,2561.07,auto_j3_outfield,94.62,18.05,96.55,95.27,81.1,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+加藤　徹也,Tetsuya Kato,DF,Central Defender,3103.0,2567.86,auto_j3_outfield,96.03,17.73,100.0,95.69,82.75,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+石田　崚真,Ryoma Ishida,DF,Full Back,3098.0,2365.53,auto_j3_outfield,88.15,21.55,80.0,93.3,76.36,15.0,"score>=82.0, gap>=12.0, name>=70.0"
+安光　将作,Shosaku Yasumitsu,DF,Full Back,3036.0,2719.24,auto_j3_outfield,95.93,22.7,94.44,97.39,89.57,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+宗近　慧,Kei Munechika,DF,Central Defender,2984.0,2294.51,auto_j3_outfield,94.69,19.72,100.0,94.22,76.89,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+青木　義孝,Yoshitaka Aoki,DF,Full Back,2942.0,3311.42,auto_j3_outfield,97.43,17.14,100.0,97.21,88.84,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+田中　恵太,Keita Tanaka,DF,Full Back,2850.0,2166.67,auto_j3_outfield,93.85,18.14,100.0,92.79,76.02,17.0,"score>=82.0, gap>=12.0, name>=70.0"
+市原　吏音,Rion Ichihara,DF,Central Defender,2695.0,2163.9,auto_j3_outfield,91.18,13.01,85.71,95.07,80.29,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+庄司　朋乃也,Honoya Shoji,DF,Central Defender,2669.0,2523.13,auto_j3_outfield,90.77,13.74,75.86,97.24,94.53,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+福森　直也,Naoya Fukumori,DF,Central Defender,2607.0,2555.21,auto_j3_outfield,99.54,18.35,100.0,99.5,98.01,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+上原　牧人,Makito Uehara,DF,Full Back,2603.0,1741.65,auto_j3_outfield,90.25,14.47,92.86,91.73,66.91,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+井上　竜太,Ryota Inoue,DF,Central Defender,2563.0,1919.58,auto_j3_outfield,91.5,16.22,90.91,93.72,74.9,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+高橋　祥平,Shohei Takahashi,DF,Central Defender,2498.0,2651.73,auto_j3_outfield,97.71,22.76,96.97,98.45,94.2,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+森　侑里,Yuri Mori,DF,Central Defender,2496.0,1842.74,auto_j3_outfield,93.98,17.29,100.0,93.46,73.83,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+松本　大輔,Daisuke Matsumoto,DF,Central Defender,2480.0,2856.49,auto_j3_outfield,96.97,17.9,100.0,96.7,86.82,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+奥井　諒,Ryo Okui,DF,Full Back,2398.0,2615.2,auto_j3_outfield,96.33,16.74,94.12,97.92,91.69,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+山下　諒時,Ryoji Yamashita,DF,Central Defender,2357.0,1607.88,auto_j3_outfield,87.4,14.25,82.35,92.05,68.22,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+大和　優槻,Yuzuki  Yamato,DF,Central Defender,2353.0,1753.45,auto_j3_outfield,89.62,15.1,85.71,93.19,74.52,22.0,"score>=82.0, gap>=12.0, name>=70.0"
+近石　哲平,Teppei Chikaishi,DF,Central Defender,2347.0,1781.13,auto_j3_outfield,94.42,12.85,100.0,93.9,75.89,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+藤谷　匠,Takumi Fujitani,DF,Central Defender,2327.0,2532.91,auto_j3_outfield,98.13,20.38,100.0,97.97,91.87,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+黒石　貴哉,Takaya Kuroishi,DF,Full Back,2258.0,1522.25,auto_j3_outfield,88.98,12.82,88.24,91.85,67.42,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+神山　京右,Kyosuke Kamiyama,DF,Central Defender,2256.0,1877.89,auto_j3_outfield,89.09,14.44,76.47,95.81,83.24,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+長倉　颯,Hayate Nagakura,DF,Central Defender,2245.0,2446.64,auto_j3_outfield,90.86,12.24,75.86,97.94,91.76,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+三原　秀真,Shuma Mihara,DF,Full Back,2233.0,2400.24,auto_j3_outfield,94.8,15.18,88.0,98.26,93.03,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+加藤　慎太郎,Shintaro Kato,DF,Central Defender,2214.0,1997.29,auto_j3_outfield,95.58,25.23,96.3,95.53,90.21,21.0,"score>=82.0, gap>=12.0, name>=70.0"
+花房　稔,Minoru Hanafusa,DF,Central Defender,2160.0,1658.73,auto_j3_outfield,92.66,17.28,93.33,94.2,76.79,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+小川　大貴,Daiki Ogawa,DF,Full Back,2141.0,2249.73,auto_j3_outfield,98.89,20.06,100.0,98.79,95.17,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+水口　湧斗,Yuto Minakuchi,DF,Central Defender,2078.0,1978.23,auto_j3_outfield,90.62,22.81,75.86,96.81,95.2,27.0,"score>=82.0, gap>=12.0, name>=70.0"
+杉田　隼,Hayato Sugita,DF,Central Defender,2062.0,2255.75,auto_j3_outfield,91.6,14.29,78.57,97.85,91.41,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+野瀬　翔也,Shoya  Nose,DF,Central Defender,1861.0,2078.15,auto_j3_outfield,96.17,17.1,95.24,97.39,89.55,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+福森　健太,Kenta Fukumori,DF,Full Back,1853.0,1999.82,auto_j3_outfield,98.31,17.87,100.0,98.16,92.66,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+茂木　力也,Rikiya Motegi,DF,Full Back,1846.0,1649.6200000000001,auto_j3_outfield,97.55,16.49,100.0,97.34,89.36,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+深津　康太,Kota Fukatsu,DF,Central Defender,1839.0,1437.33,auto_j3_outfield,94.98,15.43,100.0,94.54,78.16,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+高橋　秀典,Hidenori Takahashi,DF,Full Back,1828.0,2085.52,auto_j3_outfield,97.16,17.89,100.0,96.91,87.65,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+長谷川　光基,Koki Hasegawa,DF,Central Defender,1819.0,1487.2,auto_j3_outfield,94.37,21.49,100.0,92.68,81.76,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+西矢　慎平,Shimpei Nishiya,DF,Full Back,1818.0,1512.15,auto_j3_outfield,95.16,14.64,96.77,95.79,83.18,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+砂森　和也,Kazuya Sunamori,DF,Central Defender,1804.0,1965.2,auto_j3_outfield,97.15,14.42,96.77,97.95,91.8,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+吉田　知樹,Tomoki Yoshida,DF,Central Defender,1720.0,1874.3999999999999,auto_j3_outfield,98.11,14.52,100.0,97.94,91.76,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+藤原　拓也,Takuya Fujiwara,DF,Central Defender,1680.0,1541.07,auto_j3_outfield,98.07,18.36,100.0,97.87,91.73,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+平　智広,Tomohiro Taira,DF,Central Defender,1639.0,1855.52,auto_j3_outfield,97.31,23.7,100.0,97.07,88.33,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+福宮　弘乃介,Konosuke  Fukumiya,DF,Central Defender,1608.0,1740.4299999999998,auto_j3_outfield,93.51,15.66,84.21,98.1,92.39,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+小林　大智,Daichi Kobayashi,DF,Central Defender,1607.0,1751.12,auto_j3_outfield,96.23,15.51,93.75,97.94,91.77,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+林田　魁斗,Kaito Hayashida,DF,Central Defender,1576.0,1493.38,auto_j3_outfield,97.02,19.34,96.77,97.14,94.76,26.0,"score>=82.0, gap>=12.0, name>=70.0"
+野末　学,Satoru Nozue,DF,Central Defender,1568.0,1671.65,auto_j3_outfield,90.32,20.35,72.73,98.31,93.8,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+小西　慶太郎,Keitaro Konishi,DF,Central Defender,1554.0,1719.86,auto_j3_outfield,96.81,23.64,96.77,97.59,90.36,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+小笠原　佳祐,Keisuke Ogasawara,DF,Central Defender,1512.0,1550.04,auto_j3_outfield,99.23,23.31,100.0,98.99,97.55,19.0,"score>=82.0, gap>=12.0, name>=70.0"
+宮市　剛,Tsuyoshi Miyaichi,DF,Full Back,1497.0,1559.59,auto_j3_outfield,95.54,16.36,88.24,98.97,95.99,23.0,"score>=82.0, gap>=12.0, name>=70.0"
+馬渡　和彰,Kazuaki Mawatari,DF,Full Back,1495.0,1085.72,auto_j3_outfield,91.54,26.03,100.0,88.99,72.62,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+ユ　イェチャン,Ye-chan Yu,DF,Full Back,1491.0,1487.86,auto_j3_outfield,93.28,26.31,77.78,99.95,99.79,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+森　璃太,Riita Mori,DF,Full Back,1467.0,1552.14,auto_j3_outfield,96.93,21.72,94.74,98.19,94.51,19.0,"score>=82.0, gap>=12.0, name>=70.0"
+西久保　駿介,Shunsuke   Nishikubo,DF,Full Back,1419.0,1608.22,auto_j3_outfield,97.29,21.38,100.0,97.06,88.23,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+小柳　達司,Tatsushi Koyanagi,DF,Central Defender,1413.0,1554.6,auto_j3_outfield,94.16,15.47,87.5,97.72,90.89,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+吉田　朋恭,Tomoyasu Yoshida,DF,Full Back,1388.0,771.37,auto_j3_outfield,88.87,17.77,96.97,88.89,55.57,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+坂本　翔,Kakeru Sakamoto,DF,Full Back,1298.0,1256.76,auto_j3_outfield,90.65,18.4,71.43,99.11,96.82,21.0,"score>=82.0, gap>=12.0, name>=70.0"
+石井　光輝,Koki Ishii,DF,Central Defender,1264.0,1373.74,auto_j3_outfield,98.16,15.78,100.0,98.0,92.01,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+西　大伍,Daigo Nishi,DF,Full Back,1237.0,749.52,auto_j3_outfield,90.94,13.21,100.0,90.15,60.59,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+宮崎　海斗,Kaito Miyazaki,DF,Central Defender,1170.0,1539.75,auto_j3_outfield,94.46,17.58,100.0,93.96,75.99,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+今瀬　淳也,Junya Imase,DF,Central Defender,1160.0,1171.71,auto_j3_outfield,93.25,12.2,78.26,99.75,99.0,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+濱田　水輝,Mizuki Hamada,DF,Central Defender,1102.0,745.14,auto_j3_outfield,92.55,15.28,100.0,91.9,67.62,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+梅木　怜,Rei Umeki,DF,Full Back,1092.0,918.84,auto_j3_outfield,96.35,23.37,100.0,96.04,84.14,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+広瀬　健太,Kenta Hirose,DF,Central Defender,1076.0,1228.39,auto_j3_outfield,97.15,22.31,100.0,96.9,87.59,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+遠藤　元一,Genichi Endo,DF,Central Defender,1020.0,977.39,auto_j3_outfield,97.84,21.52,96.0,98.96,95.82,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+田辺　陽太,Yota Tanabe,DF,Central Defender,1017.0,1098.08,auto_j3_outfield,97.0,17.67,95.65,98.15,92.62,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+二ノ宮　慈洋,Jiyo Ninomiya,DF,Central Defender,1010.0,1109.57,auto_j3_outfield,89.11,15.19,70.59,97.75,91.03,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+山内　琳太郎,Rintaro Yamauchi,DF,Central Defender,985.0,1090.6,auto_j3_outfield,96.01,26.34,94.12,97.58,90.32,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+西野　奨太,Shota Nishino,DF,Central Defender,958.0,1202.47,auto_j3_outfield,94.21,21.46,96.3,94.92,79.67,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+田中　誠太郎,Seitaro Tanaka,DF,Full Back,887.0,1035.89,auto_j3_outfield,95.65,20.33,96.55,96.4,85.63,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+長峰　祐斗,Yuto Nagamine,DF,Full Back,854.0,765.84,auto_j3_outfield,92.45,24.11,82.76,97.42,89.68,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+柴田　徹,Toru Shibata,DF,Full Back,838.0,709.1,auto_j3_outfield,94.57,18.49,100.0,92.51,84.62,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+都並　優太,Yuta Tsunami,DF,Full Back,835.0,997.05,auto_j3_outfield,96.26,21.55,100.0,95.93,83.75,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+山内　舟征,Shusei Yamauchi,DF,Central Defender,825.0,847.27,auto_j3_outfield,92.92,13.05,81.25,97.72,97.37,22.0,"score>=82.0, gap>=12.0, name>=70.0"
+船橋　勇真,Yuma Funabashi,DF,Full Back,808.0,884.6800000000001,auto_j3_outfield,98.01,13.09,100.0,97.83,91.33,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+内田　航平,Kohei Uchida,DF,Central Defender,776.0,864.98,auto_j3_outfield,97.63,17.81,100.0,97.43,89.71,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+酒井　崇一,Shuichi Sakai,DF,Central Defender,753.0,831.3,auto_j3_outfield,95.53,19.66,92.31,97.65,90.58,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+東　廉太,Renta Higashi,DF,Central Defender,750.0,760.3,auto_j3_outfield,99.69,22.87,100.0,99.66,98.65,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+田頭　亮太,Ryota Tagashira,DF,Full Back,747.0,803.8,auto_j3_outfield,97.39,14.8,96.77,98.2,92.93,20.0,"score>=82.0, gap>=12.0, name>=70.0"
+相馬　丞,Jo  Soma,DF,Central Defender,745.0,859.36,auto_j3_outfield,94.94,15.98,93.33,96.67,86.69,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+菊地　健太,Kenta Kikuchi,DF,Full Back,688.0,793.59,auto_j3_outfield,96.94,18.49,100.0,96.67,86.69,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+藤谷　壮,So Fujitani,DF,Full Back,679.0,477.56,auto_j3_outfield,91.97,28.66,100.0,90.27,70.33,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+木邨　優人,Yuto  Kimura,DF,Central Defender,662.0,755.26,auto_j3_outfield,89.66,13.06,75.0,96.91,87.65,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+伊勢　渉,Wataru Ise,DF,Central Defender,650.0,753.04,auto_j3_outfield,96.85,21.65,100.0,96.58,86.32,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+前田　紘基,Hiroki Maeda,DF,Full Back,635.0,474.3,auto_j3_outfield,88.72,18.81,81.82,93.67,74.69,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+坂本　稀吏也,Kiriya  Sakamoto,DF,Full Back,627.0,693.05,auto_j3_outfield,90.75,15.41,76.47,97.62,90.47,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+佐藤　大翔,Hiroto  Sato,DF,Central Defender,573.0,646.8,auto_j3_outfield,97.38,30.66,100.0,97.15,88.59,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+大越　寛人,Hiroto Okoshi,DF,Full Back,563.0,307.93,auto_j3_outfield,89.58,14.52,100.0,88.67,54.69,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+坂本　修佑,Shusuke Sakamoto,DF,Central Defender,500.0,449.32,auto_j3_outfield,89.49,17.57,72.73,97.47,89.86,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+大串　昇平,Shohei Ogushi,DF,Full Back,486.0,566.52,auto_j3_outfield,95.62,18.22,96.3,96.45,85.79,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+平瀬　大,Dai Hirase,DF,Central Defender,479.0,548.03,auto_j3_outfield,97.1,17.61,100.0,96.85,87.4,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+川上　優樹,Yuki Kawakami,DF,Central Defender,451.0,498.65,auto_j3_outfield,97.8,16.26,100.0,97.61,90.44,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+川島　功奨,Kosuke K Kawashima,DF,Full Back,421.0,455.23,auto_j3_outfield,90.56,17.29,74.29,98.12,92.48,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+高嶋　修也,Shuya Takashima,DF,Central Defender,406.0,475.78999999999996,auto_j3_outfield,96.63,23.42,100.0,96.33,85.33,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+中塩　大貴,Daiki Nakashio,DF,Full Back,403.0,448.6,auto_j3_outfield,97.66,28.71,100.0,97.46,89.84,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+黒﨑　隼人,Hayato Kurosaki,DF,Full Back,369.0,385.37,auto_j3_outfield,92.25,32.66,77.42,98.94,95.75,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+工藤　駿,Shun  Kudo,DF,Central Defender,362.0,297.95,auto_j3_outfield,94.35,29.88,94.74,95.58,82.31,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+西山　峻太,Shunta Nishiyama,DF,Full Back,357.0,382.95,auto_j3_outfield,97.53,18.69,96.97,98.31,93.22,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+國廣　周平,Shuhei Kunihiro,DF,Central Defender,338.0,292.17,auto_j3_outfield,96.88,16.05,100.0,96.61,86.44,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+寺島　はるひ,Haruhi Terashima,DF,Full Back,301.0,248.54,auto_j3_outfield,95.99,27.89,100.0,95.64,82.57,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+田中　パウロ淳一,Paulo Junichi Tanaka,FW,Wide Attacker,3137.0,3322.47,auto_j3_outfield,97.22,32.01,95.0,98.6,94.42,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+佐々木　快,Kai  Sasaki,FW,Center Forward,2960.0,2725.36,auto_j3_outfield,97.59,34.5,100.0,96.89,92.07,17.0,"score>=82.0, gap>=12.0, name>=70.0"
+河村　慶人,Keito  Kawamura,FW,Center Forward,2907.0,3202.59,auto_j3_outfield,97.88,20.8,100.0,97.69,90.77,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+清水　一雅,Kazumasa  Shimizu,FW,Wide Attacker,2476.0,2617.32,auto_j3_outfield,98.69,31.35,100.0,98.52,94.6,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+萱沼　優聖,Yusei Kayanuma,FW,Center Forward,1435.0,1551.8899999999999,auto_j3_outfield,90.77,12.59,75.0,98.12,92.47,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+瀬沼　優司,Yuji Senuma,FW,Center Forward,1384.0,1127.8600000000001,auto_j3_outfield,95.74,27.13,100.0,95.37,81.49,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+松本　ケン　チザンガ,Ken Tshizanga Matsumoto,FW,Center Forward,1169.0,1503.85,auto_j3_outfield,91.84,18.05,90.91,93.83,77.73,14.0,"score>=82.0, gap>=12.0, name>=70.0"
+赤星　魁麻,Kaima Akahoshi,FW,Center Forward,1085.0,1024.76,auto_j3_outfield,92.72,23.3,80.0,98.61,94.45,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+田中　直基,Naoki Tanaka,FW,Wide Attacker,1065.0,747.7,auto_j3_outfield,93.15,15.25,100.0,92.55,70.21,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+小林　心,Kokoro  Kobayashi,FW,Center Forward,1010.0,1060.58,auto_j3_outfield,98.9,25.56,100.0,98.81,95.23,4.0,"score>=82.0, gap>=12.0, name>=70.0"
+重松　健太郎,Kentaro Shigematsu,FW,Center Forward,864.0,841.98,auto_j3_outfield,98.6,19.88,97.3,99.36,97.45,17.0,"score>=82.0, gap>=12.0, name>=70.0"
+井波　勇太, Yuta  Inami,FW,Center Forward,801.0,989.78,auto_j3_outfield,95.61,31.7,100.0,95.23,80.93,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+パトリック　グスタフソン,Patrik Gustavsson,FW,Center Forward,699.0,637.1,auto_j3_outfield,90.67,20.81,75.68,97.79,91.14,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+深堀　隼平,Shumpei Fukahori,FW,Center Forward,673.0,752.82,auto_j3_outfield,97.56,17.54,100.0,97.35,89.4,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+内田　優晟,Yusei  Uchida,FW,Center Forward,648.0,741.27,auto_j3_outfield,95.91,17.81,96.0,96.85,87.42,4.0,"score>=82.0, gap>=12.0, name>=70.0"
+野田　隆之介,Ryunosuke Noda,FW,Center Forward,624.0,381.11,auto_j3_outfield,91.05,15.77,100.0,90.27,61.08,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+北村　知也,Tomoya Kitamura,FW,Center Forward,399.0,330.47,auto_j3_outfield,96.05,17.38,100.0,95.71,82.82,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+西谷　優希,Yuki  Nishiya,MF,Midfield,6032.0,5705.68,auto_j3_outfield,93.43,26.45,84.62,97.27,94.59,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+西村　恭史,Yasufumi Nishimura,MF,Midfield,5832.0,5144.04,auto_j3_outfield,88.69,27.24,74.29,95.35,88.2,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+奥村　晃司,Koji Okumura,MF,Midfield,5828.0,5174.82,auto_j3_outfield,96.1,27.06,100.0,94.65,88.79,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+山内　陸,Riku Yamauchi,MF,Midfield,5351.0,4488.67,auto_j3_outfield,95.21,34.93,100.0,93.89,83.88,14.0,"score>=82.0, gap>=12.0, name>=70.0"
+徳永　晃太郎,Kotaro Tokunaga,MF,Midfield,5329.0,5218.01,auto_j3_outfield,97.14,25.31,93.75,98.51,97.92,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+針谷　岳晃,Takeaki Harigaya,MF,Midfield,5325.0,4868.84,auto_j3_outfield,89.24,15.59,72.73,96.68,91.43,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+平松　昇,Sho Hiramatsu,MF,Midfield,4975.0,4811.8,auto_j3_outfield,91.6,17.66,75.86,98.4,96.72,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+佐藤　祐太,Yuta Sato,MF,Midfield,4876.0,4017.54,auto_j3_outfield,94.87,21.8,100.0,93.52,82.39,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+高吉　正真,Shoma Takayoshi,MF,Midfield,4869.0,4463.65,auto_j3_outfield,91.39,15.25,78.79,97.28,91.67,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+神垣　陸,Riku Kamigaki,MF,Midfield,4809.0,4858.19,auto_j3_outfield,99.71,19.29,100.0,99.65,98.99,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+堀内　颯人,Hayato Horiuchi,MF,Midfield,4744.0,3995.0,auto_j3_outfield,89.02,12.28,78.57,94.29,84.21,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+武井　成豪,Seigo Takei,MF,Midfield,4627.0,4220.43,auto_j3_outfield,94.64,28.9,91.67,96.18,91.21,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+安永　玲央,Reo Yasunaga,MF,Midfield,4539.0,4517.77,auto_j3_outfield,99.69,19.43,100.0,99.49,99.53,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+長谷川　隼,Hayato Hasegawa,MF,Midfield,4520.0,4322.05,auto_j3_outfield,93.07,22.77,81.25,98.33,95.62,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+長谷川　雄志,Yushi Hasegawa,MF,Midfield,4150.0,3963.79,auto_j3_outfield,95.19,24.36,88.89,98.02,95.51,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+曽我　大地,Daichi Soga,MF,Midfield,3951.0,4037.91,auto_j3_outfield,99.5,30.14,100.0,99.45,97.85,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+古賀　俊太郎,Shuntaro Koga,MF,Midfield,3879.0,3731.97,auto_j3_outfield,97.54,23.7,96.3,98.13,96.21,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+安達　秀都,Shuto  Adachi,MF,Midfield,3831.0,3770.21,auto_j3_outfield,92.1,28.4,75.86,99.04,98.41,15.0,"score>=82.0, gap>=12.0, name>=70.0"
+徳永　裕大,Yudai Tokunaga,MF,Midfield,3794.0,3334.3,auto_j3_outfield,87.42,15.18,70.59,95.1,87.88,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+藤原　健介,Kensuke Fujiwara,MF,Midfield,3659.0,4121.75,auto_j3_outfield,97.42,35.1,100.0,97.19,88.77,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+大山　啓輔,Keisuke Oyama,MF,Midfield,3569.0,3249.45,auto_j3_outfield,96.86,24.03,100.0,95.69,91.05,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+岩本　和希,Kazuki Iwamoto,MF,Midfield,3442.0,3175.96,auto_j3_outfield,97.49,21.87,100.0,96.66,92.27,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+高柳　郁弥,Fumiya Takayanagi,MF,Midfield,3392.0,3619.08,auto_j3_outfield,98.54,32.02,100.0,98.4,93.73,16.0,"score>=82.0, gap>=12.0, name>=70.0"
+菅井　拓也,Takuya Sugai,MF,Midfield,3212.0,3028.48,auto_j3_outfield,98.43,24.68,100.0,98.09,94.29,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+澤崎　凌大,Ryota Sawazaki,MF,Midfield,3155.0,3328.06,auto_j3_outfield,94.64,21.64,86.67,98.38,94.8,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+岡澤　昂星,Kosei Okazawa,MF,Midfield,3061.0,2071.5,auto_j3_outfield,87.39,23.67,82.76,91.92,67.67,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+萩野　滉大,Kodai Hagino,MF,Midfield,2999.0,3078.71,auto_j3_outfield,99.31,26.34,100.0,99.17,97.41,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+新里　涼,Ryo Niizato,MF,Midfield,2967.0,2399.26,auto_j3_outfield,91.69,27.38,86.96,95.22,80.86,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+新井　光,Hikaru Arai,MF,Midfield,2898.0,2246.53,auto_j3_outfield,92.1,21.6,90.91,94.38,77.52,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+米原　秀亮,Shusuke Yonehara,MF,Midfield,2863.0,2756.56,auto_j3_outfield,93.06,35.04,80.0,98.9,96.28,12.0,"score>=82.0, gap>=12.0, name>=70.0"
+山口　卓己,Takumi Yamaguchi,MF,Midfield,2844.0,3316.04,auto_j3_outfield,96.73,21.19,100.0,96.44,85.76,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+柳町　魁耀,Kaiyo Yanagimachi,MF,Midfield,2746.0,3136.44,auto_j3_outfield,95.42,19.54,94.44,96.79,87.55,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+末木　裕也,Hiroya Sueki,MF,Midfield,2735.0,2503.2,auto_j3_outfield,89.87,16.11,72.73,97.88,91.52,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+沼田　航征,Kosei Numata,MF,Midfield,2720.0,3035.78,auto_j3_outfield,96.12,17.39,96.0,96.85,89.6,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+西山　拓実,Takumi Nishiyama,MF,Midfield,2694.0,2016.1,auto_j3_outfield,91.81,15.5,100.0,89.08,74.84,10.0,"score>=82.0, gap>=12.0, name>=70.0"
+吉田　陣平, Jimpei   Yoshida,MF,Midfield,2624.0,2865.05,auto_j3_outfield,89.33,19.9,70.97,97.85,91.59,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+工藤　真人,Manato Kudo,MF,Midfield,2541.0,2775.95,auto_j3_outfield,94.14,14.96,86.96,97.88,91.54,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+岡庭　裕貴,Yuki Okaniwa,MF,Midfield,2500.0,2712.45,auto_j3_outfield,91.28,13.07,76.92,98.04,92.17,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+島川　俊郎,Toshio Shimakawa,MF,Midfield,2464.0,2827.64,auto_j3_outfield,94.47,18.63,91.43,96.78,87.14,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+中里　崇宏,Takahiro Nakazato,MF,Midfield,2453.0,1470.2,auto_j3_outfield,90.78,18.48,100.0,89.98,59.93,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+渡邉　英祐,Eisuke Watanabe,MF,Midfield,2301.0,2571.59,auto_j3_outfield,97.58,26.88,100.0,97.37,89.48,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+冨士田　康人,Yasuto Fujita,MF,Midfield,2286.0,1418.6200000000001,auto_j3_outfield,91.27,14.63,100.0,90.51,62.06,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+青島　太一,Taichi Aoshima,MF,Midfield,2205.0,2359.08,auto_j3_outfield,98.5,19.18,100.0,98.37,93.47,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+菊谷　篤資,Atsushi  Kikutani,MF,Midfield,2043.0,1506.5,auto_j3_outfield,86.9,13.06,76.47,93.43,73.74,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+狩野　海晟,Kaisei  Kano,MF,Midfield,1844.0,1965.48,auto_j3_outfield,92.06,23.53,78.26,98.45,93.82,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+岩本　翔,Sho Iwamoto,MF,Midfield,1837.0,1821.21,auto_j3_outfield,98.24,23.26,95.65,99.29,99.14,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+河井　陽介,Yosuke Kawai,MF,Midfield,1808.0,1236.77,auto_j3_outfield,91.53,15.92,96.0,92.1,68.41,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+箱崎　達也,Tatsuya Hakozaki,MF,Midfield,1784.0,1974.67,auto_j3_outfield,97.78,25.45,100.0,97.59,90.34,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+下澤　悠太,Yuta Shimozawa,MF,Midfield,1733.0,1218.06,auto_j3_outfield,93.17,32.3,100.0,92.57,70.29,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+三好　麟大,Rinta  Miyoshi,MF,Midfield,1661.0,1839.95,auto_j3_outfield,93.48,13.18,85.71,97.57,90.27,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+須藤　直輝,Naoki   Suto,MF,Midfield,1659.0,1793.25,auto_j3_outfield,93.99,14.15,85.71,98.13,92.51,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+熊谷　アンドリュー,Andrew Kumagai,MF,Midfield,1654.0,1823.09,auto_j3_outfield,89.86,15.82,73.33,97.67,90.73,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+柴田　壮介,Sosuke Shibata,MF,Midfield,1637.0,911.14,auto_j3_outfield,89.8,15.14,100.0,88.91,55.66,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+藤村　怜,Ren Fujimura,MF,Midfield,1633.0,1731.99,auto_j3_outfield,96.19,23.42,91.67,98.57,94.28,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+竹内　崇人,Takato  Takeuchi,MF,Midfield,1594.0,1766.08,auto_j3_outfield,95.88,21.37,93.75,97.56,90.26,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+佐藤　尚輝,Naoki Sato,MF,Midfield,1584.0,1838.38,auto_j3_outfield,96.77,22.72,100.0,96.45,86.16,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+山田　貴文,Takafumi Yamada,MF,Midfield,1553.0,1191.1,auto_j3_outfield,94.64,16.9,100.0,94.17,76.7,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+森田　凜,Rin Morita,MF,Midfield,1425.0,1616.72,auto_j3_outfield,97.27,29.01,100.0,97.03,88.14,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+岩上　祐三,Yuzo Iwakami,MF,Midfield,1377.0,1242.79,auto_j3_outfield,96.56,22.38,96.0,97.56,90.25,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+高橋　耕平,Kohei Takahashi,MF,Midfield,1273.0,1431.88,auto_j3_outfield,97.45,30.85,100.0,97.23,88.9,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+遠藤　光,Hikaru Endo,MF,Midfield,1223.0,1179.67,auto_j3_outfield,95.27,34.82,86.96,99.11,96.46,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+矢田　旭,Asahi Yada,MF,Midfield,1214.0,1089.15,auto_j3_outfield,97.49,19.99,100.0,97.16,89.72,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+大橋　尚志,Hisashi  Ohashi,MF,Midfield,1166.0,1274.82,auto_j3_outfield,91.61,17.1,78.57,97.87,91.46,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+松原　亘紀,Koki Matsubara,MF,Midfield,1135.0,995.0699999999999,auto_j3_outfield,96.13,26.25,96.55,96.92,87.67,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+宇都木　峻,Shun Utsugi,MF,Midfield,1060.0,1188.86,auto_j3_outfield,94.78,19.84,90.91,97.29,89.16,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+河合　駿樹,Toshiki  Kawai,MF,Midfield,1040.0,1119.96,auto_j3_outfield,91.43,31.97,76.92,98.22,92.86,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+三門　雄大,Yuta Mikado,MF,Midfield,1027.0,884.11,auto_j3_outfield,92.89,12.38,86.96,96.52,86.09,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+植田　啓太,Keita Ueda,MF,Midfield,988.0,1002.63,auto_j3_outfield,99.66,23.47,100.0,99.64,98.54,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+石浦　大雅,Taiga Ishiura,MF,Midfield,969.0,1038.31,auto_j3_outfield,98.46,26.31,100.0,98.33,93.32,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+碓井　鉄平,Teppei Usui,MF,Midfield,930.0,693.96,auto_j3_outfield,94.16,22.65,100.0,93.65,74.62,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+小林　里駆,Riku Kobayashi,MF,Midfield,901.0,772.57,auto_j3_outfield,88.57,16.99,77.42,93.79,85.75,13.0,"score>=82.0, gap>=12.0, name>=70.0"
+鏑木　瑞生,Mizuki  Kaburaki,MF,Midfield,896.0,986.51,auto_j3_outfield,94.26,27.69,89.66,96.7,90.83,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+福田　晃斗,Akito Fukuta,MF,Midfield,873.0,967.66,auto_j3_outfield,92.19,21.47,81.48,97.55,90.22,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+遠山　悠希,Haruki Toyama,MF,Midfield,799.0,810.29,auto_j3_outfield,94.32,26.06,83.33,98.97,98.61,11.0,"score>=82.0, gap>=12.0, name>=70.0"
+瀬良　俊太,Shunta Sera,MF,Midfield,782.0,703.13,auto_j3_outfield,91.68,17.24,80.0,97.48,89.91,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+大迫　塁,Rui Osako,MF,Midfield,769.0,878.53,auto_j3_outfield,97.13,21.8,100.0,96.88,87.53,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+吉永　大志,Hiroshi Yoshinaga,MF,Midfield,741.0,966.68,auto_j3_outfield,89.94,20.65,84.85,93.88,76.65,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+渡井　翔琉,Kakeru Watai,MF,Midfield,738.0,788.11,auto_j3_outfield,98.54,18.81,100.0,98.41,93.64,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+加藤　潤也,Junya Kato,MF,Midfield,729.0,765.64,auto_j3_outfield,98.9,15.79,100.0,98.8,95.21,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+和田　拓也,Takuya Wada,MF,Midfield,719.0,812.31,auto_j3_outfield,97.36,30.62,100.0,97.13,88.51,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+村田　迅,Jin Murata,MF,Midfield,662.0,739.22,auto_j3_outfield,97.6,32.76,100.0,97.39,89.55,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+藤村　慶太,Keita Fujimura,MF,Midfield,638.0,736.89,auto_j3_outfield,96.91,20.08,100.0,96.65,86.58,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+宮崎　智彦,Tomohiko Miyazaki,MF,Midfield,616.0,489.44,auto_j3_outfield,95.2,20.08,100.0,94.72,79.45,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+清水　祐輔,Yusuke Shimizu,MF,Midfield,594.0,645.44,auto_j3_outfield,98.04,38.08,100.0,97.77,92.03,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+弓削　翼,Tsubasa  Yuge,MF,Midfield,540.0,295.0,auto_j3_outfield,89.56,13.92,100.0,88.66,54.63,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+井上　直輝,Naoki Inoue,MF,Midfield,536.0,442.72,auto_j3_outfield,96.0,15.72,100.0,95.65,82.6,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+川上　航立,Kotatsu  Kawakami,MF,Midfield,508.0,583.32,auto_j3_outfield,92.48,16.53,84.85,96.77,87.09,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+由井　航太,Kota Yui,MF,Midfield,458.0,523.22,auto_j3_outfield,95.37,28.01,94.12,96.88,87.53,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+長谷川　アーリアジャスール,Aria Jasuru Hasegawa,MF,Midfield,451.0,331.76,auto_j3_outfield,93.15,26.44,97.44,93.39,73.56,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+田鎖　勇作,Yusaku Takusari,MF,Midfield,414.0,445.55,auto_j3_outfield,98.37,25.53,100.0,98.23,92.92,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+住田　将,Sho Sumida,MF,Midfield,340.0,298.93,auto_j3_outfield,92.89,33.77,85.71,96.88,87.92,9.0,"score>=82.0, gap>=12.0, name>=70.0"
+佐藤　璃樹,Riki Sato,MF,Midfield,334.0,283.61,auto_j3_outfield,94.95,17.68,94.74,96.23,84.91,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+石山　青空,Aozora Ishiyama,MF,Midfield,330.0,390.87,auto_j3_outfield,96.42,22.23,100.0,96.11,84.43,6.0,"score>=82.0, gap>=12.0, name>=70.0"
+吉田　桂介, Keisuke Yoshida,MF,Midfield,324.0,362.76,auto_j3_outfield,89.83,27.37,74.29,97.33,89.32,5.0,"score>=82.0, gap>=12.0, name>=70.0"
+山田　尚幸,Naoyuki Yamada,MF,Midfield,312.0,195.62,auto_j3_outfield,91.42,23.69,100.0,90.67,62.7,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+大熊　健太,Kenta Okuma,MF,Midfield,306.0,376.26,auto_j3_outfield,95.34,35.79,100.0,94.62,81.33,8.0,"score>=82.0, gap>=12.0, name>=70.0"
+金原　朝陽,Asahi  Kanehara,MF,Midfield,304.0,388.55,auto_j3_outfield,95.0,23.93,100.0,94.56,78.24,7.0,"score>=82.0, gap>=12.0, name>=70.0"
+橋本　啓吾,Keigo Hashimoto,FW,Center Forward,6109.0,5545.37,manual_master,,,,,,,master_name_mapping_final.csv 採用
+菊井　悠介,Yusuke Kikui,FW,Wide Attacker,5036.0,4904.81,manual_master,,,,,,,master_name_mapping_final.csv 採用
+西谷　和希,Kazuki Nishiya,FW,Full Back,4520.0,5031.97,manual_master,,,,,,,master_name_mapping_final.csv 採用
+久保　吏久斗,Rikuto Kubo,FW,Wide Attacker,4514.0,4069.97,manual_master,,,,,,,master_name_mapping_final.csv 採用
+富樫　佑太,Yuta Togashi,FW,Center Forward,4414.0,3700.95,manual_master,,,,,,,master_name_mapping_final.csv 採用
+永井　龍,Ryo Nagai,FW,Center Forward,4245.0,3628.58,manual_master,,,,,,,master_name_mapping_final.csv 採用
+澤上　竜二,Ryuji Sawakami,FW,Center Forward,4206.0,4340.06,manual_master,,,,,,,master_name_mapping_final.csv 採用
+島田　拓海,Takumi Shimada,FW,Center Forward,3800.0,3715.0,manual_master,,,,,,,master_name_mapping_final.csv 採用
+高　昇辰,Seung-Jin Koh,FW,Wide Attacker,3716.0,3338.59,manual_master,,,,,,,master_name_mapping_final.csv 採用
+樋口　寛規,Hiroki Higuchi,FW,Center Forward,3704.0,3596.1,manual_master,,,,,,,master_name_mapping_final.csv 採用
+三木　直土,Naoto Miki,FW,Wide Attacker,3606.0,3678.93,manual_master,,,,,,,master_name_mapping_final.csv 採用
+加々美　登生,Toi Kagami,FW,Wide Attacker,3545.0,3052.39,manual_master,,,,,,,master_name_mapping_final.csv 採用
+浅川　隼人,Hayato Asakawa,FW,Center Forward,3480.0,3374.8,manual_master,,,,,,,master_name_mapping_final.csv 採用
+浮田　健誠,Kensei Ukita,FW,Center Forward,3397.0,2825.92,manual_master,,,,,,,master_name_mapping_final.csv 採用
+オタボー　ケネス,Kenneth Otabor,FW,Wide Attacker,3130.0,2610.55,manual_master,,,,,,,master_name_mapping_final.csv 採用
+マルクス　ヴィニシウス,Marcus Vinicius Ferreira Teixeira,FW,Center Forward,3066.0,2338.28,manual_master,,,,,,,master_name_mapping_final.csv 採用
+中野　誠也,Seiya Nakano,FW,Center Forward,3039.0,2972.56,manual_master,,,,,,,master_name_mapping_final.csv 採用
+大澤　朋也,Tomoya Osawa,FW,Wide Attacker,3036.0,3260.88,manual_master,,,,,,,master_name_mapping_final.csv 採用
+大谷　駿斗,Hayato Otani,FW,Full Back,2826.0,2449.59,manual_master,,,,,,,master_name_mapping_final.csv 採用
+西村　真祈,Masaki Nishimura,FW,Center Forward,2781.0,2833.73,manual_master,,,,,,,master_name_mapping_final.csv 採用
+安藤　翼,Tsubasa Ando,FW,Center Forward,2773.0,2335.74,manual_master,,,,,,,master_name_mapping_final.csv 採用
+杉本　健勇,Kenyu Sugimoto,FW,Center Forward,2751.0,1981.06,manual_master,,,,,,,master_name_mapping_final.csv 採用
+塩浜　遼,Ryo Shiohama,FW,Wide Attacker,2621.0,2007.31,manual_master,,,,,,,master_name_mapping_final.csv 採用
+粟飯原　尚平,Shohei Aihara,FW,Wide Attacker,2539.0,2136.66,manual_master,,,,,,,master_name_mapping_final.csv 採用
+和田　育,Hagumi Wada,FW,Center Forward,2538.0,2172.11,manual_master,,,,,,,master_name_mapping_final.csv 採用
+オリオラ　サンデー,Oriola Sunday,FW,Center Forward,2515.0,1869.56,manual_master,,,,,,,master_name_mapping_final.csv 採用
+田中　翔太,Shota Tanaka,FW,Center Forward,2502.0,2011.02,manual_master,,,,,,,master_name_mapping_final.csv 採用
+田口　裕也,Yuya Taguchi,FW,Center Forward,2502.0,1758.53,manual_master,,,,,,,master_name_mapping_final.csv 採用
+藤岡　浩介,Kosuke Fujioka,FW,Center Forward,2457.0,1794.9,manual_master,,,,,,,master_name_mapping_final.csv 採用
+髙木　彰人,Akito Takagi,FW,Center Forward,2399.0,2527.48,manual_master,,,,,,,master_name_mapping_final.csv 採用
+古川　大悟,Daigo Furukawa,FW,Center Forward,2372.0,1883.47,manual_master,,,,,,,master_name_mapping_final.csv 採用
+高木　大輔,Daisuke Takagi,FW,Center Forward,2336.0,2402.62,manual_master,,,,,,,master_name_mapping_final.csv 採用
+武　颯,Hayate Take,FW,Center Forward,2293.0,2259.86,manual_master,,,,,,,master_name_mapping_final.csv 採用
+武藤　雄樹,Yuki Muto,FW,Center Forward,2273.0,2313.35,manual_master,,,,,,,master_name_mapping_final.csv 採用
+アンジェロッティ,Rodrigo Luiz Angelotti,FW,Center Forward,2195.0,2196.15,manual_master,,,,,,,master_name_mapping_final.csv 採用
+大野　耀平,Yohei Ono,FW,Center Forward,2185.0,2047.18,manual_master,,,,,,,master_name_mapping_final.csv 採用
+吉澤　柊,Shu Yoshizawa,FW,Center Forward,2157.0,2238.5,manual_master,,,,,,,master_name_mapping_final.csv 採用
+矢島　輝一,Kiichi Yajima,FW,Center Forward,2137.0,2013.58,manual_master,,,,,,,master_name_mapping_final.csv 採用
+庵原　篤人,Atsuhito Ihara,FW,Center Forward,2096.0,1788.08,manual_master,,,,,,,master_name_mapping_final.csv 採用
+上野　輝人,Akito Ueno,FW,Full Back,2069.0,2113.4,manual_master,,,,,,,master_name_mapping_final.csv 採用
+田村　翔太,Shota Tamura,FW,Center Forward,2066.0,2144.08,manual_master,,,,,,,master_name_mapping_final.csv 採用
+碓井　聖生,Shosei Usui,FW,Center Forward,2030.0,1758.35,manual_master,,,,,,,master_name_mapping_final.csv 採用
+吉平　翼,Tsubasa Yoshihira,FW,Wide Attacker,2014.0,1652.23,manual_master,,,,,,,master_name_mapping_final.csv 採用
+太田　龍之介,Ryunosuke Ota,FW,Center Forward,2014.0,2147.59,manual_master,,,,,,,master_name_mapping_final.csv 採用
+東家　聡樹,Toshiki Toya,FW,Center Forward,2000.0,2180.37,manual_master,,,,,,,master_name_mapping_final.csv 採用
+進　昂平,Kohei Shin,FW,Center Forward,1984.0,2101.43,manual_master,,,,,,,master_name_mapping_final.csv 採用
+田中　想来,Sora Tanaka,FW,Center Forward,1894.0,2111.83,manual_master,,,,,,,master_name_mapping_final.csv 採用
+岩岸　宗志,Soshi Iwagishi,FW,Wide Attacker,1795.0,1664.91,manual_master,,,,,,,master_name_mapping_final.csv 採用
+曽田　一騎,Kazuki Sota,FW,Wide Attacker,1785.0,1952.2,manual_master,,,,,,,master_name_mapping_final.csv 採用
+棚橋　尭士,Akito Tanahashi,FW,Wide Attacker,1773.0,1800.31,manual_master,,,,,,,master_name_mapping_final.csv 採用
+河辺　駿太郎,Shuntaro Kawabe,FW,Center Forward,1764.0,1932.18,manual_master,,,,,,,master_name_mapping_final.csv 採用
+樺山　諒乃介,Ryonosuke Kabayama,FW,Midfield,1755.0,1834.19,manual_master,,,,,,,master_name_mapping_final.csv 採用
+松木　駿之介,Shunnosuke Matsuki,FW,Center Forward,1660.0,1208.24,manual_master,,,,,,,master_name_mapping_final.csv 採用
+白輪地　敬大,Keita Shirawachi,FW,Center Forward,1607.0,1847.1499999999999,manual_master,,,,,,,master_name_mapping_final.csv 採用
+後藤　優介,Yusuke Goto,FW,Wide Attacker,1573.0,1650.26,manual_master,,,,,,,master_name_mapping_final.csv 採用
+平岡　将豪,Masahide Hiraoka,FW,Center Forward,1526.0,1628.24,manual_master,,,,,,,master_name_mapping_final.csv 採用
+マテウス　レイリア,Matheus Leiria Dos Santos,FW,Center Forward,1513.0,1355.93,manual_master,,,,,,,master_name_mapping_final.csv 採用
+横山　智也,Tomoya Yokoyama,FW,Wide Attacker,1484.0,1359.84,manual_master,,,,,,,master_name_mapping_final.csv 採用
+都倉　賢,Ken Tokura,FW,Center Forward,1380.0,1113.44,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ピーター　ウタカ,Peter Utaka,FW,Center Forward,1362.0,1528.49,manual_master,,,,,,,master_name_mapping_final.csv 採用
+川又　堅碁,Kengo Kawamata,FW,Center Forward,1356.0,1575.5,manual_master,,,,,,,master_name_mapping_final.csv 採用
+丹羽　詩温,Shion Niwa,FW,Center Forward,1344.0,1504.67,manual_master,,,,,,,master_name_mapping_final.csv 採用
+藤井　一志,Kazushi Fujii,FW,Center Forward,1341.0,763.34,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ピーダーセン　世穏,Jorn Pedersen,FW,Center Forward,1258.0,637.71,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ラファエル　フルタード,Rafael Victor de Oliveira Furtado,FW,Center Forward,1250.0,1386.84,manual_master,,,,,,,master_name_mapping_final.csv 採用
+齋藤　学,Manabu Saito,FW,Wide Attacker,1250.0,1406.05,manual_master,,,,,,,master_name_mapping_final.csv 採用
+渡邉　颯太,Sota Watanabe,FW,Center Forward,1242.0,1409.6,manual_master,,,,,,,master_name_mapping_final.csv 採用
+河田　篤秀,Atsushi Kawata,FW,Center Forward,1234.0,1367.81,manual_master,,,,,,,master_name_mapping_final.csv 採用
+青木　翔大,Shota Aoki,FW,Center Forward,1198.0,1341.2,manual_master,,,,,,,master_name_mapping_final.csv 採用
+白井　陽斗,Haruto Shirai,FW,Center Forward,1168.0,482.55,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ンドカ　チャールス,Charles Nduka,FW,Center Forward,1151.0,1342.27,manual_master,,,,,,,master_name_mapping_final.csv 採用
+松本　孝平,Kohei Matsumoto,FW,Center Forward,1131.0,1057.33,manual_master,,,,,,,master_name_mapping_final.csv 採用
+鈴木　輪太朗　イブラヒーム,Wadi Ibrahim Suzuki,FW,Center Forward,1124.0,1276.84,manual_master,,,,,,,master_name_mapping_final.csv 採用
+杉浦　恭平,Kyohei Sugiura,FW,Center Forward,1104.0,1149.24,manual_master,,,,,,,master_name_mapping_final.csv 採用
+林　誠道,Masamichi Hayashi,FW,Center Forward,1058.0,1149.44,manual_master,,,,,,,master_name_mapping_final.csv 採用
+加藤　拓己,Takumi Kato,FW,Center Forward,1046.0,1141.59,manual_master,,,,,,,master_name_mapping_final.csv 採用
+川本　梨誉,Riyo Kawamoto,FW,Center Forward,981.0,1053.58,manual_master,,,,,,,master_name_mapping_final.csv 採用
+藤沼　拓夢,Takumu Fujinuma,FW,Full Back,847.0,618.46,manual_master,,,,,,,master_name_mapping_final.csv 採用
+吉田　伊吹,Ibuki Yoshida,FW,Center Forward,835.0,908.53,manual_master,,,,,,,master_name_mapping_final.csv 採用
+吉田　篤志,Atsushi Yoshida,FW,Wide Attacker,814.0,940.24,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ウェズレイ　タンキ,Wesley Tanque da Silva,FW,Center Forward,807.0,893.33,manual_master,,,,,,,master_name_mapping_final.csv 採用
+髙澤　優也,Yuya Takazawa,FW,Center Forward,807.0,895.34,manual_master,,,,,,,master_name_mapping_final.csv 採用
+菅原　龍之助,Ryunosuke Sugawara,FW,Center Forward,747.0,848.9,manual_master,,,,,,,master_name_mapping_final.csv 採用
+半田　航也,Koya Handa,FW,Center Forward,727.0,836.89,manual_master,,,,,,,master_name_mapping_final.csv 採用
+佐藤　未勇,Miyu Sato,FW,Center Forward,709.0,732.75,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ジョップ　セリンサリウ,Serigne Diop,FW,Center Forward,683.0,530.35,manual_master,,,,,,,master_name_mapping_final.csv 採用
+鈴木　国友,Kunitomo Suzuki,FW,Wide Attacker,654.0,730.6,manual_master,,,,,,,master_name_mapping_final.csv 採用
+山谷　侑士,Yushi Yamaya,FW,Wide Attacker,634.0,699.24,manual_master,,,,,,,master_name_mapping_final.csv 採用
+西丸　道人,Minto Nishimaru,FW,Wide Attacker,609.0,682.1999999999999,manual_master,,,,,,,master_name_mapping_final.csv 採用
+坪郷　来紀,Raiki Tsubogo,FW,Wide Attacker,558.0,628.61,manual_master,,,,,,,master_name_mapping_final.csv 採用
+棚田　遼,Ryo Tanada,FW,Center Forward,558.0,641.56,manual_master,,,,,,,master_name_mapping_final.csv 採用
+日野　友貴,Tomoki Hino,FW,Center Forward,555.0,427.78000000000003,manual_master,,,,,,,master_name_mapping_final.csv 採用
+杉山　伶央,Reo Sugiyama,FW,Center Forward,543.0,696.4399999999999,manual_master,,,,,,,master_name_mapping_final.csv 採用
+山本　駿亮,Shunsuke Yamamoto,FW,Wide Attacker,539.0,604.4300000000001,manual_master,,,,,,,master_name_mapping_final.csv 採用
+齋藤　恵太,Keita Saito,FW,Wide Attacker,527.0,617.61,manual_master,,,,,,,master_name_mapping_final.csv 採用
+米澤　令衣,Rei Yonezawa,FW,Wide Attacker,488.0,680.06,manual_master,,,,,,,master_name_mapping_final.csv 採用
+酒井　達磨,Tatsuma Sakai,FW,Wide Attacker,432.0,559.0,manual_master,,,,,,,master_name_mapping_final.csv 採用
+武　星弥,Seiya Take,FW,Center Forward,407.0,607.42,manual_master,,,,,,,master_name_mapping_final.csv 採用
+髙尾　流星,Ryusei Takao,FW,Center Forward,407.0,408.01,manual_master,,,,,,,master_name_mapping_final.csv 採用
+小堀　空,Sora Kobori,FW,Wide Attacker,400.0,441.86,manual_master,,,,,,,master_name_mapping_final.csv 採用
+上野　瑶介,Yosuke Ueno,FW,Center Forward,393.0,174.05,manual_master,,,,,,,master_name_mapping_final.csv 採用
+矢野　貴章,Kisho Yano,FW,Center Forward,368.0,550.88,manual_master,,,,,,,master_name_mapping_final.csv 採用
+望月　想空,Sora Mochizuki,FW,Center Forward,347.0,491.62,manual_master,,,,,,,master_name_mapping_final.csv 採用
+石井　稜真,Ryoma Ishii,FW,Center Forward,330.0,386.78000000000003,manual_master,,,,,,,master_name_mapping_final.csv 採用
+イスマイラ,Origbaajo Ismaila,FW,Center Forward,321.0,364.4,manual_master,,,,,,,master_name_mapping_final.csv 採用
+高井　和馬,Kazuma Takai,FW,Center Forward,298.0,379.06,manual_master,,,,,,,master_name_mapping_final.csv 採用
+駒沢　直哉,Naoya Komazawa,FW,Wide Attacker,288.0,348.66,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ワッド　モハメッドサディキ,Mohamad Sadiki Wade,FW,Center Forward,283.0,348.43,manual_master,,,,,,,master_name_mapping_final.csv 採用
+星野　創輝,Soki Hoshino,FW,Center Forward,256.0,291.36,manual_master,,,,,,,master_name_mapping_final.csv 採用
+富山　貴光,Takamitsu Tomiyama,FW,Center Forward,208.0,223.87,manual_master,,,,,,,master_name_mapping_final.csv 採用
+宇高　魁人,Kaito Utaka,FW,Wide Attacker,205.0,185.99,manual_master,,,,,,,master_name_mapping_final.csv 採用
+オウイエ　ウイリアム,William Owie,FW,Center Forward,197.0,290.75,manual_master,,,,,,,master_name_mapping_final.csv 採用
+木許　太賀,Taiga Kimoto,FW,Center Forward,193.0,211.59,manual_master,,,,,,,master_name_mapping_final.csv 採用
+古川　真人,Manato Furukawa,FW,Center Forward,124.0,98.64,manual_master,,,,,,,master_name_mapping_final.csv 採用
+赤塚　ミカエル,Mikhael Akatsuka,FW,Center Forward,113.0,113.65,manual_master,,,,,,,master_name_mapping_final.csv 採用
+渡邊　星来,Sera Watanabe,FW,Center Forward,76.0,110.66,manual_master,,,,,,,master_name_mapping_final.csv 採用
+小野関　虎之介,Toranosuke Onozeki,FW,Wide Attacker,59.0,77.56,manual_master,,,,,,,master_name_mapping_final.csv 採用
+中島　大嘉,Taika Nakashima,FW,Center Forward,52.0,81.52,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ディアマンカ　センゴール,Cheikh Diamanka,FW,Center Forward,42.0,69.53,manual_master,,,,,,,master_name_mapping_final.csv 採用
+藤枝　康佑,Kosuke Fujieda,FW,Center Forward,38.0,63.550000000000004,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ウェベルトン,Weverton de Souza Santos,FW,Full Back,20.0,48.95,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ドゥンガ,Ismael Dunga,FW,Central Defender,15.0,44.45,manual_master,,,,,,,master_name_mapping_final.csv 採用
+豊田　陽平,Yohei Toyoda,FW,Center Forward,15.0,27.79,manual_master,,,,,,,master_name_mapping_final.csv 採用
+ヴィニシウス　ソウザ,Vinícius de Souza Alves,FW,Midfield,12.0,33.93,manual_master,,,,,,,master_name_mapping_final.csv 採用
+星　景虎,Kagetora Hoshi,FW,Center Forward,12.0,17.28,manual_master,,,,,,,master_name_mapping_final.csv 採用
+鈴木　拳士郎,Kenshiro Suzuki,MF,Wide Attacker,3676.0,3819.12,manual_master,,,,,,,master_name_mapping_final.csv 採用
+木實　快斗,Kaito Konomi,MF,Full Back,1281.0,1451.61,manual_master,,,,,,,master_name_mapping_final.csv 採用
