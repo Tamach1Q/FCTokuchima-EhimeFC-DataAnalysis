@@ -1,0 +1,40 @@
+﻿sc_position,sc_position_group,analysis_position_code,analysis_position_jp
+CF,Center Forward,FW,フォワード
+Center Forward,Center Forward,FW,フォワード
+CB,Central Defender,CB,センターバック
+Center Back,Central Defender,CB,センターバック
+LCB,Central Defender,CB,センターバック
+Left Center Back,Central Defender,CB,センターバック
+RCB,Central Defender,CB,センターバック
+Right Center Back,Central Defender,CB,センターバック
+LB,Full Back,SB,サイドバック
+LWB,Full Back,SB,サイドバック
+Left Back,Full Back,SB,サイドバック
+Left Wing Back,Full Back,SB,サイドバック
+RB,Full Back,SB,サイドバック
+RWB,Full Back,SB,サイドバック
+Right Back,Full Back,SB,サイドバック
+Right Wing Back,Full Back,SB,サイドバック
+AM,Midfield,ST,セカンドトップ
+Attacking Midfield,Midfield,ST,セカンドトップ
+Center Midfield,Midfield,CMF,セントラルMF
+DM,Midfield,CMF,セントラルMF
+Defensive Midfield,Midfield,CMF,セントラルMF
+LDM,Midfield,CMF,セントラルMF
+LM,Midfield,SH,サイドハーフ
+Left Defensive Midfield,Midfield,CMF,セントラルMF
+Left Midfield,Midfield,SH,サイドハーフ
+RDM,Midfield,CMF,セントラルMF
+RM,Midfield,SH,サイドハーフ
+Right Defensive Midfield,Midfield,CMF,セントラルMF
+Right Midfield,Midfield,SH,サイドハーフ
+Substitute,Substitute,UNKNOWN,不明
+LF,Wide Attacker,SH,サイドハーフ
+LW,Wide Attacker,SH,サイドハーフ
+Left Forward,Wide Attacker,SH,サイドハーフ
+Left Winger,Wide Attacker,SH,サイドハーフ
+RF,Wide Attacker,SH,サイドハーフ
+RW,Wide Attacker,SH,サイドハーフ
+Right Forward,Wide Attacker,SH,サイドハーフ
+Right Winger,Wide Attacker,SH,サイドハーフ
+,,UNKNOWN,不明

@@ -1,0 +1,30 @@
+﻿metric,value,detail
+existing_mapping_count,647,既存マッピング件数
+position_data_count,811,SC細分類ポジション集計件数
+join_key,SC_Name = player_name_raw_skillcorner,使用した結合キー
+joined_count,625,結合成功件数
+unjoined_count,22,未結合件数
+join_rate_pct,96.6,結合成功率 (%)
+duplicate_rows,0,重複行数 (0が正常)
+unjoined_player,Genki Egawa,"FB_Name=江川　慶城, SC_PosGroup=Central Defender"
+unjoined_player,Ryo Nishitani,"FB_Name=西谷　亮, SC_PosGroup=Midfield"
+unjoined_player,Rensuke Kawana,"FB_Name=川名　連介, SC_PosGroup=Full Back"
+unjoined_player,Masaki Shintani,"FB_Name=新谷　聖基, SC_PosGroup=Center Forward"
+unjoined_player,Hiroto Konishi,"FB_Name=小西　宏登, SC_PosGroup=Full Back"
+unjoined_player,Yoshihito Kondo,"FB_Name=近藤　慶一, SC_PosGroup=Center Forward"
+unjoined_player,Haru Kano,"FB_Name=加納　大, SC_PosGroup=Center Forward"
+unjoined_player,In Ju Mun,"FB_Name=文　仁柱, SC_PosGroup=Full Back"
+unjoined_player,Toya Izumi,"FB_Name=泉　柊椰, SC_PosGroup=Full Back"
+unjoined_player,Sota Higashide,"FB_Name=東出　壮太, SC_PosGroup=Midfield"
+unjoined_player,Taiga Sasaki,"FB_Name=佐々木　敦河, SC_PosGroup=Midfield"
+unjoined_player,Joao,"FB_Name=ジョアオ, SC_PosGroup=Midfield"
+unjoined_player,Justin Toshiki Kinjo,"FB_Name=金城　ジャスティン俊樹, SC_PosGroup=Central Defender"
+unjoined_player,Ren Sugimoto,"FB_Name=杉本　蓮, SC_PosGroup=Midfield"
+unjoined_player,Thales,"FB_Name=ターレス, SC_PosGroup=Wide Attacker"
+unjoined_player,Tsubasa Nakamura,"FB_Name=中村　翼, SC_PosGroup=Wide Attacker"
+unjoined_player,Takumi Kawamura,"FB_Name=河村　匠, SC_PosGroup=Full Back"
+unjoined_player,Gen Matsumura,"FB_Name=松村　厳, SC_PosGroup=Central Defender"
+unjoined_player,Daiki Kusunoki,"FB_Name=楠　大樹, SC_PosGroup=Wide Attacker"
+unjoined_player,Sota Kiri,"FB_Name=桐　蒼太, SC_PosGroup=Wide Attacker"
+unjoined_player,Kazuto Takezawa,"FB_Name=武沢　一翔, SC_PosGroup=Wide Attacker"
+unjoined_player,Tsuneyasu Mio,"FB_Name=常安　澪, SC_PosGroup=Midfield"
