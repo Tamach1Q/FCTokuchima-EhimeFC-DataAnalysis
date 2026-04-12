@@ -1,0 +1,18 @@
+﻿Issue_Type,Name_Type,Unmatched_Name,Source_Data,FB_Name,FB_Pos,FB_Minutes,SC_Name,SC_Position_Group,SC_Minutes,Mapping_Source,Top_Score,Gap_to_Second,Name_Score,Vector_Score,Minutes_Score,Candidate_Count,Notes
+fb_unmatched,漢字名,小谷　祐喜,football box,小谷　祐喜,,989.0,,,,valid_mapping_unmatched_list,,,,,,,football box 側のみ未マッチ
+sc_unmatched,ローマ字名,In-Ju Mun,skill corner,,,,In-Ju Mun,Full Back,4652.19,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Rennosuke Kawana,skill corner,,,,Rennosuke Kawana,Full Back,2486.88,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Thales Procopio Castro de Paula,skill corner,,,,Thales Procopio Castro de Paula,Wide Attacker,871.09,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Yuki Kotani,skill corner,,,,Yuki Kotani,Central Defender,792.66,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Joao Vitor Gaudencio Nunes,skill corner,,,,Joao Vitor Gaudencio Nunes,Midfield,738.53,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Haru Kano Haru Kano,skill corner,,,,Haru Kano Haru Kano,Center Forward,495.19,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Justin Kinjo,skill corner,,,,Justin Kinjo,Central Defender,379.37,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Kazuma Takai,skill corner,,,,Kazuma Takai,Center Forward,360.46,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Kento Awano,skill corner,,,,Kento Awano,Wide Attacker,354.75,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Naoya Komazawa,skill corner,,,,Naoya Komazawa,Wide Attacker,348.66,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Mohamad Sadiki Wade,skill corner,,,,Mohamad Sadiki Wade,Center Forward,348.43,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Farzan Sana Mohammad,skill corner,,,,Farzan Sana Mohammad,Full Back,344.45,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名, Takashi Oshima,skill corner,,,, Takashi Oshima,Midfield,342.48,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Itto Fujita,skill corner,,,,Itto Fujita,Midfield,319.64,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Taisuke Mizuno,skill corner,,,,Taisuke Mizuno,Midfield,318.31,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
+sc_unmatched,ローマ字名,Ryuji Kokubu,skill corner,,,,Ryuji Kokubu,Midfield,307.32,valid_mapping_unmatched_list,,,,,,,skill corner 側のみ未マッチ
