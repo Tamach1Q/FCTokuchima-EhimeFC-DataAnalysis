@@ -1,0 +1,5 @@
+﻿cluster_id,positive_count,negative_count,train_auc,cv_auc_mean,cv_auc_std,top1_feature,top2_feature,top3_feature,average_cluster_label_candidate
+0,29,120,1.000000,0.986111,0.015836,z_successful_forward_passes_per90,z_pass_success_rate_pct,z_successful_long_passes_per90,specialized cluster (配球寄り)
+1,40,109,1.000000,0.975974,0.017322,z_medaccel_count_full_all_per_match,z_highaccel_count_full_all_per_match,z_pass_success_rate_pct,specialized cluster (危険除去寄り / 対人・空中戦寄り)
+2,9,140,1.000000,0.932143,0.083299,z_clearances_per90,z_aerial_duel_win_rate_pct,z_pass_success_rate_pct,specialized cluster (危険除去寄り / 対人・空中戦寄り)
+3,71,78,1.000000,0.956079,0.025305,z_highaccel_count_full_all_per_match,z_medaccel_count_full_all_per_match,z_successful_forward_passes_per90,平均型候補

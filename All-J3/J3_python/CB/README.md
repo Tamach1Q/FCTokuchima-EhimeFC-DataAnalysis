@@ -24,7 +24,8 @@ KMeans では以下の `z_*` 10 変数のみを使います。
 `All-J3` ディレクトリをカレントにして実行します。
 
 ```bash
-python3 J3_python/CB/run_cb_kmeans.py
+../env/bin/python J3_python/CB/run_cb_kmeans.py
+../env/bin/python J3_python/CB/run_cb_randomforest.py
 ```
 
 ## 出力ファイル
@@ -33,6 +34,12 @@ python3 J3_python/CB/run_cb_kmeans.py
 - `All-J3/J3_python/CB/output/CB_cluster_centers_z.csv`
 - `All-J3/J3_python/CB/output/CB_cluster_summary.csv`
 - `All-J3/J3_python/CB/output/CB_kmeans_report.md`
+- `All-J3/J3_python/CB/output/CB_rf_overall_summary.csv`
+- `All-J3/J3_python/CB/output/CB_rf_cluster_0_importance.csv`
+- `All-J3/J3_python/CB/output/CB_rf_cluster_1_importance.csv`
+- `All-J3/J3_python/CB/output/CB_rf_cluster_2_importance.csv`
+- `All-J3/J3_python/CB/output/CB_rf_cluster_3_importance.csv`
+- `All-J3/J3_python/CB/output/CB_rf_report.md`
 
 ## KMeans 設定
 
@@ -43,5 +50,5 @@ python3 J3_python/CB/run_cb_kmeans.py
 
 ## メモ
 
-- 実装は標準ライブラリのみで完結しており、`pandas` や `scikit-learn` が未導入でも動作します。
-- `run_cb_randomforest.py` は次工程用の雛形です。今回は未実行です。
+- KMeans は標準ライブラリのみで動作します。
+- RandomForest は `pandas` / `numpy` / `scikit-learn` を使うため、リポジトリ同梱の `../env/bin/python` での実行を前提にしています。

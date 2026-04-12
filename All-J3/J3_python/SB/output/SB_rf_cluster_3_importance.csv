@@ -1,0 +1,11 @@
+﻿feature_name,impurity_importance,permutation_importance_mean,permutation_importance_std,cluster_id,positive_count,negative_count,rank_by_permutation,feature_label,cluster_center_z
+z_pa_entry_per90,0.350478,0.037714,0.012878,3,16,107,1,PA進入_per90,1.522494
+z_tackle_win_rate_pct,0.174511,0.004128,0.003283,3,16,107,2,タックル奪取率,0.908150
+z_crosses_per90,0.241697,0.002317,0.001302,3,16,107,3,クロス数_per90,1.514453
+z_cross_success_rate_pct,0.065163,0.000000,0.000000,3,16,107,4,クロス成功率,0.618671
+z_regain_within_5s_per90,0.042198,0.000000,0.000000,3,16,107,5,ロスト後5秒未満リゲイン_per90,-0.315269
+z_sprint_count_full_all_per_match,0.040007,0.000000,0.000000,3,16,107,6,スプリント回数_per_match,0.635283
+z_hi_distance_full_all_per_match,0.026069,0.000000,0.000000,3,16,107,7,HI距離_per_match,0.441758
+z_forward_long_pass_success_rate_pct,0.025915,0.000000,0.000000,3,16,107,8,前方向ロングパス成功率,-0.326197
+z_blocks_per90,0.021429,0.000000,0.000000,3,16,107,9,ブロック_per90,-0.075731
+z_running_distance_full_all_per_match,0.012533,0.000000,0.000000,3,16,107,10,走行距離_per_match,0.226909

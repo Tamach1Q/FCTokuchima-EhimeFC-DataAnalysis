@@ -1,0 +1,5 @@
+﻿cluster_id,positive_count,negative_count,train_auc,cv_auc_mean,cv_auc_std,top1_feature,top2_feature,top3_feature,average_cluster_label_candidate
+0,44,79,1.000000,0.988542,0.007250,z_hi_distance_full_all_per_match,z_running_distance_full_all_per_match,z_pa_entry_per90,specialized cluster (上下動・侵入寄り)
+1,16,107,1.000000,0.980159,0.032336,z_blocks_per90,z_cross_success_rate_pct,z_sprint_count_full_all_per_match,specialized cluster (守備回収寄り / 配球寄り)
+2,47,76,1.000000,0.958333,0.044098,z_hi_distance_full_all_per_match,z_running_distance_full_all_per_match,z_blocks_per90,平均型候補
+3,16,107,1.000000,0.992857,0.014286,z_pa_entry_per90,z_tackle_win_rate_pct,z_crosses_per90,specialized cluster (上下動・侵入寄り / クロス供給寄り)

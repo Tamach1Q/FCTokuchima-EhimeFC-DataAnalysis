@@ -1,0 +1,11 @@
+﻿feature_name,impurity_importance,permutation_importance_mean,permutation_importance_std,cluster_id,positive_count,negative_count,rank_by_permutation,feature_label,cluster_center_z
+z_medaccel_count_full_all_per_match,0.343820,0.093807,0.015010,1,40,109,1,中加速回数_per_match,-1.151226
+z_highaccel_count_full_all_per_match,0.243297,0.012653,0.005326,1,40,109,2,高加速回数_per_match,-0.932508
+z_pass_success_rate_pct,0.080826,0.001101,0.000795,1,40,109,3,パス成功率,-0.504700
+z_successful_forward_passes_per90,0.100877,0.000535,0.000524,1,40,109,4,前進パス成功数_per90,-0.545102
+z_interceptions_per90,0.051177,0.000161,0.000215,1,40,109,5,インターセプト_per90,-0.472200
+z_aerial_duel_win_rate_pct,0.043098,0.000138,0.000241,1,40,109,6,空中戦勝率,0.295432
+z_tackle_win_rate_pct,0.041578,0.000054,0.000164,1,40,109,7,タックル奪取率,-0.495756
+z_clearances_per90,0.055332,0.000046,0.000138,1,40,109,8,クリア_per90,0.443638
+z_successful_long_passes_per90,0.022769,0.000000,0.000000,1,40,109,9,ロングパス成功数_per90,-0.211191
+z_blocks_per90,0.017226,0.000000,0.000000,1,40,109,10,ブロック_per90,-0.076041
