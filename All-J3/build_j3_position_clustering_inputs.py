@@ -85,6 +85,7 @@ SC_COLUMN_ALIASES = {
     "Minutes": ["Minutes", "minutes_full_all"],
     "PSV-99": ["PSV-99", "psv99"],
     "Distance": ["Distance", "total_distance_full_all"],
+    "Running Distance": ["Running Distance", "running_distance_full_all"],
     "M/min": ["M/min", "total_metersperminute_full_all"],
     "HI Distance": ["HI Distance", "hi_distance_full_all"],
     "HSR Count": ["HSR Count", "hsr_count_full_all"],
@@ -102,6 +103,7 @@ SC_COLUMN_ALIASES = {
 FB_NUMERIC_COLUMNS = [
     "出場時間",
     "ゴール",
+    "アシスト",
     "シュート",
     "PA内シュート",
     "PA内ゴール",
@@ -145,6 +147,8 @@ FB_NUMERIC_COLUMNS = [
     "ニアゾーン進入",
     "PA脇進入",
     "30m進入",
+    "ロスト後5秒未満リゲイン",
+    "ロスト後10秒未満リゲイン",
 ]
 
 
@@ -155,7 +159,17 @@ def feature(
     match_type: str,
     reason: str,
     source_raw_columns: list[str],
+    *,
+    selected: bool = True,
+    final_status: str | None = None,
+    original_match_type: str | None = None,
+    unavailable_reason: str = "",
+    replacement_feature_key: str = "",
 ) -> dict[str, object]:
+    if final_status is None:
+        final_status = "adopted" if selected else "dropped"
+    if original_match_type is None:
+        original_match_type = match_type
     return {
         "concept_name": concept,
         "feature_key": feature_key,
@@ -163,111 +177,143 @@ def feature(
         "match_type": match_type,
         "reason": reason,
         "source_raw_columns": source_raw_columns,
+        "selected": selected,
+        "final_status": final_status,
+        "original_match_type": original_match_type,
+        "unavailable_reason": unavailable_reason,
+        "replacement_feature_key": replacement_feature_key,
     }
 
 
 POSITION_FEATURES: dict[str, list[dict[str, object]]] = {
     "CB": [
-        feature("空中戦勝率", "aerial_duel_win_rate_pct", "aerial_duel_win_rate_pct", "exact", "Football Box 守備サマリーの空中戦勝率をそのまま採用。", ["空中戦", "空中戦勝率(%)"]),
-        feature("タックル奪取率", "tackle_win_rate_pct", "tackle_win_rate_pct", "exact", "Football Box 守備サマリーのタックル奪取率をそのまま採用。", ["タックル", "タックル奪取率(%)"]),
-        feature("インターセプト", "interceptions_per90", "interceptions_per90", "exact", "Football Box 守備サマリーのインターセプトを per90 化。", ["インターセプト", "出場時間"]),
-        feature("ブロック(シュート)", "shot_block_proxy_per90", "blocks_per90", "proxy_medium", "ブロック種別内訳がないため、総ブロックをシュートブロックの proxy とした。", ["ブロック", "出場時間"]),
-        feature("psv99_per_match", "psv99_per_match", "psv99_per_match", "exact", "SkillCorner physical の PSV-99 試合平均。", ["PSV-99"]),
-        feature("medaccel_count_full_all_per_match", "medaccel_count_full_all_per_match", "medaccel_count_full_all_per_match", "exact", "SkillCorner physical の中加速回数試合平均。", ["Medium Acceleration Count"]),
-        feature("highaccel_count_full_all_per_match", "highaccel_count_full_all_per_match", "highaccel_count_full_all_per_match", "exact", "SkillCorner physical の高加速回数試合平均。", ["High Acceleration Count"]),
-        feature("count_track_run_on_ball_engagements_per_match", "track_run_proxy_per_match", "cod_count_full_all_per_match", "proxy_weak", "on-ball track run 直接列がないため、方向転換回数の試合平均で代替。", ["Change of Direction Count"]),
-        feature("自陣PA内でのクリア", "def_penalty_area_clearance_proxy_per90", "clearances_per90", "proxy_medium", "自陣PA内限定のクリア列がないため、総クリアを proxy とした。", ["クリア", "出場時間"]),
-        feature("count_affected_line_break_on_ball_engagements_per_match", "affected_line_break_proxy_per90", "successful_forward_passes_per90", "proxy_medium", "line break 直接列がないため、成功した前方向パスを最も近い proxy とした。", ["前方向パス", "前方向パス成功率(%)", "出場時間"]),
-        feature("count_line_breaks_per_match", "line_break_proxy_per90", "forward_passes_per90", "proxy_medium", "line break 直接列がないため、前方向パス頻度を proxy とした。", ["前方向パス", "出場時間"]),
-        feature("パス成功率", "pass_success_rate_pct", "pass_success_rate_pct", "exact", "Football Box 攻撃サマリーのパス成功率を再計算して採用。", ["パス", "パス成功率(%)"]),
-        feature("前方へのパス成功割合", "forward_pass_success_rate_pct", "forward_pass_success_rate_pct", "exact", "方向別パスの前方向パス成功率を採用。", ["前方向パス", "前方向パス成功率(%)"]),
-        feature("ロングパス成功(30m-)", "successful_long_passes_per90", "successful_long_passes_per90", "proxy_strong", "距離別パスのロングパス成功数 per90 を 30m- 成功の proxy とした。", ["ロングパス", "ロングパス成功率(%)", "出場時間"]),
-        feature("キャリーによる30m進入", "carry_into_30m_proxy_per90", "zone30_entries_per90", "proxy_medium", "carry 起点は識別できないため、30m進入回数を proxy とした。", ["30m進入", "出場時間"]),
+        feature("空中戦勝率", "aerial_duel_win_rate_pct", "aerial_duel_win_rate_pct", "exact", "CB の空中対応を直接説明できるため採用。", ["空中戦", "空中戦勝率(%)"]),
+        feature("タックル奪取率", "tackle_win_rate_pct", "tackle_win_rate_pct", "exact", "対人守備の成功率として解釈しやすいため採用。", ["タックル", "タックル奪取率(%)"]),
+        feature("インターセプト_per90", "interceptions_per90", "interceptions_per90", "exact", "読みでの守備関与を直接表すため採用。", ["インターセプト", "出場時間"]),
+        feature("ブロック_per90", "blocks_per90", "blocks_per90", "exact", "総ブロック回数は守備強度を直接表せるため採用。", ["ブロック", "出場時間"]),
+        feature("クリア_per90", "clearances_per90", "clearances_per90", "exact", "危険除去の頻度として解釈しやすいため採用。", ["クリア", "出場時間"]),
+        feature("パス成功率", "pass_success_rate_pct", "pass_success_rate_pct", "exact", "保持時の安定性を示す直接指標として採用。", ["パス", "パス成功率(%)"]),
+        feature("前進パス成功数_per90", "successful_forward_passes_per90", "successful_forward_passes_per90", "exact", "line break proxy よりも前進配球そのものを実測する方が説明しやすいため採用。", ["前方向パス", "前方向パス成功率(%)", "出場時間"]),
+        feature("ロングパス成功数_per90", "successful_long_passes_per90", "successful_long_passes_per90", "exact", "長い配球の実測値として採用。", ["ロングパス", "ロングパス成功率(%)", "出場時間"]),
+        feature("中加速回数_per_match", "medaccel_count_full_all_per_match", "medaccel_count_full_all_per_match", "exact", "守備対応時の機動力を具体的に見られるため採用。", ["Medium Acceleration Count"]),
+        feature("高加速回数_per_match", "highaccel_count_full_all_per_match", "highaccel_count_full_all_per_match", "exact", "高強度対応の頻度として解釈しやすいため採用。", ["High Acceleration Count"]),
+        feature("psv99_per_match", "psv99_per_match", "psv99_per_match", "dropped", "総合スコアより個別走行指標の方がクラスタ解釈に向くため不採用。", ["PSV-99"], selected=False, original_match_type="exact", unavailable_reason="身体能力は加速系の実測列で代替した。"),
+        feature("count_track_run_on_ball_engagements_per_match", "track_run_proxy_per_match", "cod_count_full_all_per_match", "dropped", "方向転換回数だけでは track run を説明しにくく、weak proxy を残す優先度が低いため不採用。", ["Change of Direction Count"], selected=False, original_match_type="proxy_weak", unavailable_reason="概念との対応が弱い。"),
+        feature("自陣PA内でのクリア", "def_penalty_area_clearance_proxy_per90", "clearances_per90", "dropped", "自陣PA内限定ではないため、総クリア_per90 を実測列として採用した。", ["クリア", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="ゾーン限定で解釈できないため proxy 名のままは不採用。", replacement_feature_key="clearances_per90"),
+        feature("count_affected_line_break_on_ball_engagements_per_match", "affected_line_break_proxy_per90", "successful_forward_passes_per90", "dropped", "line break の直接列はなく、前進配球は successful_forward_passes_per90 で素直に扱う方がよい。", ["前方向パス", "前方向パス成功率(%)", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="proxy 名と実測値のずれが大きいため不採用。", replacement_feature_key="successful_forward_passes_per90"),
+        feature("count_line_breaks_per_match", "line_break_proxy_per90", "forward_passes_per90", "dropped", "前方向パス頻度を line break と呼ぶと解釈がずれるため不採用。", ["前方向パス", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="実際に使うなら前方向パス成功数の方が説明しやすい。", replacement_feature_key="successful_forward_passes_per90"),
+        feature("前方へのパス成功割合", "forward_pass_success_rate_pct", "forward_pass_success_rate_pct", "dropped", "前進の質は保持しつつ、量を表す successful_forward_passes_per90 を優先した。", ["前方向パス", "前方向パス成功率(%)"], selected=False, original_match_type="exact", unavailable_reason="変数数を絞るため volume 指標を優先。"),
+        feature("キャリーによる30m進入", "carry_into_30m_proxy_per90", "zone30_entries_per90", "unavailable", "2024 J3 に 30m進入の元ファイルがなく、CB では定数化していたため不採用。", ["30m進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_medium", unavailable_reason="2025 側のみで欠損が多く、かつ carry 起点を識別できない。"),
     ],
     "SB": [
-        feature("psv99_per_match", "psv99_per_match", "psv99_per_match", "exact", "SkillCorner physical の PSV-99 試合平均。", ["PSV-99"]),
-        feature("total_metersperminute_full_all_per_match", "total_metersperminute_full_all_per_match", "total_metersperminute_full_all_per_match", "exact", "SkillCorner physical の M/min 試合平均。", ["M/min"]),
-        feature("hi_distance_full_all_per_match", "hi_distance_full_all_per_match", "hi_distance_full_all_per_match", "exact", "SkillCorner physical の HI Distance 試合平均。", ["HI Distance"]),
-        feature("sprint_count_full_all_per_match", "sprint_count_full_all_per_match", "sprint_count_full_all_per_match", "exact", "SkillCorner physical の Sprint Count 試合平均。", ["Sprint Count"]),
-        feature("dropping_off_runs", "dropping_off_runs_proxy_per90", "mid_third_passes_per90", "proxy_weak", "dropping off run 直接列がないため、中盤で受ける役割に近い MTからパス頻度を proxy とした。", ["MTからパス", "出場時間"]),
-        feature("overlap_runs", "overlap_runs_proxy_per90", "crosses_per90", "proxy_medium", "overlap の直接列がないため、外側の走りから生じやすいクロス頻度を proxy とした。", ["クロス", "出場時間"]),
-        feature("underlap_runs", "underlap_runs_proxy_per90", "half_space_entries_per90", "proxy_strong", "underlap は PA脇進入とエリア特性が近いため最優先 proxy とした。", ["PA脇進入", "出場時間"]),
-        feature("クロス成功率", "cross_success_rate_pct", "cross_success_rate_pct", "exact", "Football Box 攻撃サマリーのクロス成功率を再計算して採用。", ["クロス", "クロス成功率(%)"]),
-        feature("アーリークロス成功率", "early_cross_proxy_success_rate_pct", "forward_long_pass_success_rate_pct", "proxy_medium", "アーリークロス専用列がないため、前方向ロングパス成功率を proxy とした。", ["前方向ロングパス", "前方向ロングパス成功率(%)"]),
-        feature("PA進入", "pa_entry_per90", "pa_entry_per90", "exact", "PA進入を per90 化して採用。", ["PA進入", "出場時間"]),
-        feature("タックル奪取率", "tackle_win_rate_pct", "tackle_win_rate_pct", "exact", "Football Box 守備サマリーのタックル奪取率。", ["タックル", "タックル奪取率(%)"]),
-        feature("ブロック(クロス)", "cross_block_proxy_per90", "blocks_per90", "proxy_medium", "クロスブロックの内訳がないため、総ブロックを proxy とした。", ["ブロック", "出場時間"]),
-        feature("pulling_half_space_runs", "pulling_half_space_runs_proxy_per90", "half_space_entries_per90", "proxy_strong", "half-space run と PA脇進入は侵入エリアが近いため。", ["PA脇進入", "出場時間"]),
-        feature("count_successful_on_ball_engagements_per_match", "successful_on_ball_actions_per90", "successful_on_ball_actions_per90", "proxy_medium", "on-ball engagement 成功数の直接列がないため、成功クロス・スルーパス・ドリブル・前方向パスの合算を proxy とした。", ["クロス", "クロス成功率(%)", "スルーパス", "スルーパス成功率(%)", "ドリブル", "ドリブル成功率(%)", "前方向パス", "前方向パス成功率(%)"]),
-        feature("AT進入", "attacking_third_entry_proxy_per90", "zone30_entries_per90", "proxy_medium", "AT進入専用列がないため、30m進入頻度を proxy とした。", ["30m進入", "出場時間"]),
+        feature("Running Distance_per_match", "running_distance_full_all_per_match", "running_distance_full_all_per_match", "exact", "上下動の総量を直接示すため採用。", ["Running Distance"]),
+        feature("HI Distance_per_match", "hi_distance_full_all_per_match", "hi_distance_full_all_per_match", "exact", "高強度移動量として解釈しやすいため採用。", ["HI Distance"]),
+        feature("Sprint Count_per_match", "sprint_count_full_all_per_match", "sprint_count_full_all_per_match", "exact", "反復スプリント頻度を直接示すため採用。", ["Sprint Count"]),
+        feature("クロス数_per90", "crosses_per90", "crosses_per90", "exact", "幅を取って配球する SB の役割を直接表すため採用。", ["クロス", "出場時間"]),
+        feature("クロス成功率", "cross_success_rate_pct", "cross_success_rate_pct", "exact", "クロスの質を直接示すため採用。", ["クロス", "クロス成功率(%)"]),
+        feature("PA進入_per90", "pa_entry_per90", "pa_entry_per90", "exact", "攻撃参加による侵入量を直接表すため採用。", ["PA進入", "出場時間"]),
+        feature("タックル奪取率", "tackle_win_rate_pct", "tackle_win_rate_pct", "exact", "対人守備の質を直接示すため採用。", ["タックル", "タックル奪取率(%)"]),
+        feature("ブロック_per90", "blocks_per90", "blocks_per90", "exact", "守備時のブロック頻度を直接扱うため採用。", ["ブロック", "出場時間"]),
+        feature("前方向ロングパス成功率", "forward_long_pass_success_rate_pct", "forward_long_pass_success_rate_pct", "exact", "アーリー配球の質を実測列で見るため採用。", ["前方向ロングパス", "前方向ロングパス成功率(%)"]),
+        feature("ロスト後5秒未満リゲイン_per90", "regain_within_5s_per90", "regain_within_5s_per90", "exact", "pressure をタックル単独で置くより、即時奪回の実測列の方が説明しやすいため採用。", ["ロスト後5秒未満リゲイン", "出場時間"]),
+        feature("psv99_per_match", "psv99_per_match", "psv99_per_match", "dropped", "総合スコアよりも走行量とスプリント系の個別列を優先した。", ["PSV-99"], selected=False, original_match_type="exact", unavailable_reason="物理出力は個別の実測列で表現する。"),
+        feature("total_metersperminute_full_all_per_match", "total_metersperminute_full_all_per_match", "total_metersperminute_full_all_per_match", "dropped", "running distance / HI distance / sprint count を残すため、近い情報を持つ M/min は削減対象とした。", ["M/min"], selected=False, original_match_type="exact", unavailable_reason="物理指標の重複を避けるため。"),
+        feature("dropping_off_runs", "dropping_off_runs_proxy_per90", "mid_third_passes_per90", "dropped", "MTからパスは dropping off run の説明として弱く、走行量の実測列を優先した。", ["MTからパス", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="受けに降りる動きそのものは観測できない。", replacement_feature_key="running_distance_full_all_per_match"),
+        feature("overlap_runs", "overlap_runs_proxy_per90", "crosses_per90", "dropped", "overlap 概念をクロス頻度と呼び替えると誤解が少ないため、実測の crosses_per90 を採用した。", ["クロス", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="run タイプそのものは観測できない。", replacement_feature_key="crosses_per90"),
+        feature("underlap_runs", "underlap_runs_proxy_per90", "half_space_entries_per90", "unavailable", "2024 J3 に PA脇進入元データがなく、SB では定数化していたため不採用。", ["PA脇進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_strong", unavailable_reason="時系列カバレッジ不足で安定しない。"),
+        feature("アーリークロス成功率", "early_cross_proxy_success_rate_pct", "forward_long_pass_success_rate_pct", "dropped", "proxy 名を外して前方向ロングパス成功率として直接採用する方が説明しやすい。", ["前方向ロングパス", "前方向ロングパス成功率(%)"], selected=False, original_match_type="proxy_medium", unavailable_reason="アーリークロス専用列ではないため proxy 名のままは使わない。", replacement_feature_key="forward_long_pass_success_rate_pct"),
+        feature("ブロック(クロス)", "cross_block_proxy_per90", "blocks_per90", "dropped", "クロス限定ではないため、総ブロック_per90 をそのまま採用した。", ["ブロック", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="イベント種別を限定できない。", replacement_feature_key="blocks_per90"),
+        feature("pulling_half_space_runs", "pulling_half_space_runs_proxy_per90", "half_space_entries_per90", "unavailable", "2024 J3 に PA脇進入元データがなく、SB では定数化していたため不採用。", ["PA脇進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_strong", unavailable_reason="時系列カバレッジ不足で安定しない。"),
+        feature("count_successful_on_ball_engagements_per_match", "successful_on_ball_actions_per90", "successful_on_ball_actions_per90", "dropped", "合成指標よりもクロス量・成功率・PA進入の個別指標の方が役割を説明しやすい。", ["クロス", "クロス成功率(%)", "スルーパス", "スルーパス成功率(%)", "ドリブル", "ドリブル成功率(%)", "前方向パス", "前方向パス成功率(%)"], selected=False, original_match_type="proxy_medium", unavailable_reason="構成要素を分けた方がクラスタ解釈が明快。"),
+        feature("AT進入", "attacking_third_entry_proxy_per90", "zone30_entries_per90", "unavailable", "2024 J3 に 30m進入元データがなく、SB では定数化していたため不採用。", ["30m進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_medium", unavailable_reason="時系列カバレッジ不足で安定しない。"),
     ],
     "CMF": [
-        feature("total_distance_full_all_per_match", "total_distance_full_all_per_match", "total_distance_full_all_per_match", "exact", "SkillCorner physical の Distance 試合平均。", ["Distance"]),
-        feature("こぼれ球奪取", "loose_ball_gain_proxy_per90", "ball_gains_per90", "proxy_medium", "こぼれ球限定列がないため、総ボールゲインを proxy とした。", ["ボールゲイン", "出場時間"]),
-        feature("MTでの空中戦勝率", "mid_third_aerial_win_rate_proxy_pct", "aerial_duel_win_rate_pct", "proxy_medium", "MT限定列がないため、総空中戦勝率で代替。", ["空中戦", "空中戦勝率(%)"]),
-        feature("MTでのタックル奪取率", "mid_third_tackle_win_rate_proxy_pct", "tackle_win_rate_pct", "proxy_weak", "MT限定列がないため、総タックル奪取率を proxy とした。", ["タックル", "タックル奪取率(%)"]),
-        feature("PA外のシュートの決定率", "out_box_shot_conversion_rate_pct", "out_box_shot_conversion_rate_pct", "exact", "エリア別シュートの PA外シュート決定率を再計算して採用。", ["PA外シュート", "PA外ゴール"]),
-        feature("枠内シュート率", "shot_on_target_rate_pct", "shot_on_target_rate_pct", "exact", "PA内/外の枠内率と本数から全体の枠内シュート率を再計算。", ["PA内シュート", "PA内シュート枠内率(%)", "PA外シュート", "PA外シュート枠内率(%)"]),
-        feature("count_interception_on_ball_engagements_per_match", "interception_engagement_proxy_per90", "interceptions_per90", "proxy_medium", "interception on-ball engagement の直接列がないため、インターセプト頻度を proxy とした。", ["インターセプト", "出場時間"]),
-        feature("count_pressure_on_ball_engagements_per_match", "pressure_engagement_proxy_per90", "tackles_per90", "proxy_weak", "pressure 直接列がないため、守備圧力に近いタックル頻度を proxy とした。", ["タックル", "出場時間"]),
-        feature("パス成功率", "pass_success_rate_pct", "pass_success_rate_pct", "exact", "Football Box 攻撃サマリーのパス成功率。", ["パス", "パス成功率(%)"]),
-        feature("前方へのパス成功割合", "forward_pass_success_rate_pct", "forward_pass_success_rate_pct", "exact", "方向別パスの前方向パス成功率。", ["前方向パス", "前方向パス成功率(%)"]),
-        feature("ショートパス(0-15m)割合", "short_pass_share_pct", "short_pass_share_pct", "proxy_strong", "距離別パスのショートパス割合を 0-15m proxy とした。", ["ショートパス", "ミドルパス", "ロングパス"]),
-        feature("ロングパス(30m-)割合", "long_pass_share_pct", "long_pass_share_pct", "proxy_strong", "距離別パスのロングパス割合を 30m- proxy とした。", ["ショートパス", "ミドルパス", "ロングパス"]),
-        feature("count_forward_momentum_all_possessions_per_match", "forward_momentum_proxy_per90", "zone30_entries_per90", "proxy_medium", "forward momentum の直接列がないため、30m進入頻度を proxy とした。", ["30m進入", "出場時間"]),
-        feature("バイタルエリア進入", "vital_area_entry_proxy_per90", "near_zone_entries_per90", "proxy_strong", "バイタルエリア進入に最も近い Football Box のニアゾーン進入を採用。", ["ニアゾーン進入", "出場時間"]),
-        feature("敵陣こぼれ球奪取率", "opponent_half_loose_ball_gain_share_proxy_pct", "opponent_half_gain_share_pct", "proxy_strong", "敵陣こぼれ球奪取率の直接列がないため、相手陣割合を最も近い proxy とした。", ["ボールゲイン", "相手陣での回数"]),
+        feature("Running Distance_per_match", "running_distance_full_all_per_match", "running_distance_full_all_per_match", "exact", "中盤の運動量を具体的に示すため採用。", ["Running Distance"]),
+        feature("ボールゲイン_per90", "ball_gains_per90", "ball_gains_per90", "exact", "守備関与量を直接示すため採用。", ["ボールゲイン", "出場時間"]),
+        feature("インターセプト_per90", "interceptions_per90", "interceptions_per90", "exact", "読みでの回収能力を直接示すため採用。", ["インターセプト", "出場時間"]),
+        feature("パス成功率", "pass_success_rate_pct", "pass_success_rate_pct", "exact", "配球の安定性として採用。", ["パス", "パス成功率(%)"]),
+        feature("前方向パス成功率", "forward_pass_success_rate_pct", "forward_pass_success_rate_pct", "exact", "前進配球の質を直接示すため採用。", ["前方向パス", "前方向パス成功率(%)"]),
+        feature("ショートパス割合", "short_pass_share_pct", "short_pass_share_pct", "exact", "保持型かどうかを直接説明できるため採用。", ["ショートパス", "ミドルパス", "ロングパス"]),
+        feature("ロングパス割合", "long_pass_share_pct", "long_pass_share_pct", "exact", "展開型かどうかを直接説明できるため採用。", ["ショートパス", "ミドルパス", "ロングパス"]),
+        feature("相手陣ボールゲイン割合", "opponent_half_gain_share_pct", "opponent_half_gain_share_pct", "exact", "守備位置の高さを直接示すため採用。", ["ボールゲイン", "相手陣での回数"]),
+        feature("total_distance_full_all_per_match", "total_distance_full_all_per_match", "total_distance_full_all_per_match", "dropped", "運動量は running distance の方が実戦解釈に向くため不採用。", ["Distance"], selected=False, original_match_type="exact", unavailable_reason="総移動量よりも走行量を優先。"),
+        feature("こぼれ球奪取", "loose_ball_gain_proxy_per90", "ball_gains_per90", "dropped", "こぼれ球限定ではないため、総ボールゲイン_per90 を実測列として採用した。", ["ボールゲイン", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="限定概念としては扱えない。", replacement_feature_key="ball_gains_per90"),
+        feature("MTでの空中戦勝率", "mid_third_aerial_win_rate_proxy_pct", "aerial_duel_win_rate_pct", "dropped", "中盤限定ではなく、CMF で優先すべき説明軸でもないため不採用。", ["空中戦", "空中戦勝率(%)"], selected=False, original_match_type="proxy_medium", unavailable_reason="ゾーン限定で解釈できない。"),
+        feature("MTでのタックル奪取率", "mid_third_tackle_win_rate_proxy_pct", "tackle_win_rate_pct", "dropped", "総タックル奪取率を MT 守備に置き換えるのは weak proxy で説明力が低いため不採用。", ["タックル", "タックル奪取率(%)"], selected=False, original_match_type="proxy_weak", unavailable_reason="ゾーン限定で解釈できない。"),
+        feature("PA外のシュートの決定率", "out_box_shot_conversion_rate_pct", "out_box_shot_conversion_rate_pct", "dropped", "CMF はサンプル数が少なく、シュート系は疎で不安定なため不採用。", ["PA外シュート", "PA外ゴール"], selected=False, original_match_type="exact", unavailable_reason="n=32 で外れ値影響が大きい。"),
+        feature("枠内シュート率", "shot_on_target_rate_pct", "shot_on_target_rate_pct", "dropped", "CMF ではシュート母数が小さく、クラスタ解釈が不安定になりやすいため不採用。", ["PA内シュート", "PA内シュート枠内率(%)", "PA外シュート", "PA外シュート枠内率(%)"], selected=False, original_match_type="exact", unavailable_reason="シュート母数が小さい。"),
+        feature("count_interception_on_ball_engagements_per_match", "interception_engagement_proxy_per90", "interceptions_per90", "dropped", "proxy 名を維持せず、インターセプト_per90 を実測列として採用した。", ["インターセプト", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="概念名より実測列の方が説明しやすい。", replacement_feature_key="interceptions_per90"),
+        feature("count_pressure_on_ball_engagements_per_match", "pressure_engagement_proxy_per90", "tackles_per90", "dropped", "pressure をタックル単独で表すのは weak proxy で説明力が低いため不採用。", ["タックル", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="pressure 直接列がない。"),
+        feature("count_forward_momentum_all_possessions_per_match", "forward_momentum_proxy_per90", "zone30_entries_per90", "unavailable", "2024 J3 に 30m進入元データがなく、CMF では定数化していたため不採用。", ["30m進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_medium", unavailable_reason="時系列カバレッジ不足で安定しない。"),
+        feature("バイタルエリア進入", "vital_area_entry_proxy_per90", "near_zone_entries_per90", "unavailable", "2024 J3 にニアゾーン進入元データがなく、CMF では定数化していたため不採用。", ["ニアゾーン進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_strong", unavailable_reason="時系列カバレッジ不足で安定しない。"),
+        feature("敵陣こぼれ球奪取率", "opponent_half_loose_ball_gain_share_proxy_pct", "opponent_half_gain_share_pct", "dropped", "こぼれ球限定ではないため、相手陣ボールゲイン割合として実測列を採用した。", ["ボールゲイン", "相手陣での回数"], selected=False, original_match_type="proxy_strong", unavailable_reason="限定概念としては扱えない。", replacement_feature_key="opponent_half_gain_share_pct"),
     ],
     "SH": [
-        feature("psv99_per_match", "psv99_per_match", "psv99_per_match", "exact", "SkillCorner physical の PSV-99 試合平均。", ["PSV-99"]),
-        feature("アシストクロス", "assist_cross_proxy_per90", "successful_crosses_per90", "proxy_medium", "アシストクロス列がないため、成功クロス頻度を proxy とした。", ["クロス", "クロス成功率(%)", "出場時間"]),
-        feature("sprint_distance_full_all_per_match", "sprint_distance_full_all_per_match", "sprint_distance_full_all_per_match", "exact", "SkillCorner physical の Sprint Distance 試合平均。", ["Sprint Distance"]),
-        feature("dropping_off_runs", "dropping_off_runs_proxy_per90", "passes_per90", "proxy_weak", "dropping off run 直接列がないため、受けに降りる関与として総パス頻度を proxy とした。", ["パス", "出場時間"]),
-        feature("count_pressure_on_ball_engagements_per_match", "pressure_engagement_proxy_per90", "tackles_per90", "proxy_weak", "pressure の直接列がないため、タックル頻度を proxy とした。", ["タックル", "出場時間"]),
-        feature("count_consecutive_on_ball_engagements_per_match", "consecutive_on_ball_engagement_proxy_per90", "successful_on_ball_actions_per90", "proxy_medium", "連続 on-ball engagement の直接列がないため、成功した on-ball action の合算を proxy とした。", ["クロス", "クロス成功率(%)", "スルーパス", "スルーパス成功率(%)", "ドリブル", "ドリブル成功率(%)", "前方向パス", "前方向パス成功率(%)"]),
-        feature("count_above_hsr_on_ball_engagements_per_match", "above_hsr_engagement_proxy_per_match", "hsr_count_full_all_per_match", "proxy_medium", "HSR を上回る on-ball engagement 直接列がないため、HSR Count 試合平均を proxy とした。", ["HSR Count"]),
-        feature("ドリブル成功率", "dribble_success_rate_pct", "dribble_success_rate_pct", "exact", "Football Box 攻撃サマリーのドリブル成功率。", ["ドリブル", "ドリブル成功率(%)"]),
-        feature("キャリーによるPA進入", "carry_into_box_proxy_per90", "pa_entry_per90", "proxy_weak", "carry 起点の判別はできないため、PA進入頻度を proxy とした。", ["PA進入", "出場時間"]),
-        feature("クロス受", "cross_reception_proxy_per90", "box_shots_per90", "proxy_weak", "クロス受けの直接列がないため、PA内シュート頻度を proxy とした。", ["PA内シュート", "出場時間"]),
-        feature("シュート決定率", "shot_conversion_rate_pct", "shot_conversion_rate_pct", "exact", "基本サマリーのゴールと攻撃サマリーのシュートから全体決定率を再計算。", ["ゴール", "シュート"]),
-        feature("pulling_wide_runs", "pulling_wide_runs_proxy_per90", "crosses_per90", "proxy_medium", "wide run の直接列がないため、幅を取った結果として表れやすいクロス頻度を proxy とした。", ["クロス", "出場時間"]),
-        feature("クロス成功率", "cross_success_rate_pct", "cross_success_rate_pct", "exact", "Football Box 攻撃サマリーのクロス成功率。", ["クロス", "クロス成功率(%)"]),
-        feature("敵陣PA内ボールゲイン", "opponent_box_ball_gain_proxy_per90", "attacking_third_gains_per90", "proxy_medium", "敵陣PA内限定列がないため、ATでのボールゲインを proxy とした。", ["ATでの回数", "出場時間"]),
-        feature("ドリブルからのシュート", "dribble_shot_proxy_per90", "successful_dribbles_per90", "proxy_weak", "ドリブル後シュートの連結列がないため、成功ドリブル頻度を proxy とした。", ["ドリブル", "ドリブル成功率(%)", "出場時間"]),
+        feature("Sprint Distance_per_match", "sprint_distance_full_all_per_match", "sprint_distance_full_all_per_match", "exact", "縦の突破力を直接示すため採用。", ["Sprint Distance"]),
+        feature("HSR Count_per_match", "hsr_count_full_all_per_match", "hsr_count_full_all_per_match", "exact", "高強度ランの頻度を直接示すため採用。", ["HSR Count"]),
+        feature("ドリブル成功率", "dribble_success_rate_pct", "dribble_success_rate_pct", "exact", "突破の質を直接示すため採用。", ["ドリブル", "ドリブル成功率(%)"]),
+        feature("クロス数_per90", "crosses_per90", "crosses_per90", "exact", "幅を取るプレー量として採用。", ["クロス", "出場時間"]),
+        feature("クロス成功率", "cross_success_rate_pct", "cross_success_rate_pct", "exact", "配球の質として採用。", ["クロス", "クロス成功率(%)"]),
+        feature("ラストパス_per90", "last_passes_per90", "last_passes_per90", "exact", "チャンスメイク量を直接示すため採用。", ["ラストパス", "出場時間"]),
+        feature("PA進入_per90", "pa_entry_per90", "pa_entry_per90", "exact", "内側への侵入量を直接示すため採用。", ["PA進入", "出場時間"]),
+        feature("シュート決定率", "shot_conversion_rate_pct", "shot_conversion_rate_pct", "exact", "フィニッシュ効率を直接示すため採用。", ["ゴール", "シュート"]),
+        feature("ロスト後5秒未満リゲイン_per90", "regain_within_5s_per90", "regain_within_5s_per90", "exact", "pressure をタックル単独で置くより、即時奪回の実測列の方が守備強度を説明しやすいため採用。", ["ロスト後5秒未満リゲイン", "出場時間"]),
+        feature("psv99_per_match", "psv99_per_match", "psv99_per_match", "dropped", "SH は走行量の内訳を残した方が役割差を説明しやすいため不採用。", ["PSV-99"], selected=False, original_match_type="exact", unavailable_reason="Sprint Distance / HSR Count を優先した。"),
+        feature("アシストクロス", "assist_cross_proxy_per90", "successful_crosses_per90", "dropped", "アシスト付きに限定できないため、クロス量と成功率を個別に採用した。", ["クロス", "クロス成功率(%)", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="アシスト起点かを識別できない。", replacement_feature_key="crosses_per90"),
+        feature("dropping_off_runs", "dropping_off_runs_proxy_per90", "passes_per90", "dropped", "総パス頻度では dropping off run を説明しにくい weak proxy のため不採用。", ["パス", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="受けに降りる動きそのものは観測できない。"),
+        feature("count_pressure_on_ball_engagements_per_match", "pressure_engagement_proxy_per90", "tackles_per90", "dropped", "タックル単独の weak proxy は採らず、即時奪回の実測列を採用した。", ["タックル", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="pressure 直接列がない。", replacement_feature_key="regain_within_5s_per90"),
+        feature("count_consecutive_on_ball_engagements_per_match", "consecutive_on_ball_engagement_proxy_per90", "successful_on_ball_actions_per90", "dropped", "合成 proxy よりドリブル・クロス・ラストパスの個別指標の方が解釈しやすいため不採用。", ["クロス", "クロス成功率(%)", "スルーパス", "スルーパス成功率(%)", "ドリブル", "ドリブル成功率(%)", "前方向パス", "前方向パス成功率(%)"], selected=False, original_match_type="proxy_medium", unavailable_reason="構成要素を分けた方が説明しやすい。"),
+        feature("count_above_hsr_on_ball_engagements_per_match", "above_hsr_engagement_proxy_per_match", "hsr_count_full_all_per_match", "dropped", "proxy 名を維持せず、HSR Count 自体を実測の高強度頻度として採用した。", ["HSR Count"], selected=False, original_match_type="proxy_medium", unavailable_reason="on-ball engagement 限定ではない。", replacement_feature_key="hsr_count_full_all_per_match"),
+        feature("キャリーによるPA進入", "carry_into_box_proxy_per90", "pa_entry_per90", "dropped", "carry 起点は識別できないため、PA進入_per90 を侵入量の実測列として採用した。", ["PA進入", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="carry 起点を識別できない。", replacement_feature_key="pa_entry_per90"),
+        feature("クロス受", "cross_reception_proxy_per90", "box_shots_per90", "unavailable", "クロス受けの直接列がなく、PA内シュートで置くと概念が離れすぎるため不採用。", ["PA内シュート", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_weak", unavailable_reason="受け手イベントを観測できない。"),
+        feature("pulling_wide_runs", "pulling_wide_runs_proxy_per90", "crosses_per90", "dropped", "wide run は直接観測できないため、実測のクロス数として扱う方が説明しやすい。", ["クロス", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="走り方そのものは観測できない。", replacement_feature_key="crosses_per90"),
+        feature("敵陣PA内ボールゲイン", "opponent_box_ball_gain_proxy_per90", "attacking_third_gains_per90", "dropped", "PA内限定ではなく、SH では優先度も低いため不採用。", ["ATでの回数", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="ゾーン限定で解釈できない。"),
+        feature("ドリブルからのシュート", "dribble_shot_proxy_per90", "successful_dribbles_per90", "unavailable", "ドリブル後シュートの連結イベントがなく、成功ドリブル頻度では代替しにくいため不採用。", ["ドリブル", "ドリブル成功率(%)", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_weak", unavailable_reason="イベント連結が観測できない。"),
     ],
     "ST": [
-        feature("キャリーによるPA進入", "carry_into_box_proxy_per90", "pa_entry_per90", "proxy_weak", "carry 起点は識別できないため、PA進入頻度を proxy とした。", ["PA進入", "出場時間"]),
-        feature("count_8m_carry_at_speed_all_possessions_per_match", "speed_carry_proxy_per_match", "explacceltosprint_count_full_all_per_match", "proxy_weak", "高速キャリー直接列がないため、Explosive Acceleration to Sprint Count 試合平均を proxy とした。", ["Explosive Acceleration to Sprint Count"]),
-        feature("ATタッチ", "attacking_third_touch_proxy_per90", "attacking_third_passes_per90", "proxy_medium", "ATタッチ直接列がないため、ATからパス頻度を proxy とした。", ["ATからパス", "出場時間"]),
-        feature("count_received_in_open_space_all_possessions_per_match", "open_space_receive_proxy_per90", "zone30_entries_per90", "proxy_medium", "open space reception 直接列がないため、30m進入頻度を proxy とした。", ["30m進入", "出場時間"]),
-        feature("coming_short_runs", "coming_short_runs_proxy_per90", "passes_per90", "proxy_weak", "coming short run 直接列がないため、受けに降りる関与として総パス頻度を proxy とした。", ["パス", "出場時間"]),
-        feature("runs_in_behind", "runs_in_behind_proxy_per_match", "sprint_count_full_all_per_match", "proxy_weak", "裏抜け直接列がないため、Sprint Count 試合平均を proxy とした。", ["Sprint Count"]),
-        feature("xthreat_received_off_ball_runs_per_match", "xthreat_received_runs_proxy_per90", "near_zone_entries_per90", "proxy_weak", "xThreat 直接列がないため、危険度の高い受け位置に近いニアゾーン進入頻度を proxy とした。", ["ニアゾーン進入", "出場時間"]),
-        feature("ポケット進入", "pocket_entry_proxy_per90", "half_space_entries_per90", "proxy_strong", "ポケット進入に最も近い Football Box の PA脇進入を採用。", ["PA脇進入", "出場時間"]),
-        feature("セカンドアシスト", "second_assist_proxy_per90", "last_passes_per90", "proxy_medium", "セカンドアシスト列がないため、ラストパス頻度を proxy とした。", ["ラストパス", "出場時間"]),
-        feature("シュート決定率", "shot_conversion_rate_pct", "shot_conversion_rate_pct", "exact", "基本サマリーのゴールと攻撃サマリーのシュートから全体決定率を再計算。", ["ゴール", "シュート"]),
-        feature("アシストスルーパス", "assist_through_pass_proxy_per90", "successful_through_passes_per90", "proxy_medium", "アシスト付きスルーパス列がないため、成功スルーパス頻度を proxy とした。", ["スルーパス", "スルーパス成功率(%)", "出場時間"]),
-        feature("ATでのタックル奪取率", "attacking_third_tackle_win_proxy_pct", "tackle_win_rate_pct", "proxy_weak", "AT限定タックル奪取率がないため、総タックル奪取率を proxy とした。", ["タックル", "タックル奪取率(%)"]),
-        feature("count_pressure_on_ball_engagements_per_match", "pressure_engagement_proxy_per90", "tackles_per90", "proxy_weak", "pressure の直接列がないため、タックル頻度を proxy とした。", ["タックル", "出場時間"]),
-        feature("dropping_off_runs", "dropping_off_runs_proxy_per90", "passes_per90", "proxy_weak", "dropping off run 直接列がないため、総パス頻度を proxy とした。", ["パス", "出場時間"]),
-        feature("1stシュート", "first_shot_proxy_per90", "box_shots_per90", "proxy_weak", "1stシュート列がないため、最も近い proxy として PA内シュート頻度を採用。", ["PA内シュート", "出場時間"]),
+        feature("シュート決定率", "shot_conversion_rate_pct", "shot_conversion_rate_pct", "exact", "フィニッシュ効率を直接示すため採用。", ["ゴール", "シュート"]),
+        feature("PA内シュート_per90", "box_shots_per90", "box_shots_per90", "exact", "1stシュート proxy よりもボックス内での実際のシュート量を採用する方が妥当。", ["PA内シュート", "出場時間"]),
+        feature("ゴール_per90", "goals_per90", "goals_per90", "exact", "得点量を直接示すため採用。", ["ゴール", "出場時間"]),
+        feature("Sprint Count_per_match", "sprint_count_full_all_per_match", "sprint_count_full_all_per_match", "exact", "走力・裏抜け傾向の土台となる実測値として採用。", ["Sprint Count"]),
+        feature("ラストパス_per90", "last_passes_per90", "last_passes_per90", "exact", "下りて受けた後の配球関与を実測で見られるため採用。", ["ラストパス", "出場時間"]),
+        feature("成功スルーパス_per90", "successful_through_passes_per90", "successful_through_passes_per90", "exact", "アシスト付きに限定せず、味方を前進させる配球量として採用。", ["スルーパス", "スルーパス成功率(%)", "出場時間"]),
+        feature("ATボールゲイン_per90", "attacking_third_gains_per90", "attacking_third_gains_per90", "exact", "ST の前線守備は総タックル率より AT でのボールゲイン回数の方が妥当なため採用。", ["ATでの回数", "出場時間"]),
+        feature("キャリーによるPA進入", "carry_into_box_proxy_per90", "pa_entry_per90", "dropped", "carry 起点は識別できず、ST ではボックス内シュート量を優先した。", ["PA進入", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="carry 起点を識別できない。"),
+        feature("count_8m_carry_at_speed_all_possessions_per_match", "speed_carry_proxy_per_match", "explacceltosprint_count_full_all_per_match", "dropped", "高速キャリーの proxy としては粗く、ST の採用軸としては優先度が低いため不採用。", ["Explosive Acceleration to Sprint Count"], selected=False, original_match_type="proxy_weak", unavailable_reason="概念との対応が弱い。"),
+        feature("ATタッチ", "attacking_third_touch_proxy_per90", "attacking_third_passes_per90", "dropped", "タッチではなくパス起点回数なので、ラストパス_per90 を残す方が説明しやすい。", ["ATからパス", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="touch そのものではない。", replacement_feature_key="last_passes_per90"),
+        feature("count_received_in_open_space_all_possessions_per_match", "open_space_receive_proxy_per90", "zone30_entries_per90", "unavailable", "30m進入では open space receive を説明しにくく、2024 J3 の元データも不足するため不採用。", ["30m進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_medium", unavailable_reason="受け位置イベントを観測できない。"),
+        feature("coming_short_runs", "coming_short_runs_proxy_per90", "passes_per90", "dropped", "総パス頻度では下りる動きを説明しにくく、ラストパス_per90 を残す方が役割差を見やすい。", ["パス", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="受けに下りる動きそのものは観測できない。", replacement_feature_key="last_passes_per90"),
+        feature("runs_in_behind", "runs_in_behind_proxy_per_match", "sprint_count_full_all_per_match", "dropped", "Sprint Count は exact の走力指標として採用し、runs in behind の proxy 名では使わない。", ["Sprint Count"], selected=False, original_match_type="proxy_weak", unavailable_reason="裏抜けイベント自体は観測できない。", replacement_feature_key="sprint_count_full_all_per_match"),
+        feature("xthreat_received_off_ball_runs_per_match", "xthreat_received_runs_proxy_per90", "near_zone_entries_per90", "unavailable", "xThreat 直接列がなく、ニアゾーン進入は 2024 J3 欠落もあって不安定なため不採用。", ["ニアゾーン進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_weak", unavailable_reason="xThreat の直接観測がない。"),
+        feature("ポケット進入", "pocket_entry_proxy_per90", "half_space_entries_per90", "unavailable", "2024 J3 に PA脇進入元データがなく、ST では定数化していたため不採用。", ["PA脇進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_strong", unavailable_reason="時系列カバレッジ不足で安定しない。"),
+        feature("セカンドアシスト", "second_assist_proxy_per90", "last_passes_per90", "dropped", "セカンドアシストに限定できないため、ラストパス_per90 の実測列として採用した。", ["ラストパス", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="セカンドアシスト専用列がない。", replacement_feature_key="last_passes_per90"),
+        feature("アシストスルーパス", "assist_through_pass_proxy_per90", "successful_through_passes_per90", "dropped", "アシスト付きに限定できないため、成功スルーパス_per90 の実測列として採用した。", ["スルーパス", "スルーパス成功率(%)", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="アシスト有無を識別できない。", replacement_feature_key="successful_through_passes_per90"),
+        feature("ATでのタックル奪取率", "attacking_third_tackle_win_proxy_pct", "tackle_win_rate_pct", "dropped", "ST の前線守備は AT ボールゲイン回数の方が説明しやすいため、総タックル率 proxy は不採用。", ["タックル", "タックル奪取率(%)"], selected=False, original_match_type="proxy_weak", unavailable_reason="AT限定の奪取率は観測できない。", replacement_feature_key="attacking_third_gains_per90"),
+        feature("count_pressure_on_ball_engagements_per_match", "pressure_engagement_proxy_per90", "tackles_per90", "dropped", "pressure をタックル単独で置くのは weak proxy のため不採用。", ["タックル", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="pressure 直接列がない。"),
+        feature("dropping_off_runs", "dropping_off_runs_proxy_per90", "passes_per90", "dropped", "総パス頻度では dropping off run を説明しにくいため不採用。", ["パス", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="受けに降りる動きそのものは観測できない。"),
+        feature("1stシュート", "first_shot_proxy_per90", "box_shots_per90", "dropped", "sequence order は観測できないため、ボックス内シュート量を実測列として採用した。", ["PA内シュート", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="1st シュートの順序情報がない。", replacement_feature_key="box_shots_per90"),
     ],
     "FW": [
-        feature("シュート決定率", "shot_conversion_rate_pct", "shot_conversion_rate_pct", "exact", "基本サマリーのゴールと攻撃サマリーのシュートから全体決定率を再計算。", ["ゴール", "シュート"]),
-        feature("PA外シュート数", "out_box_shots_per90", "out_box_shots_per90", "exact", "PA外シュート数を per90 化。", ["PA外シュート", "出場時間"]),
-        feature("PA内シュート数", "box_shots_per90", "box_shots_per90", "exact", "PA内シュート数を per90 化。", ["PA内シュート", "出場時間"]),
-        feature("枠内シュート率", "shot_on_target_rate_pct", "shot_on_target_rate_pct", "exact", "PA内/外の枠内数から全体枠内率を再計算。", ["PA内シュート", "PA内シュート枠内率(%)", "PA外シュート", "PA外シュート枠内率(%)"]),
-        feature("空中戦勝利でボール保持", "aerial_retain_proxy_pct", "aerial_duel_win_rate_pct", "proxy_medium", "保持に繋がった内訳がないため、空中戦勝率を proxy とした。", ["空中戦", "空中戦勝率(%)"]),
-        feature("空中戦勝利でパス", "aerial_pass_proxy_per90", "aerial_wins_per90", "proxy_medium", "パスに繋がった内訳がないため、空中戦勝利数 per90 を proxy とした。", ["空中戦", "空中戦勝率(%)", "出場時間"]),
-        feature("count_pressure_on_ball_engagements_per_match", "pressure_engagement_proxy_per90", "tackles_per90", "proxy_weak", "pressure の直接列がないため、タックル頻度を proxy とした。", ["タックル", "出場時間"]),
-        feature("count_consecutive_on_ball_engagements_per_match", "consecutive_on_ball_engagement_proxy_per90", "successful_on_ball_actions_per90", "proxy_medium", "連続 on-ball engagement の直接列がないため、成功 on-ball action 合算を proxy とした。", ["クロス", "クロス成功率(%)", "スルーパス", "スルーパス成功率(%)", "ドリブル", "ドリブル成功率(%)", "前方向パス", "前方向パス成功率(%)"]),
-        feature("runs_in_behind", "runs_in_behind_proxy_per_match", "sprint_count_full_all_per_match", "proxy_weak", "裏抜け直接列がないため、Sprint Count 試合平均を proxy とした。", ["Sprint Count"]),
-        feature("count_received_passing_option_per_match", "passing_option_receive_proxy_per90", "attacking_third_passes_per90", "proxy_medium", "passing option reception 直接列がないため、ATでのパス関与頻度を proxy とした。", ["ATからパス", "出場時間"]),
-        feature("xthreat_passing_option_per_match", "xthreat_passing_option_proxy_per90", "near_zone_entries_per90", "proxy_weak", "xThreat passing option の直接列がないため、危険度の高い受け位置に近いニアゾーン進入頻度を proxy とした。", ["ニアゾーン進入", "出場時間"]),
-        feature("前方へのパス成功", "successful_forward_passes_per90", "successful_forward_passes_per90", "proxy_strong", "前方へのパス成功割合ではなく成功数を per90 で採用。", ["前方向パス", "前方向パス成功率(%)", "出場時間"]),
-        feature("ATでのタックル奪取", "attacking_third_tackle_gain_proxy_per90", "attacking_third_gains_per90", "proxy_medium", "ATでのタックル奪取直接列がないため、ATでのボールゲイン頻度を proxy とした。", ["ATでの回数", "出場時間"]),
-        feature("ゴール", "goals_per90", "goals_per90", "exact", "基本サマリーのゴールを per90 化。", ["ゴール", "出場時間"]),
-        feature("1stシュート", "first_shot_proxy_per90", "shots_per90", "proxy_weak", "1stシュート列がないため、総シュート頻度を proxy とした。", ["シュート", "出場時間"]),
+        feature("シュート決定率", "shot_conversion_rate_pct", "shot_conversion_rate_pct", "exact", "フィニッシュ効率を直接示すため採用。", ["ゴール", "シュート"]),
+        feature("PA外シュート数_per90", "out_box_shots_per90", "out_box_shots_per90", "exact", "外から打つ傾向を直接示すため採用。", ["PA外シュート", "出場時間"]),
+        feature("PA内シュート数_per90", "box_shots_per90", "box_shots_per90", "exact", "ボックス内でのフィニッシュ量を直接示すため採用。", ["PA内シュート", "出場時間"]),
+        feature("枠内シュート率", "shot_on_target_rate_pct", "shot_on_target_rate_pct", "exact", "シュート精度を直接示すため採用。", ["PA内シュート", "PA内シュート枠内率(%)", "PA外シュート", "PA外シュート枠内率(%)"]),
+        feature("ゴール_per90", "goals_per90", "goals_per90", "exact", "得点量を直接示すため採用。", ["ゴール", "出場時間"]),
+        feature("空中戦勝利数_per90", "aerial_wins_per90", "aerial_wins_per90", "exact", "空中戦の関与量を実測で見られるため採用。", ["空中戦", "空中戦勝率(%)", "出場時間"]),
+        feature("前進パス成功数_per90", "successful_forward_passes_per90", "successful_forward_passes_per90", "exact", "サポート役としての前進配球を実測で見られるため採用。", ["前方向パス", "前方向パス成功率(%)", "出場時間"]),
+        feature("ラストパス_per90", "last_passes_per90", "last_passes_per90", "exact", "サポート FW の創出量を直接示すため採用。", ["ラストパス", "出場時間"]),
+        feature("ATボールゲイン_per90", "attacking_third_gains_per90", "attacking_third_gains_per90", "exact", "前線守備の量を直接示すため採用。", ["ATでの回数", "出場時間"]),
+        feature("Sprint Count_per_match", "sprint_count_full_all_per_match", "sprint_count_full_all_per_match", "exact", "走力と抜け出し傾向の基礎指標として採用。", ["Sprint Count"]),
+        feature("空中戦勝利でボール保持", "aerial_retain_proxy_pct", "aerial_duel_win_rate_pct", "dropped", "保持に繋がった内訳は観測できないため、空中戦勝利数_per90 を実測列として採用した。", ["空中戦", "空中戦勝率(%)"], selected=False, original_match_type="proxy_medium", unavailable_reason="保持に繋がったかは識別できない。", replacement_feature_key="aerial_wins_per90"),
+        feature("空中戦勝利でパス", "aerial_pass_proxy_per90", "aerial_wins_per90", "dropped", "パスに繋がった内訳は観測できないため、空中戦勝利数_per90 を実測列として採用した。", ["空中戦", "空中戦勝率(%)", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="勝利後の処理は識別できない。", replacement_feature_key="aerial_wins_per90"),
+        feature("count_pressure_on_ball_engagements_per_match", "pressure_engagement_proxy_per90", "tackles_per90", "dropped", "pressure をタックル単独で表すのは weak proxy のため不採用。前線守備は AT ボールゲインで見る。", ["タックル", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="pressure 直接列がない。", replacement_feature_key="attacking_third_gains_per90"),
+        feature("count_consecutive_on_ball_engagements_per_match", "consecutive_on_ball_engagement_proxy_per90", "successful_on_ball_actions_per90", "dropped", "合成 proxy より、前進パス成功数とラストパスの方が役割差を説明しやすいため不採用。", ["クロス", "クロス成功率(%)", "スルーパス", "スルーパス成功率(%)", "ドリブル", "ドリブル成功率(%)", "前方向パス", "前方向パス成功率(%)"], selected=False, original_match_type="proxy_medium", unavailable_reason="構成要素を分けた方が説明しやすい。"),
+        feature("runs_in_behind", "runs_in_behind_proxy_per_match", "sprint_count_full_all_per_match", "dropped", "Sprint Count は exact の走力指標として採用し、runs in behind の proxy 名では使わない。", ["Sprint Count"], selected=False, original_match_type="proxy_weak", unavailable_reason="裏抜けイベント自体は観測できない。", replacement_feature_key="sprint_count_full_all_per_match"),
+        feature("count_received_passing_option_per_match", "passing_option_receive_proxy_per90", "attacking_third_passes_per90", "dropped", "受け手イベントではないため、創出量はラストパス_per90 で扱う。", ["ATからパス", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="receive そのものではない。", replacement_feature_key="last_passes_per90"),
+        feature("xthreat_passing_option_per_match", "xthreat_passing_option_proxy_per90", "near_zone_entries_per90", "unavailable", "xThreat の直接列がなく、ニアゾーン進入は 2024 J3 欠落もあって不安定なため不採用。", ["ニアゾーン進入", "出場時間"], selected=False, final_status="unavailable", original_match_type="proxy_weak", unavailable_reason="xThreat の直接観測がない。"),
+        feature("前方へのパス成功", "successful_forward_passes_per90", "successful_forward_passes_per90", "dropped", "proxy ではなく、前進パス成功数_per90 という実測列として採用した。", ["前方向パス", "前方向パス成功率(%)", "出場時間"], selected=False, original_match_type="proxy_strong", unavailable_reason="proxy 名のままより実測概念として使う方がよい。", replacement_feature_key="successful_forward_passes_per90"),
+        feature("ATでのタックル奪取", "attacking_third_tackle_gain_proxy_per90", "attacking_third_gains_per90", "dropped", "タックル奪取限定ではないため、AT ボールゲイン_per90 の実測列として採用した。", ["ATでの回数", "出場時間"], selected=False, original_match_type="proxy_medium", unavailable_reason="タックル由来かは識別できない。", replacement_feature_key="attacking_third_gains_per90"),
+        feature("1stシュート", "first_shot_proxy_per90", "shots_per90", "dropped", "sequence order は観測できないため、PA内シュート数_per90 を実測列として採用した。", ["シュート", "出場時間"], selected=False, original_match_type="proxy_weak", unavailable_reason="1st シュートの順序情報がない。", replacement_feature_key="box_shots_per90"),
     ],
 }
 
@@ -379,6 +425,7 @@ def aggregate_fb_player_data(df_match: pd.DataFrame) -> pd.DataFrame:
     for player_name, grp in df.groupby("選手名"):
         rec: dict[str, object] = {"FB_Name": player_name}
         rec["fb_total_minutes"] = sum_or_nan(grp["出場時間"])
+        rec["assists_per90"] = per90_or_nan(grp["アシスト"], grp["出場時間"])
         rec["goals_per90"] = per90_or_nan(grp["ゴール"], grp["出場時間"])
         rec["shots_per90"] = per90_or_nan(grp["シュート"], grp["出場時間"])
         rec["box_shots_per90"] = per90_or_nan(grp["PA内シュート"], grp["出場時間"])
@@ -420,6 +467,12 @@ def aggregate_fb_player_data(df_match: pd.DataFrame) -> pd.DataFrame:
         )
         rec["opponent_half_gains_per90"] = per90_or_nan(
             grp["相手陣での回数"], grp["出場時間"]
+        )
+        rec["regain_within_5s_per90"] = per90_or_nan(
+            grp["ロスト後5秒未満リゲイン"], grp["出場時間"]
+        )
+        rec["regain_within_10s_per90"] = per90_or_nan(
+            grp["ロスト後10秒未満リゲイン"], grp["出場時間"]
         )
         rec["near_zone_entries_per90"] = per90_or_nan(
             grp["ニアゾーン進入"], grp["出場時間"]
@@ -529,6 +582,7 @@ def load_sc_physical_match_data() -> pd.DataFrame:
             "Minutes",
             "PSV-99",
             "Distance",
+            "Running Distance",
             "M/min",
             "HI Distance",
             "HSR Count",
@@ -575,6 +629,7 @@ def aggregate_sc_player_data(df_match: pd.DataFrame) -> pd.DataFrame:
             sc_total_minutes=("Minutes", "sum"),
             psv99_per_match=("PSV-99", "mean"),
             total_distance_full_all_per_match=("Distance", "mean"),
+            running_distance_full_all_per_match=("Running Distance", "mean"),
             total_metersperminute_full_all_per_match=("M/min", "mean"),
             hi_distance_full_all_per_match=("HI Distance", "mean"),
             hsr_count_full_all_per_match=("HSR Count", "mean"),
@@ -670,13 +725,87 @@ def quantile_rule(n: int) -> tuple[float, float]:
     return 0.025, 0.975
 
 
+def selected_config_items(config: list[dict[str, object]]) -> list[dict[str, object]]:
+    return [item for item in config if bool(item.get("selected"))]
+
+
+def summarize_feature_config(config: list[dict[str, object]]) -> dict[str, object]:
+    selected = selected_config_items(config)
+    adoption_counts = {"exact": 0, "proxy_strong": 0, "proxy_medium": 0, "proxy_weak": 0}
+    for item in selected:
+        if item["match_type"] in adoption_counts:
+            adoption_counts[item["match_type"]] += 1
+
+    dropped = [item for item in config if item["final_status"] == "dropped"]
+    unavailable = [item for item in config if item["final_status"] == "unavailable"]
+    weak_proxy_removed = [
+        item for item in config if item["original_match_type"] == "proxy_weak" and item["final_status"] != "adopted"
+    ]
+    weak_proxy_replaced = [item for item in weak_proxy_removed if item["replacement_feature_key"]]
+
+    return {
+        "selected": selected,
+        "adoption_counts": adoption_counts,
+        "selected_feature_keys": [item["feature_key"] for item in selected],
+        "selected_feature_count": len(selected),
+        "dropped_features": [item["feature_key"] for item in dropped],
+        "unavailable_features": [item["feature_key"] for item in unavailable],
+        "dropped_count": len(dropped),
+        "unavailable_count": len(unavailable),
+        "proxy_weak_removed_count": len(weak_proxy_removed),
+        "proxy_weak_replaced_count": len(weak_proxy_replaced),
+    }
+
+
+def assess_kmeans_readiness(
+    n_players: int,
+    feature_count: int,
+    adoption_counts: dict[str, int],
+    total_imputations: int,
+    constant_features: list[str],
+) -> tuple[str, float, str]:
+    if n_players == 0 or feature_count == 0:
+        return "unstable", 0.0, "入力列がありません。"
+
+    imputation_rate_pct = total_imputations / (n_players * feature_count) * 100
+    reasons: list[str] = []
+    label = "ready"
+
+    if n_players < 20:
+        label = "unstable"
+        reasons.append("サンプル数が少なすぎる")
+    elif n_players < 40:
+        label = "caution"
+        reasons.append("サンプル数が少ない")
+
+    if imputation_rate_pct >= 24:
+        if label == "ready":
+            label = "caution"
+        reasons.append("欠損補完率が高い")
+
+    if constant_features:
+        if label == "ready":
+            label = "caution"
+        reasons.append("定数列が残っている")
+
+    if adoption_counts.get("proxy_weak", 0) > 0:
+        if label == "ready":
+            label = "caution"
+        reasons.append("weak proxy が残っている")
+
+    if not reasons:
+        reasons.append("exact 中心で定数列もなく、前処理後にそのまま投入可能")
+
+    return label, imputation_rate_pct, " / ".join(reasons)
+
+
 def build_feature_frame(
     position_df: pd.DataFrame,
     config: list[dict[str, object]],
 ) -> pd.DataFrame:
     data = position_df.copy()
     feature_cols: dict[str, pd.Series] = {}
-    for item in config:
+    for item in selected_config_items(config):
         feature_cols[item["feature_key"]] = data[item["source_column"]]
     return pd.DataFrame(feature_cols, index=data.index)
 
@@ -685,23 +814,36 @@ def write_feature_definition(
     output_path: Path,
     position_code: str,
     config: list[dict[str, object]],
-) -> dict[str, int]:
-    counts = {"exact": 0, "proxy_strong": 0, "proxy_medium": 0, "proxy_weak": 0, "unavailable": 0}
-    lines = [f"# {position_code} Feature Definition", "", "|概念変数|採用列名|参照列|区分|理由|採用不能理由|", "|---|---|---|---|---|---|"]
+) -> dict[str, object]:
+    summary = summarize_feature_config(config)
+    lines = [
+        f"# {position_code} Feature Definition",
+        "",
+        "|概念変数|採用列名|参照列|区分|元区分|最終採用対象|今回の扱い|置換先|理由|採用不能理由|",
+        "|---|---|---|---|---|---|---|---|---|---|",
+    ]
     for item in config:
-        counts[item["match_type"]] += 1
+        final_status_label = {
+            "adopted": "adopted",
+            "dropped": "dropped",
+            "unavailable": "unavailable",
+        }.get(str(item["final_status"]), str(item["final_status"]))
         lines.append(
-            "|{concept}|{feature}|{sources}|{match_type}|{reason}|{unavailable}|".format(
+            "|{concept}|{feature}|{sources}|{match_type}|{original_match_type}|{selected}|{final_status}|{replacement}|{reason}|{unavailable_reason}|".format(
                 concept=item["concept_name"],
                 feature=item["feature_key"],
                 sources=", ".join(item["source_raw_columns"]),
                 match_type=item["match_type"],
+                original_match_type=item["original_match_type"],
+                selected="yes" if item["selected"] else "no",
+                final_status=final_status_label,
+                replacement=item["replacement_feature_key"],
                 reason=item["reason"],
-                unavailable="" if item["match_type"] != "unavailable" else item["reason"],
+                unavailable_reason=item["unavailable_reason"],
             )
         )
     output_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-    return counts
+    return summary
 
 
 def write_missing_report(
@@ -750,6 +892,9 @@ def prepare_position_outputs(
     players_raw_path = position_dir / f"{position_code}_players_raw.csv"
     players_raw.to_csv(players_raw_path, index=False, encoding="utf-8-sig")
 
+    config_summary = summarize_feature_config(config)
+    active_config = config_summary["selected"]
+
     features_only = build_feature_frame(position_df, config)
     id_cols = position_df[["FB_Name", "SC_Name", "analysis_position_code", "analysis_position_jp"]].copy()
     features_raw = pd.concat([id_cols, features_only], axis=1)
@@ -766,7 +911,7 @@ def prepare_position_outputs(
     z_prefixed: dict[str, pd.Series] = {}
     imputed_prefixed: dict[str, pd.Series] = {}
 
-    for item in config:
+    for item in active_config:
         feature_key = item["feature_key"]
         raw_series = features_only[feature_key].astype(float)
         missing_mask = raw_series.isna()
@@ -822,7 +967,7 @@ def prepare_position_outputs(
     preprocessed_df.to_csv(preprocessed_path, index=False, encoding="utf-8-sig")
 
     definition_path = position_dir / f"{position_code}_feature_definition.md"
-    adoption_counts = write_feature_definition(definition_path, position_code, config)
+    config_summary = write_feature_definition(definition_path, position_code, config)
 
     missing_report_path = position_dir / f"{position_code}_missing_report.md"
     write_missing_report(
@@ -837,15 +982,33 @@ def prepare_position_outputs(
 
     missing_features = [row["feature_key"] for row in report_rows if row["missing_count"] > 0]
     total_imputations = int(sum(row["imputed_count"] for row in report_rows))
+    readiness_label, imputation_rate_pct, readiness_note = assess_kmeans_readiness(
+        n_players,
+        config_summary["selected_feature_count"],
+        config_summary["adoption_counts"],
+        total_imputations,
+        constant_features,
+    )
 
     return {
         "position_code": position_code,
         "player_count": n_players,
         "winsor_rule": f"{lower_q * 100:g}/{upper_q * 100:g}",
-        "adoption_counts": adoption_counts,
+        "adoption_counts": config_summary["adoption_counts"],
+        "selected_feature_count": config_summary["selected_feature_count"],
+        "selected_feature_keys": config_summary["selected_feature_keys"],
+        "dropped_features": config_summary["dropped_features"],
+        "unavailable_features": config_summary["unavailable_features"],
+        "dropped_count": config_summary["dropped_count"],
+        "unavailable_count": config_summary["unavailable_count"],
+        "proxy_weak_removed_count": config_summary["proxy_weak_removed_count"],
+        "proxy_weak_replaced_count": config_summary["proxy_weak_replaced_count"],
         "missing_features": missing_features,
         "total_imputations": total_imputations,
+        "imputation_rate_pct": imputation_rate_pct,
         "constant_features": constant_features,
+        "kmeans_assessment": readiness_label,
+        "kmeans_note": readiness_note,
         "files": [
             players_raw_path,
             features_raw_path,
@@ -862,6 +1025,9 @@ def write_root_readme(
     minutes_check_count: int,
     join_report_df: pd.DataFrame,
 ) -> Path:
+    total_weak_removed = int(sum(summary["proxy_weak_removed_count"] for summary in summaries))
+    total_weak_replaced = int(sum(summary["proxy_weak_replaced_count"] for summary in summaries))
+
     lines = [
         "# SC_position_clustering",
         "",
@@ -882,20 +1048,33 @@ def write_root_readme(
     for summary in summaries:
         lines.append(f"- `{summary['position_code']}`: {summary['player_count']} 名")
 
-    lines.extend(["", "## 15変数の対応状況", ""])
+    lines.extend(["", "## 最終採用概要", ""])
+    lines.append(f"- 全体: proxy_weak 削除={total_weak_removed}, 置換={total_weak_replaced}")
     for summary in summaries:
         counts = summary["adoption_counts"]
         lines.append(
-            "- `{code}`: exact={exact}, proxy_strong={proxy_strong}, proxy_medium={proxy_medium}, proxy_weak={proxy_weak}, unavailable={unavailable}".format(
-                code=summary["position_code"], **counts
+            "- `{code}`: 採用={selected} / dropped={dropped} / unavailable={unavailable} / exact={exact}, proxy_strong={proxy_strong}, proxy_medium={proxy_medium}, proxy_weak={proxy_weak} / proxy_weak削除={weak_removed}, 置換={weak_replaced}".format(
+                code=summary["position_code"],
+                selected=summary["selected_feature_count"],
+                dropped=summary["dropped_count"],
+                unavailable=summary["unavailable_count"],
+                weak_removed=summary["proxy_weak_removed_count"],
+                weak_replaced=summary["proxy_weak_replaced_count"],
+                **counts,
             )
+        )
+
+    lines.extend(["", "## 最終採用列", ""])
+    for summary in summaries:
+        lines.append(
+            f"- `{summary['position_code']}`: {', '.join(summary['selected_feature_keys'])}"
         )
 
     lines.extend(["", "## 欠損・補完", ""])
     for summary in summaries:
         missing_text = ", ".join(summary["missing_features"]) if summary["missing_features"] else "なし"
         lines.append(
-            f"- `{summary['position_code']}`: 欠損列={missing_text} / 補完件数={summary['total_imputations']}"
+            f"- `{summary['position_code']}`: 欠損列={missing_text} / 補完件数={summary['total_imputations']} / 補完率={summary['imputation_rate_pct']:.1f}%"
         )
 
     lines.extend(["", "## winsorize / Zスコア", ""])
@@ -904,6 +1083,32 @@ def write_root_readme(
         lines.append(
             f"- `{summary['position_code']}`: n={summary['player_count']}, winsorize={summary['winsor_rule']}, zscore_constant_feature={const_text}"
         )
+
+    lines.extend(["", "## KMeans 前評価", ""])
+    for summary in summaries:
+        counts = summary["adoption_counts"]
+        const_text = ", ".join(summary["constant_features"]) if summary["constant_features"] else "なし"
+        lines.append(
+            "- `{code}`: {label} / n={n} / vars={vars} / exact={exact}, proxy_strong={proxy_strong}, proxy_medium={proxy_medium}, proxy_weak={proxy_weak} / 定数列={const} / {note}".format(
+                code=summary["position_code"],
+                label=summary["kmeans_assessment"],
+                n=summary["player_count"],
+                vars=summary["selected_feature_count"],
+                const=const_text,
+                note=summary["kmeans_note"],
+                **counts,
+            )
+        )
+
+    lines.extend(
+        [
+            "",
+            "## ポジション別メモ",
+            "",
+            "- `SH`: 旧定義の weak proxy を大幅に削り、走力・突破・クロス・侵入・即時奪回に絞った。",
+            "- `ST`: n=11 と小さく、proxy 依存を避けるためボックス内フィニッシュ・配球・前線守備の 7 変数まで圧縮した。",
+        ]
+    )
 
     lines.extend(
         [
