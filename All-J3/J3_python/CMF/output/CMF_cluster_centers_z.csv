@@ -1,0 +1,4 @@
+﻿cluster_id,z_running_distance_full_all_per_match,z_ball_gains_per90,z_interceptions_per90,z_pass_success_rate_pct,z_forward_pass_success_rate_pct,z_short_pass_share_pct,z_long_pass_share_pct,z_opponent_half_gain_share_pct
+0,-0.355889,0.425331,-0.433058,-1.170168,-0.810454,-0.534998,0.802577,-0.864058
+1,0.402119,0.039764,0.120614,0.243553,0.041611,-0.269853,0.070539,0.351991
+2,-0.807030,-0.908746,0.345294,1.229512,1.309016,1.934467,-1.698578,0.288136

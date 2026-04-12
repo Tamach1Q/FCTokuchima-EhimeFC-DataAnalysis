@@ -1,0 +1,5 @@
+﻿cluster_id,positive_count,negative_count,train_auc,cv_auc_mean,cv_auc_std,top1_feature,top2_feature,top3_feature,average_cluster_label_candidate
+0,82,35,1.000000,0.965546,0.022020,z_successful_forward_passes_per90,z_attacking_third_gains_per90,z_last_passes_per90,平均型候補
+1,2,115,1.000000,1.000000,0.000000,z_shot_conversion_rate_pct,z_goals_per90,z_shot_on_target_rate_pct,specialized cluster (フィニッシュ寄り / 空中戦・前進関与寄り)
+2,16,101,1.000000,0.963254,0.061756,z_last_passes_per90,z_box_shots_per90,z_aerial_wins_per90,specialized cluster (空中戦・前進関与寄り / ミドルレンジ関与寄り)
+3,17,100,1.000000,0.990000,0.020000,z_box_shots_per90,z_successful_forward_passes_per90,z_attacking_third_gains_per90,specialized cluster (空中戦・前進関与寄り / 前線守備・回収寄り)

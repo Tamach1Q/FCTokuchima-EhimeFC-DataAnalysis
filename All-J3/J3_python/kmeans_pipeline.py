@@ -13,6 +13,7 @@ import math
 import random
 from dataclasses import dataclass
 from pathlib import Path
+from statistics import median
 from typing import Iterable
 
 MISSING_MARKERS = {"", "nan", "none", "null", "na", "n/a"}
@@ -34,6 +35,9 @@ class PositionConfig:
     n_init: int = 50
     max_iter: int = 300
     reference_k_values: tuple[int, ...] = (2, 3, 4, 5, 6)
+    include_source_feature_columns: bool = False
+    include_imputation_stats: bool = False
+    enable_residual_z_median_imputation: bool = False
 
     @property
     def clustered_players_path(self) -> Path:
@@ -94,10 +98,45 @@ def identifier_columns_from_headers(headers: list[str]) -> list[str]:
     return [column for column in headers if not column.startswith(prefixes)]
 
 
-def parse_numeric_cell(value: str, column_name: str, row_number: int) -> float:
+@dataclass(frozen=True)
+class FeatureColumnBundle:
+    raw_column: str
+    win_column: str
+    z_column: str
+    imputed_column: str
+
+
+@dataclass(frozen=True)
+class PreparedInputData:
+    matrix: list[list[float]]
+    z_value_rows: list[dict[str, float]]
+    clustered_rows: list[dict[str, object]]
+    clustered_fieldnames: list[str]
+    source_feature_columns: list[str]
+    source_imputed_counts: dict[str, int]
+    supplemental_imputed_counts: dict[str, int]
+    median_by_z_column: dict[str, float]
+    imputed_player_count: int
+
+
+def feature_bundle_from_z_column(z_column: str) -> FeatureColumnBundle:
+    suffix = z_column[2:] if z_column.startswith("z_") else z_column
+    return FeatureColumnBundle(
+        raw_column=f"raw_{suffix}",
+        win_column=f"win_{suffix}",
+        z_column=z_column,
+        imputed_column=f"imputed_{suffix}",
+    )
+
+
+def feature_bundles_from_z_columns(z_columns: list[str]) -> list[FeatureColumnBundle]:
+    return [feature_bundle_from_z_column(column) for column in z_columns]
+
+
+def parse_optional_numeric_cell(value: str, column_name: str, row_number: int) -> float | None:
     text = (value or "").strip()
     if text.lower() in MISSING_MARKERS:
-        raise ValueError(f"欠損が残っています: row={row_number}, column={column_name}")
+        return None
     try:
         numeric = float(text)
     except ValueError as exc:
@@ -105,8 +144,20 @@ def parse_numeric_cell(value: str, column_name: str, row_number: int) -> float:
             f"数値変換に失敗しました: row={row_number}, column={column_name}, value={text}"
         ) from exc
     if math.isnan(numeric):
-        raise ValueError(f"NaN が残っています: row={row_number}, column={column_name}")
+        return None
     return numeric
+
+
+def parse_numeric_cell(value: str, column_name: str, row_number: int) -> float:
+    numeric = parse_optional_numeric_cell(value=value, column_name=column_name, row_number=row_number)
+    if numeric is None:
+        raise ValueError(f"欠損が残っています: row={row_number}, column={column_name}")
+    return numeric
+
+
+def parse_imputed_flag(value: str) -> bool:
+    text = (value or "").strip().lower()
+    return text in {"1", "1.0", "true", "yes"}
 
 
 def build_matrix(
@@ -127,6 +178,153 @@ def build_matrix(
         z_value_rows.append(z_values)
 
     return matrix, z_value_rows
+
+
+def validate_source_feature_columns(headers: list[str], bundles: list[FeatureColumnBundle]) -> None:
+    missing_columns: list[str] = []
+    for bundle in bundles:
+        for column in (bundle.raw_column, bundle.win_column, bundle.imputed_column):
+            if column not in headers:
+                missing_columns.append(column)
+    if missing_columns:
+        raise ValueError(f"必要な raw / win / imputed 列が存在しません: {missing_columns}")
+
+
+def build_prepared_input_data(
+    config: PositionConfig,
+    rows: list[dict[str, str]],
+    headers: list[str],
+    identifier_columns: list[str],
+) -> PreparedInputData:
+    bundles = feature_bundles_from_z_columns(config.z_columns)
+
+    if config.include_source_feature_columns:
+        validate_source_feature_columns(headers=headers, bundles=bundles)
+
+    if not config.enable_residual_z_median_imputation and not config.include_source_feature_columns and not config.include_imputation_stats:
+        matrix, z_value_rows = build_matrix(rows, config.z_columns)
+        clustered_rows: list[dict[str, object]] = []
+        for raw_row, z_row in zip(rows, z_value_rows):
+            output_row: dict[str, object] = {
+                column: raw_row[column]
+                for column in identifier_columns
+            }
+            for column in config.z_columns:
+                output_row[column] = format_float(z_row[column])
+            clustered_rows.append(output_row)
+        return PreparedInputData(
+            matrix=matrix,
+            z_value_rows=z_value_rows,
+            clustered_rows=clustered_rows,
+            clustered_fieldnames=identifier_columns + config.z_columns,
+            source_feature_columns=[],
+            source_imputed_counts={column: 0 for column in config.z_columns},
+            supplemental_imputed_counts={column: 0 for column in config.z_columns},
+            median_by_z_column={column: 0.0 for column in config.z_columns},
+            imputed_player_count=0,
+        )
+
+    observed_values: dict[str, list[float]] = {column: [] for column in config.z_columns}
+    for row_index, row in enumerate(rows, start=2):
+        for column in config.z_columns:
+            numeric = parse_optional_numeric_cell(
+                row.get(column, ""),
+                column_name=column,
+                row_number=row_index,
+            )
+            if numeric is not None:
+                observed_values[column].append(numeric)
+
+    median_by_z_column: dict[str, float] = {}
+    for column, values in observed_values.items():
+        if not values:
+            raise ValueError(f"{column} は全件欠損のため中央値補完できません。")
+        median_by_z_column[column] = float(median(values))
+
+    matrix: list[list[float]] = []
+    z_value_rows: list[dict[str, float]] = []
+    clustered_rows: list[dict[str, object]] = []
+    source_feature_columns: list[str] = []
+    if config.include_source_feature_columns:
+        for bundle in bundles:
+            source_feature_columns.extend(
+                [bundle.raw_column, bundle.win_column, bundle.z_column, bundle.imputed_column]
+            )
+    else:
+        source_feature_columns.extend(config.z_columns)
+
+    source_imputed_counts = {column: 0 for column in config.z_columns}
+    supplemental_imputed_counts = {column: 0 for column in config.z_columns}
+    imputed_player_count = 0
+
+    for row_index, raw_row in enumerate(rows, start=2):
+        output_row: dict[str, object] = {
+            column: raw_row[column]
+            for column in identifier_columns
+        }
+        vector: list[float] = []
+        z_values: dict[str, float] = {}
+        imputed_count = 0
+
+        for bundle in bundles:
+            if config.include_source_feature_columns:
+                output_row[bundle.raw_column] = raw_row.get(bundle.raw_column, "")
+                output_row[bundle.win_column] = raw_row.get(bundle.win_column, "")
+
+            source_imputed = parse_imputed_flag(raw_row.get(bundle.imputed_column, ""))
+            if source_imputed:
+                source_imputed_counts[bundle.z_column] += 1
+
+            numeric = parse_optional_numeric_cell(
+                raw_row.get(bundle.z_column, ""),
+                column_name=bundle.z_column,
+                row_number=row_index,
+            )
+            supplemental_imputed = False
+            if numeric is None:
+                if not config.enable_residual_z_median_imputation:
+                    raise ValueError(f"欠損が残っています: row={row_index}, column={bundle.z_column}")
+                numeric = median_by_z_column[bundle.z_column]
+                supplemental_imputed = True
+                supplemental_imputed_counts[bundle.z_column] += 1
+
+            effective_imputed = source_imputed or supplemental_imputed
+            if effective_imputed:
+                imputed_count += 1
+
+            z_values[bundle.z_column] = numeric
+            vector.append(numeric)
+
+            output_row[bundle.z_column] = format_float(numeric)
+            if config.include_source_feature_columns:
+                output_row[bundle.imputed_column] = 1 if effective_imputed else 0
+
+        if config.include_imputation_stats:
+            output_row["imputed_count"] = imputed_count
+            output_row["imputed_ratio"] = format_float(imputed_count / len(bundles), digits=4)
+
+        if imputed_count > 0:
+            imputed_player_count += 1
+
+        matrix.append(vector)
+        z_value_rows.append(z_values)
+        clustered_rows.append(output_row)
+
+    clustered_fieldnames = identifier_columns + source_feature_columns
+    if config.include_imputation_stats:
+        clustered_fieldnames.extend(["imputed_count", "imputed_ratio"])
+
+    return PreparedInputData(
+        matrix=matrix,
+        z_value_rows=z_value_rows,
+        clustered_rows=clustered_rows,
+        clustered_fieldnames=clustered_fieldnames,
+        source_feature_columns=source_feature_columns,
+        source_imputed_counts=source_imputed_counts,
+        supplemental_imputed_counts=supplemental_imputed_counts,
+        median_by_z_column=median_by_z_column,
+        imputed_player_count=imputed_player_count,
+    )
 
 
 def squared_euclidean(a: list[float], b: list[float]) -> float:
@@ -486,13 +684,21 @@ def build_cluster_report(
     final_inertia: float,
     final_silhouette_score: float,
     identifier_columns: list[str],
+    source_imputed_counts: dict[str, int],
+    supplemental_imputed_counts: dict[str, int],
+    median_by_z_column: dict[str, float],
+    imputed_player_count: int,
 ) -> str:
     counts_lookup = {
         row["cluster_id"]: row["player_count"]
         for row in analysis_rows
     }
     best_reference = max(reference_metrics, key=lambda item: item["silhouette_score"])
-    k4_reference = next(item for item in reference_metrics if item["k"] == config.n_clusters)
+    selected_k_reference = next(
+        (item for item in reference_metrics if item["k"] == config.n_clusters),
+        None,
+    )
+    reference_k_text = ", ".join(str(k) for k in config.reference_k_values)
 
     lines: list[str] = []
     lines.append(f"# {config.position_code} KMeans Report")
@@ -505,15 +711,53 @@ def build_cluster_report(
     for column in config.z_columns:
         lines.append(f"  - `{column}` ({feature_display(config, column)})")
     lines.append("")
+    if config.include_source_feature_columns:
+        lines.append("## 使用対象列")
+        lines.append("- 指定 z 列に対応する raw / win / z / imputed 列を使用しました。")
+        for bundle in feature_bundles_from_z_columns(config.z_columns):
+            lines.append(
+                f"- `{bundle.raw_column}` / `{bundle.win_column}` / "
+                f"`{bundle.z_column}` / `{bundle.imputed_column}`"
+            )
+        lines.append("")
+    if config.include_imputation_stats or config.enable_residual_z_median_imputation:
+        lines.append("## 欠損補完メモ")
+        if config.enable_residual_z_median_imputation:
+            lines.append("- 残存 z 欠損はポジション内中央値で補完しました。")
+        else:
+            lines.append("- 追加の中央値補完は行っていません。")
+        lines.append(f"- `imputed_count > 0` の選手数: {imputed_player_count}")
+        if config.include_imputation_stats:
+            lines.append("- 出力列として `imputed_count` / `imputed_ratio` を付与しています。")
+        lines.append("- 入力 `imputed_*` 列の件数:")
+        for column in config.z_columns:
+            lines.append(
+                f"  - `{column}`: {source_imputed_counts.get(column, 0)} 件"
+            )
+        lines.append("- 追加で中央値補完した列と件数:")
+        supplemented_columns = [
+            column
+            for column in config.z_columns
+            if supplemental_imputed_counts.get(column, 0) > 0
+        ]
+        if supplemented_columns:
+            for column in supplemented_columns:
+                lines.append(
+                    f"  - `{column}`: {supplemental_imputed_counts[column]} 件 "
+                    f"(median={format_float(median_by_z_column[column], digits=4)})"
+                )
+        else:
+            lines.append("  - 追加補完は発生していません。")
+        lines.append("")
     lines.append("## KMeans 設定")
     lines.append(f"- n_clusters: {config.n_clusters}")
     lines.append(f"- random_state: {config.random_state}")
     lines.append(f"- n_init: {config.n_init}")
     lines.append(f"- max_iter: {config.max_iter}")
-    lines.append(f"- k=4 の inertia: {format_float(final_inertia)}")
-    lines.append(f"- k=4 の silhouette score: {format_float(final_silhouette_score)}")
+    lines.append(f"- k={config.n_clusters} の inertia: {format_float(final_inertia)}")
+    lines.append(f"- k={config.n_clusters} の silhouette score: {format_float(final_silhouette_score)}")
     lines.append("")
-    lines.append("## 参考指標 (k=2..6)")
+    lines.append(f"## 参考指標 (k={reference_k_text})")
     lines.append("| k | inertia | silhouette_score | 採用 seed |")
     lines.append("| --- | ---: | ---: | ---: |")
     for metric in reference_metrics:
@@ -527,16 +771,25 @@ def build_cluster_report(
         f"({format_float(best_reference['silhouette_score'])}) でした。"
     )
     if best_reference["k"] == config.n_clusters:
-        lines.append("- 固定条件の k=4 は、参考レンジ内でも最も高い silhouette score でした。")
+        lines.append(
+            f"- 固定条件の k={config.n_clusters} は、参考レンジ内でも最も高い silhouette score でした。"
+        )
     else:
         lines.append(
-            f"- 今回は要件どおり k=4 を採用しています。"
+            f"- 今回は要件どおり k={config.n_clusters} を採用しています。"
             f" 参考上は k={best_reference['k']} の方が分離度は高めでした。"
         )
-    lines.append(
-        f"- k=4 の silhouette score は {format_float(k4_reference['silhouette_score'])} で、"
-        " クラスタ解釈と業務用途の両立を前提に見る必要があります。"
-    )
+    if selected_k_reference is not None:
+        lines.append(
+            f"- k={config.n_clusters} の silhouette score は "
+            f"{format_float(selected_k_reference['silhouette_score'])} で、"
+            " クラスタ解釈と業務用途の両立を前提に見る必要があります。"
+        )
+    else:
+        lines.append(
+            f"- k={config.n_clusters} の本実行 silhouette score は "
+            f"{format_float(final_silhouette_score)} でした。"
+        )
     lines.append("")
     lines.append("## 各クラスタ人数")
     for cluster_id in range(config.n_clusters):
@@ -637,10 +890,27 @@ def run_position_kmeans(config: PositionConfig) -> dict[str, object]:
         f"サンプル数={len(rows)}, 識別列={identifier_columns}, 使用 z 列数={len(config.z_columns)}",
     )
 
-    matrix, z_value_rows = build_matrix(rows, config.z_columns)
-    log(config.position_code, "z 列の欠損確認を通過しました。")
+    prepared = build_prepared_input_data(
+        config=config,
+        rows=rows,
+        headers=headers,
+        identifier_columns=identifier_columns,
+    )
+    matrix = prepared.matrix
+    z_value_rows = prepared.z_value_rows
+    if config.enable_residual_z_median_imputation:
+        supplemental_total = sum(prepared.supplemental_imputed_counts.values())
+        log(
+            config.position_code,
+            f"前処理済み入力を確認し、残存 z 欠損への中央値補完を適用しました。追加補完件数={supplemental_total}",
+        )
+    else:
+        log(config.position_code, "z 列の欠損確認を通過しました。")
 
-    log(config.position_code, "参考指標用に k=2..6 の inertia / silhouette score を計算します。")
+    log(
+        config.position_code,
+        f"参考指標用に k={','.join(str(k) for k in config.reference_k_values)} の inertia / silhouette score を計算します。",
+    )
     reference_metrics = build_reference_metrics(config, matrix)
 
     log(
@@ -672,13 +942,8 @@ def run_position_kmeans(config: PositionConfig) -> dict[str, object]:
     )
 
     clustered_rows: list[dict[str, object]] = []
-    for raw_row, z_row, cluster_id, distance_value in zip(rows, z_value_rows, labels, cluster_distances):
-        output_row: dict[str, object] = {
-            column: raw_row[column]
-            for column in identifier_columns
-        }
-        for column in config.z_columns:
-            output_row[column] = format_float(z_row[column])
+    for prepared_row, cluster_id, distance_value in zip(prepared.clustered_rows, labels, cluster_distances):
+        output_row = dict(prepared_row)
         output_row["cluster_id"] = cluster_id
         output_row["cluster_distance_to_center"] = format_float(distance_value)
         clustered_rows.append(output_row)
@@ -695,7 +960,7 @@ def run_position_kmeans(config: PositionConfig) -> dict[str, object]:
 
     write_csv(
         config.clustered_players_path,
-        fieldnames=identifier_columns + config.z_columns + ["cluster_id", "cluster_distance_to_center"],
+        fieldnames=prepared.clustered_fieldnames + ["cluster_id", "cluster_distance_to_center"],
         rows=clustered_rows,
     )
     log(config.position_code, f"出力しました: {config.clustered_players_path}")
@@ -735,6 +1000,10 @@ def run_position_kmeans(config: PositionConfig) -> dict[str, object]:
         final_inertia=final_inertia,
         final_silhouette_score=final_silhouette,
         identifier_columns=identifier_columns,
+        source_imputed_counts=prepared.source_imputed_counts,
+        supplemental_imputed_counts=prepared.supplemental_imputed_counts,
+        median_by_z_column=prepared.median_by_z_column,
+        imputed_player_count=prepared.imputed_player_count,
     )
     write_report(config.report_path, markdown_report)
     log(config.position_code, f"出力しました: {config.report_path}")

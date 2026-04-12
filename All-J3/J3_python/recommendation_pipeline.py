@@ -75,6 +75,9 @@ class RecommendationPositionConfig:
     feature_labels: dict[str, str]
     cluster_labels: dict[int, str]
     score_specs: tuple[ScoreSpec, ...]
+    top_n: int = 10
+    strict_imputed_ratio_threshold: float = 0.25
+    relaxed_imputed_ratio_threshold: float = 0.40
 
     @property
     def recommendation_scores_path(self) -> Path:
@@ -130,6 +133,17 @@ def numeric_frame_required(df: pd.DataFrame, columns: list[str], source_name: st
         nan_columns = numeric_df.columns[numeric_df.isna().any()].tolist()
         raise ValueError(f"{source_name} の数値列に欠損または非数値があります: {nan_columns}")
     return numeric_df
+
+
+@dataclass(frozen=True)
+class Top10SelectionResult:
+    spec: ScoreSpec
+    top10_df: pd.DataFrame
+    filter_mode: str
+    applied_threshold: float | None
+    strict_eligible_count: int
+    applied_eligible_count: int
+    excluded_candidate_lines: list[str]
 
 
 def validate_config(config: RecommendationPositionConfig) -> list[ScoreSpec]:
@@ -243,35 +257,88 @@ def compute_distance_score(
     return distance_series, score_series
 
 
-def build_top10_rows(
+def imputed_ratio_series(scored_df: pd.DataFrame) -> pd.Series | None:
+    if "imputed_ratio" not in scored_df.columns:
+        return None
+    numeric = pd.to_numeric(scored_df["imputed_ratio"], errors="coerce")
+    if numeric.isna().any():
+        raise ValueError("imputed_ratio に数値変換できない値があります。")
+    return numeric
+
+
+def build_official_top10_rows(
     scored_df: pd.DataFrame,
     spec: ScoreSpec,
     config: RecommendationPositionConfig,
-) -> pd.DataFrame:
+) -> Top10SelectionResult:
     sorted_df = (
         scored_df.sort_values(
             by=[spec.score_column, "FB_Name", "SC_Name"],
             ascending=[False, True, True],
             kind="mergesort",
         )
-        .head(10)
         .copy()
     )
-    sorted_df["cluster_id"] = spec.cluster_id
-    sorted_df["cluster_label"] = spec.cluster_label
-    sorted_df["rank"] = np.arange(1, len(sorted_df) + 1)
-    sorted_df["original_cluster_id"] = scored_df.loc[sorted_df.index, "cluster_id"].astype(int).to_numpy()
-    sorted_df["original_cluster_label"] = sorted_df["original_cluster_id"].map(config.cluster_labels)
-    sorted_df["score"] = sorted_df[spec.score_column]
-    sorted_df["score_formula"] = spec.formula_text
-    sorted_df["distance_to_cluster_center"] = (
-        sorted_df[spec.distance_column] if spec.method == "distance" else np.nan
+    sorted_df["overall_rank_without_filter"] = np.arange(1, len(sorted_df) + 1)
+
+    imputed_ratio = imputed_ratio_series(sorted_df)
+    if imputed_ratio is None:
+        eligible_df = sorted_df
+        filter_mode = "not_available"
+        applied_threshold: float | None = None
+        strict_eligible_count = len(sorted_df)
+        applied_eligible_count = len(sorted_df)
+        excluded_candidate_lines: list[str] = []
+    else:
+        sorted_df["imputed_ratio_numeric_internal"] = imputed_ratio
+        strict_eligible_df = sorted_df[
+            sorted_df["imputed_ratio_numeric_internal"] <= config.strict_imputed_ratio_threshold
+        ].copy()
+        strict_eligible_count = len(strict_eligible_df)
+        if strict_eligible_count >= config.top_n:
+            eligible_df = strict_eligible_df
+            filter_mode = "strict"
+            applied_threshold = config.strict_imputed_ratio_threshold
+        else:
+            eligible_df = sorted_df[
+                sorted_df["imputed_ratio_numeric_internal"] <= config.relaxed_imputed_ratio_threshold
+            ].copy()
+            filter_mode = "relaxed"
+            applied_threshold = config.relaxed_imputed_ratio_threshold
+        applied_eligible_count = len(eligible_df)
+
+        excluded_unfiltered_top = sorted_df.head(config.top_n)
+        excluded_candidates = excluded_unfiltered_top[
+            excluded_unfiltered_top["imputed_ratio_numeric_internal"] > applied_threshold
+        ].copy()
+        excluded_candidate_lines = []
+        for row in excluded_candidates.head(3).itertuples():
+            excluded_candidate_lines.append(
+                f"- `{row.FB_Name}` (`{row.SC_Name}`): 無条件順位 {int(row.overall_rank_without_filter)} 位 "
+                f"/ score={format_number(getattr(row, spec.score_column))} "
+                f"/ imputed_ratio={format_number(row.imputed_ratio_numeric_internal)}"
+            )
+
+    official_top_df = eligible_df.head(config.top_n).copy()
+    official_top_df["cluster_id"] = spec.cluster_id
+    official_top_df["cluster_label"] = spec.cluster_label
+    official_top_df["rank"] = np.arange(1, len(official_top_df) + 1)
+    official_top_df["original_cluster_id"] = scored_df.loc[official_top_df.index, "cluster_id"].astype(int).to_numpy()
+    official_top_df["original_cluster_label"] = official_top_df["original_cluster_id"].map(config.cluster_labels)
+    official_top_df["score"] = official_top_df[spec.score_column]
+    official_top_df["score_formula"] = spec.formula_text
+    official_top_df["distance_to_cluster_center"] = (
+        official_top_df[spec.distance_column] if spec.method == "distance" else np.nan
     )
+    official_top_df["top10_filter_mode"] = filter_mode
+    official_top_df["top10_imputed_ratio_threshold_used"] = applied_threshold
+    official_top_df["official_top10_eligible_count"] = applied_eligible_count
 
     base_columns = [
         "cluster_id",
         "cluster_label",
         "rank",
+        "overall_rank_without_filter",
         "FB_Name",
         "SC_Name",
         "analysis_position_code",
@@ -280,10 +347,27 @@ def build_top10_rows(
         "score",
         "distance_to_cluster_center",
         "score_formula",
+        "top10_filter_mode",
+        "top10_imputed_ratio_threshold_used",
+        "official_top10_eligible_count",
     ]
-    optional_columns = [column for column in ["analysis_position_jp"] if column in sorted_df.columns]
+    optional_columns = [
+        column
+        for column in ["analysis_position_jp", "imputed_count", "imputed_ratio"]
+        if column in official_top_df.columns
+    ]
     ordered_columns = base_columns + optional_columns + config.z_columns
-    return sorted_df[ordered_columns]
+    top10_df = official_top_df[ordered_columns]
+
+    return Top10SelectionResult(
+        spec=spec,
+        top10_df=top10_df,
+        filter_mode=filter_mode,
+        applied_threshold=applied_threshold,
+        strict_eligible_count=strict_eligible_count,
+        applied_eligible_count=applied_eligible_count,
+        excluded_candidate_lines=excluded_candidate_lines,
+    )
 
 
 def collect_notable_examples(
@@ -340,8 +424,12 @@ def render_report(
     config: RecommendationPositionConfig,
     specs: list[ScoreSpec],
     scored_df: pd.DataFrame,
-    top10_df: pd.DataFrame,
+    top10_results: list[Top10SelectionResult],
 ) -> str:
+    top10_by_cluster = {
+        result.spec.cluster_id: result
+        for result in top10_results
+    }
     lines: list[str] = [
         f"# {config.position_code} Recommendation Report",
         "",
@@ -384,26 +472,69 @@ def render_report(
             "- 平均型は特定の少数変数が突出するクラスタではなく、全体ベクトルでクラスタ中心に近いかどうかを見た方が KMeans の定義に忠実です。",
             "- 2〜3 変数の単純加算にすると specialized cluster 側の特徴量だけを拾ってしまい、平均型を平均型として評価しにくくなります。",
             "",
-            "## 各クラスタ Top10 の概要",
+            "## imputed_ratio フィルタ方針",
         ]
     )
 
+    if "imputed_ratio" in scored_df.columns:
+        lines.append(
+            f"- 公式 Top{config.top_n} は原則 `imputed_ratio <= {config.strict_imputed_ratio_threshold:.2f}` の選手だけを対象にしました。"
+        )
+        lines.append(
+            f"- {config.top_n} 人未満しか残らないクラスタだけ `imputed_ratio <= {config.relaxed_imputed_ratio_threshold:.2f}` に緩和しました。"
+        )
+        lines.append("- 全選手版のスコア CSV はフィルタせず全員分を保持しています。")
+    else:
+        lines.append("- `imputed_ratio` 列がないため、今回は公式 Top10 フィルタを適用していません。")
+
+    lines.extend(["", "## 各クラスタの公式 Top10"])
+
     for spec in specs:
-        cluster_top10 = top10_df[top10_df["cluster_id"] == spec.cluster_id].copy()
+        result = top10_by_cluster[spec.cluster_id]
+        cluster_top10 = result.top10_df.copy()
         same_cluster_count = int((cluster_top10["original_cluster_id"] == spec.cluster_id).sum())
         top_count = len(cluster_top10)
         ratio = 0.0 if top_count == 0 else same_cluster_count / top_count * 100
-        top3_names = " / ".join(cluster_top10["FB_Name"].head(3).tolist()) if top_count else "該当なし"
 
         lines.append(f"### Cluster {spec.cluster_id}: {spec.cluster_label}")
-        lines.append(f"- Top3: {top3_names}")
         lines.append(f"- Top10 内の元同クラスタ所属: {same_cluster_count}/{top_count} ({ratio:.1f}%)")
         lines.append(f"- 概要: {cluster_overview_sentence(spec=spec, feature_labels=config.feature_labels)}")
+        if result.filter_mode == "strict":
+            lines.append(
+                f"- imputed_ratio フィルタ: `<= {result.applied_threshold:.2f}` を適用 "
+                f"(strict eligible={result.strict_eligible_count})"
+            )
+        elif result.filter_mode == "relaxed":
+            lines.append(
+                f"- imputed_ratio フィルタ: strict では {result.strict_eligible_count} 人のため "
+                f"`<= {result.applied_threshold:.2f}` に緩和"
+            )
+        elif result.filter_mode == "not_available":
+            lines.append("- imputed_ratio フィルタ: 列未提供のため未適用")
         if spec.method == "distance" and top_count > 0:
             lines.append(
                 f"- 距離の目安: 1位の `{spec.distance_column}` = "
                 f"{format_number(cluster_top10['distance_to_cluster_center'].iloc[0])}"
             )
+        if top_count == 0:
+            lines.append("- 公式 Top10 の該当者はいません。")
+        else:
+            lines.append(f"- 公式 Top{config.top_n}:")
+            for row in cluster_top10.itertuples():
+                line = (
+                    f"  - {int(row.rank)}. `{row.FB_Name}` (`{row.SC_Name}`)"
+                    f" / score={format_number(row.score)}"
+                    f" / 元Cluster={int(row.original_cluster_id)}:{row.original_cluster_label}"
+                )
+                if "imputed_ratio" in cluster_top10.columns:
+                    line += f" / imputed_ratio={format_number(row.imputed_ratio)}"
+                lines.append(line)
+        if result.excluded_candidate_lines:
+            lines.append("- フィルタで除外された有力候補:")
+            for line in result.excluded_candidate_lines:
+                lines.append(f"  {line}")
+        else:
+            lines.append("- フィルタで除外された有力候補: 目立つ候補はありません。")
         lines.append("")
 
     mismatch_examples = collect_notable_examples(scored_df=scored_df, specs=specs, config=config)
@@ -483,20 +614,18 @@ def run_position_recommendation_scoring(config: RecommendationPositionConfig) ->
     distance_columns = [spec.distance_column for spec in specs if spec.method == "distance"]
     score_columns = [spec.score_column for spec in specs]
     rank_columns = [spec.rank_column for spec in specs]
-
-    optional_input_columns = [
+    base_output_columns = [
         column
-        for column in ["analysis_position_jp", "cluster_distance_to_center"]
-        if column in players_df.columns
+        for column in players_df.columns
+        if column not in {*distance_columns, *score_columns, *rank_columns}
     ]
-    score_output_columns = REQUIRED_PLAYER_COLUMNS + optional_input_columns + config.z_columns + distance_columns + score_columns + rank_columns
-    recommendation_scores_df = players_df[score_output_columns].copy()
+    recommendation_scores_df = players_df[base_output_columns + distance_columns + score_columns + rank_columns].copy()
 
     log(config.position_code, f"推薦スコア CSV を出力します: {config.recommendation_scores_path}")
     recommendation_scores_df.to_csv(config.recommendation_scores_path, index=False, encoding="utf-8-sig")
 
-    top10_frames = [build_top10_rows(scored_df=players_df, spec=spec, config=config) for spec in specs]
-    top10_df = pd.concat(top10_frames, ignore_index=True)
+    top10_results = [build_official_top10_rows(scored_df=players_df, spec=spec, config=config) for spec in specs]
+    top10_df = pd.concat([result.top10_df for result in top10_results], ignore_index=True)
     log(config.position_code, f"クラスタ別 Top10 CSV を出力します: {config.recommendation_top10_path}")
     top10_df.to_csv(config.recommendation_top10_path, index=False, encoding="utf-8-sig")
 
@@ -504,7 +633,7 @@ def run_position_recommendation_scoring(config: RecommendationPositionConfig) ->
         config=config,
         specs=specs,
         scored_df=players_df,
-        top10_df=top10_df,
+        top10_results=top10_results,
     )
     log(config.position_code, f"Markdown レポートを出力します: {config.recommendation_report_path}")
     config.recommendation_report_path.write_text(report_text, encoding="utf-8")

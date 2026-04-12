@@ -1,0 +1,11 @@
+﻿feature_name,impurity_importance,permutation_importance_mean,permutation_importance_std,cluster_id,positive_count,negative_count,rank_by_permutation,feature_label,cluster_center_z
+z_box_shots_per90,0.288084,0.015157,0.007144,3,17,100,1,ボックス内シュート_per90,-1.257940
+z_successful_forward_passes_per90,0.188336,0.009510,0.004632,3,17,100,2,前進パス成功数_per90,1.336467
+z_attacking_third_gains_per90,0.109551,0.002275,0.001865,3,17,100,3,攻撃3rd奪回_per90,0.985416
+z_goals_per90,0.175957,0.000275,0.000364,3,17,100,4,得点_per90,-1.024234
+z_aerial_wins_per90,0.084139,0.000000,0.000000,3,17,100,5,空中戦勝利数_per90,-0.675641
+z_shot_conversion_rate_pct,0.069115,0.000000,0.000000,3,17,100,6,決定率,-0.723703
+z_last_passes_per90,0.026244,0.000000,0.000000,3,17,100,7,ラストパス_per90,-0.041869
+z_shot_on_target_rate_pct,0.023541,0.000000,0.000000,3,17,100,8,枠内率,0.228118
+z_sprint_count_full_all_per_match,0.017906,0.000000,0.000000,3,17,100,9,スプリント回数_per_match,-0.262142
+z_out_box_shots_per90,0.017126,0.000000,0.000000,3,17,100,10,ボックス外シュート_per90,0.005475

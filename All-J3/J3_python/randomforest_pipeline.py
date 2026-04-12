@@ -37,7 +37,7 @@ class RandomForestPositionConfig:
     feature_labels: dict[str, str]
     theme_groups: dict[str, list[str]]
     theme_label_candidates: dict[str, str]
-    average_cluster_id: int
+    average_cluster_id: int | None = None
     n_estimators: int = 1000
     random_state: int = 42
     class_weight: str = "balanced"
@@ -83,6 +83,25 @@ def validate_columns(df: pd.DataFrame, required_columns: list[str], path: Path) 
     missing_columns = [column for column in required_columns if column not in df.columns]
     if missing_columns:
         raise ValueError(f"{path.name} に必要列がありません: {missing_columns}")
+
+
+def resolve_average_cluster_id(
+    config: RandomForestPositionConfig,
+    summary_df: pd.DataFrame,
+) -> int:
+    if config.average_cluster_id is not None:
+        return int(config.average_cluster_id)
+
+    average_rows = summary_df[summary_df["is_average_candidate"].astype(str).str.lower() == "yes"]
+    if average_rows.empty:
+        raise ValueError(
+            "average_cluster_id が未指定で、cluster_summary.csv に is_average_candidate=yes がありません。"
+        )
+    if len(average_rows) > 1:
+        raise ValueError(
+            "average_cluster_id が未指定ですが、cluster_summary.csv に is_average_candidate=yes が複数あります。"
+        )
+    return int(average_rows.iloc[0]["cluster_id"])
 
 
 def normalize_cluster_id_series(series: pd.Series) -> pd.Series:
@@ -196,6 +215,7 @@ def summarize_directional_features(
 def build_consistency_comment(
     config: RandomForestPositionConfig,
     cluster_id: int,
+    average_cluster_id: int,
     candidate_expression: str,
     importance_df: pd.DataFrame,
     ranked_themes: list[tuple[str, float]],
@@ -206,7 +226,7 @@ def build_consistency_comment(
         top_n=3,
     )
 
-    if cluster_id == config.average_cluster_id:
+    if cluster_id == average_cluster_id:
         return (
             f"KMeans の平均型候補と整合します。RF では {directional_summary} が上位ですが、"
             "いずれも specialized cluster 側の極端さを弾く軸として効いており、"
@@ -232,10 +252,11 @@ def build_consistency_comment(
 def choose_score_features(
     config: RandomForestPositionConfig,
     cluster_id: int,
+    average_cluster_id: int,
     importance_df: pd.DataFrame,
     center_row: pd.Series,
 ) -> tuple[str, list[str]]:
-    if cluster_id == config.average_cluster_id:
+    if cluster_id == average_cluster_id:
         return (
             "平均型候補は 2〜3 変数の単純加算より、"
             f"`{config.position_code}_cluster_centers_z.csv` の cluster {cluster_id} 中心への距離ベースが適切です。",
@@ -302,6 +323,7 @@ def format_feature_ranking_lines(
 
 def render_report(
     config: RandomForestPositionConfig,
+    average_cluster_id: int,
     player_count: int,
     cluster_counts: dict[int, int],
     model_params: dict[str, object],
@@ -397,20 +419,20 @@ def render_report(
         lines.append(f"- 推薦スコア候補: {result['score_note']}")
         lines.append("")
 
-    average_result = next(result for result in results if result["cluster_id"] == config.average_cluster_id)
+    average_result = next(result for result in results if result["cluster_id"] == average_cluster_id)
     average_top_features = ", ".join(average_result["top_features"][:3])
     lines.extend(
         [
             "## 全体所見",
             (
-                f"- 平均型候補は Cluster {config.average_cluster_id} です。"
+                f"- 平均型候補は Cluster {average_cluster_id} です。"
                 f"他クラスタとの分岐で目立った変数は {average_top_features} でした。"
             ),
         ]
     )
 
     for result in results:
-        if result["cluster_id"] == config.average_cluster_id:
+        if result["cluster_id"] == average_cluster_id:
             continue
         top_features = ", ".join(result["top_features"][:3])
         lines.append(
@@ -426,7 +448,7 @@ def render_report(
     )
 
     for result in results:
-        if result["cluster_id"] == config.average_cluster_id:
+        if result["cluster_id"] == average_cluster_id:
             lines.append(
                 f"- Cluster {result['cluster_id']}: "
                 "平均型候補のため、単純加算ではなくクラスタ中心への距離ベース推奨。"
@@ -484,6 +506,7 @@ def run_position_randomforest(config: RandomForestPositionConfig) -> None:
     clustered_df["cluster_id"] = normalize_cluster_id_series(clustered_df["cluster_id"])
     centers_df["cluster_id"] = normalize_cluster_id_series(centers_df["cluster_id"])
     summary_df["cluster_id"] = normalize_cluster_id_series(summary_df["cluster_id"])
+    average_cluster_id = resolve_average_cluster_id(config=config, summary_df=summary_df)
 
     X = build_feature_matrix(clustered_df, config.z_columns)
     cluster_ids = sorted(clustered_df["cluster_id"].unique().tolist())
@@ -587,13 +610,14 @@ def run_position_randomforest(config: RandomForestPositionConfig) -> None:
         ranked_themes = rank_themes(theme_scores)
         label_candidate = build_label_candidate(
             cluster_id=cluster_id,
-            average_cluster_id=config.average_cluster_id,
+            average_cluster_id=average_cluster_id,
             ranked_themes=ranked_themes,
             theme_label_candidates=config.theme_label_candidates,
         )
         consistency_comment = build_consistency_comment(
             config=config,
             cluster_id=cluster_id,
+            average_cluster_id=average_cluster_id,
             candidate_expression=candidate_expression,
             importance_df=importance_df,
             ranked_themes=ranked_themes,
@@ -601,6 +625,7 @@ def run_position_randomforest(config: RandomForestPositionConfig) -> None:
         score_note, score_features = choose_score_features(
             config=config,
             cluster_id=cluster_id,
+            average_cluster_id=average_cluster_id,
             importance_df=importance_df,
             center_row=center_row,
         )
@@ -619,7 +644,7 @@ def run_position_randomforest(config: RandomForestPositionConfig) -> None:
                 "top_features": top_features,
                 "average_cluster_label_candidate": build_average_cluster_label_candidate(
                     cluster_id=cluster_id,
-                    average_cluster_id=config.average_cluster_id,
+                    average_cluster_id=average_cluster_id,
                     candidate_expression=candidate_expression,
                 ),
                 "candidate_expression": candidate_expression,
@@ -663,6 +688,7 @@ def run_position_randomforest(config: RandomForestPositionConfig) -> None:
 
     report_text = render_report(
         config=config,
+        average_cluster_id=average_cluster_id,
         player_count=len(clustered_df),
         cluster_counts=cluster_id_series.value_counts().sort_index().to_dict(),
         model_params=model_params,
@@ -672,3 +698,4 @@ def run_position_randomforest(config: RandomForestPositionConfig) -> None:
 
     log(config.position_code, f"overall summary: {config.overall_summary_path}")
     log(config.position_code, f"report: {config.rf_report_path}")
+    log(config.position_code, f"average_cluster_id={average_cluster_id}")

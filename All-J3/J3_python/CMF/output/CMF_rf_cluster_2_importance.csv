@@ -1,0 +1,9 @@
+﻿feature_name,impurity_importance,permutation_importance_mean,permutation_importance_std,cluster_id,positive_count,negative_count,rank_by_permutation,feature_label,cluster_center_z
+z_short_pass_share_pct,0.255781,0.000741,0.002222,2,5,27,1,ショートパス比率,1.934467
+z_long_pass_share_pct,0.232529,0.000000,0.000000,2,5,27,2,ロングパス比率,-1.698578
+z_forward_pass_success_rate_pct,0.170521,0.000000,0.000000,2,5,27,3,前進パス成功率,1.309016
+z_ball_gains_per90,0.111260,0.000000,0.000000,2,5,27,4,ボール奪取_per90,-0.908746
+z_pass_success_rate_pct,0.091227,0.000000,0.000000,2,5,27,5,パス成功率,1.229512
+z_interceptions_per90,0.064954,0.000000,0.000000,2,5,27,6,インターセプト_per90,0.345294
+z_running_distance_full_all_per_match,0.057252,0.000000,0.000000,2,5,27,7,走行距離_per_match,-0.807030
+z_opponent_half_gain_share_pct,0.016478,0.000000,0.000000,2,5,27,8,敵陣奪回比率,0.288136

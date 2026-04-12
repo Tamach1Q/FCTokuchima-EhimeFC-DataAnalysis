@@ -1,0 +1,10 @@
+﻿feature_name,impurity_importance,permutation_importance_mean,permutation_importance_std,cluster_id,positive_count,negative_count,rank_by_permutation,feature_label,cluster_center_z
+z_regain_within_5s_per90,0.350061,0.071845,0.012288,1,34,181,1,ロスト後5秒未満リゲイン_per90,1.457024
+z_dribble_success_rate_pct,0.232675,0.029450,0.006728,1,34,181,2,ドリブル成功率,-1.379810
+z_sprint_distance_full_all_per_match,0.054465,0.000509,0.000532,1,34,181,3,スプリント距離_per_match,-0.752359
+z_pa_entry_per90,0.112945,0.000011,0.000041,1,34,181,4,PA進入_per90,-0.674564
+z_crosses_per90,0.119968,0.000005,0.000029,1,34,181,5,クロス数_per90,-0.682191
+z_last_passes_per90,0.035565,0.000000,0.000000,1,34,181,6,ラストパス_per90,-0.319731
+z_hsr_count_full_all_per_match,0.024834,0.000000,0.000000,1,34,181,7,HSR回数_per_match,-0.574753
+z_cross_success_rate_pct,0.038825,0.000000,0.000000,1,34,181,8,クロス成功率,0.273332
+z_shot_conversion_rate_pct,0.030663,0.000000,0.000000,1,34,181,9,決定率,-0.480552

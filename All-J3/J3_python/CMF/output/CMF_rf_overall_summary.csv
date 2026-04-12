@@ -1,0 +1,4 @@
+﻿cluster_id,positive_count,negative_count,train_auc,cv_auc_mean,cv_auc_std,top1_feature,top2_feature,top3_feature,average_cluster_label_candidate
+0,9,23,1.000000,0.960000,0.080000,z_pass_success_rate_pct,z_opponent_half_gain_share_pct,z_forward_pass_success_rate_pct,specialized cluster (ボックストゥボックス寄り / ボールハント寄り)
+1,18,14,1.000000,0.961111,0.048432,z_pass_success_rate_pct,z_opponent_half_gain_share_pct,z_running_distance_full_all_per_match,平均型候補
+2,5,27,1.000000,1.000000,0.000000,z_short_pass_share_pct,z_long_pass_share_pct,z_forward_pass_success_rate_pct,specialized cluster (ゲームメイク寄り / ボールハント寄り)
