@@ -12,12 +12,21 @@ set -e
 
 cd /Users/machidanoboruyuu/Desktop/FCTokushima-EhimeFC-DataAnalysis
 
+PYTHON_BIN="./env/bin/python"
+if [ ! -x "${PYTHON_BIN}" ]; then
+  PYTHON_BIN="$(command -v python3)"
+fi
+
 echo "=== Step 1: SC raw データから中間CSV抽出 (Python) ==="
-python All-J3/extract_sc_position_data.py
+"${PYTHON_BIN}" All-J3/extract_sc_position_data.py
 
 echo ""
 echo "=== Step 2: ポジション復元・マージ処理 ==="
-python All-J3/rebuild_sc_detailed_positions.py
+"${PYTHON_BIN}" All-J3/rebuild_sc_detailed_positions.py
+
+echo ""
+echo "=== Step 3: composite key 優先 join で最終CSV再生成 ==="
+"${PYTHON_BIN}" All-J3/fix_position_join.py
 
 echo ""
 echo "=== 全処理完了 ==="
